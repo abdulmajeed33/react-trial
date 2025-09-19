@@ -7,17 +7,6 @@ import { useState } from 'react';
 
 export function SearchConversation() {
   const [inputValue, setInputValue] = useState('');
-  const [showInput, setShowInput] = useState(false);
-
-  const handlePlaceholderClick = () => {
-    setShowInput(true);
-  };
-
-  const handleInputBlur = () => {
-    if (!inputValue) {
-      setShowInput(false);
-    }
-  };
 
   return (
     <div className="flex items-center gap-3 p-3 rounded-lg w-[400px] bg-background-dark-neutral-transparent border border-border-primary-two-dark shadow-[0px_8px_8px_0px_rgba(42,61,214,0.16)]">
@@ -25,23 +14,13 @@ export function SearchConversation() {
       <div className="flex items-center gap-1 flex-1">
         <div className="flex items-center gap-2 flex-1">
           <MagicIcon className="w-4 h-4 flex-shrink-0" />
-          {!showInput ? (
-            <span 
-              onClick={handlePlaceholderClick}
-              className="font-inter font-normal text-body-small text-text-dark-secondary cursor-text flex-1 select-none"
-            >
-              ⌘ + M to start conversation
-            </span>
-          ) : (
             <Input
               autoFocus
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              onBlur={handleInputBlur}
               placeholder="⌘ + M to start conversation"
               className="border-none bg-transparent p-0 h-auto text-body-small text-text-dark-primary placeholder:text-text-dark-secondary focus-visible:ring-0 focus-visible:ring-offset-0 font-inter"
             />
-          )}
         </div>
       </div>
 
