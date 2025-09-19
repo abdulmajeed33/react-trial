@@ -5,6 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
+import { Button } from '../ui/button';
 
 interface ChartHeaderProps {
   title: string;
@@ -58,28 +59,32 @@ export function ChartHeader({
       
       <div className="flex items-center gap-1">
         {showMagic && (
-          <button 
-            className="w-6 h-6 flex items-center justify-center hover:bg-background-dark-neutral-three rounded p-1 transition-colors"
+          <Button
+            variant="chart-icon"
+            size="chart-icon"
             onClick={onMagicClick}
           >
             <img 
               src="/icons/magic-icon.svg" 
               alt="Magic"
-              className="w-4 h-4 object-contain opacity-70 hover:opacity-100 transition-opacity"
+              className="w-4 h-4 object-contain"
             />
-          </button>
+          </Button>
         )}
         
         {showMore && defaultMenuItems.length > 0 && (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="w-6 h-6 flex items-center justify-center hover:bg-background-dark-neutral-three rounded p-1 transition-colors">
+              <Button
+                variant="chart-icon"
+                size="chart-icon"
+              >
                 <img 
                   src="/icons/more-icon.svg" 
                   alt="More options"
-                  className="w-3 h-3 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                  className="w-3 h-3 object-contain"
                 />
-              </button>
+              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent 
               align="end" 
