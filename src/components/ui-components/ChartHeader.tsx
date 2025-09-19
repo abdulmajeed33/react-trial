@@ -68,11 +68,11 @@ export function ChartHeader({
         {showMore && defaultMenuItems.length > 0 && (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="w-5 h-5 flex items-center justify-center hover:bg-background-dark-neutral-three rounded p-1">
+              <button className="w-6 h-6 flex items-center justify-center hover:bg-background-dark-neutral-three rounded p-1 transition-colors">
                 <img 
                   src="/icons/more-icon.svg" 
                   alt="More options"
-                  className="w-[1.25px] h-[10px] object-contain"
+                  className="w-3 h-3 object-contain opacity-70 hover:opacity-100 transition-opacity"
                 />
               </button>
             </DropdownMenuTrigger>
