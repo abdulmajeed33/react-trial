@@ -1,4 +1,22 @@
 import React from 'react';
+import { AreaChart, Area, ResponsiveContainer } from 'recharts';
+
+// Risk trend data for the area chart - matches exact Figma curve shape
+const riskTrendData = [
+  { x: 0, risk: 10 },
+  { x: 1, risk: 12 },
+  { x: 2, risk: 15 },
+  { x: 3, risk: 20 },
+  { x: 4, risk: 30 },
+  { x: 5, risk: 45 },
+  { x: 6, risk: 65 },
+  { x: 7, risk: 80 },
+  { x: 8, risk: 90 },
+  { x: 9, risk: 95 },
+  { x: 10, risk: 98 },
+  { x: 11, risk: 99 },
+  { x: 12, risk: 100 }
+];
 
 interface RiskCategoryCardProps {
   icon: string;
@@ -127,30 +145,38 @@ const OrganizationalRiskChart: React.FC = () => {
 
       {/* Main Content */}
       <div className="flex gap-3">
-        {/* Left side - Circular Chart */}
+        {/* Left side - Risk Area Chart */}
         <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-3 flex flex-col justify-end gap-3 w-[178px] h-[236px] relative flex-shrink-0">
-          {/* Background chart area with gradient - matches Figma exactly */}
-          <div className="absolute inset-0 overflow-hidden rounded-xl">
-            <svg 
-              className="absolute -left-[22px] top-[21.5px] w-[230.5px] h-[214.5px]"
-              viewBox="0 0 231 215" 
-              fill="none"
-            >
-              <defs>
-                <linearGradient id="riskGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" style={{stopColor:'#FF5757', stopOpacity:1}} />
-                  <stop offset="100%" style={{stopColor:'#FF5757', stopOpacity:0}} />
-                </linearGradient>
-              </defs>
-              {/* Curved risk visualization matching Figma design */}
-              <path 
-                d="M50 180 C 50 180 60 120 80 90 C 100 60 140 40 180 50 C 220 60 230 100 220 140 C 210 180 170 200 130 190 C 90 180 70 160 50 180" 
-                fill="url(#riskGradient)" 
-                stroke="#FF5757" 
-                strokeWidth="1"
-              />
-            </svg>
-          </div>
+          {/* Risk Area Chart using Recharts - matches Figma exactly */}
+                      <div className="absolute -left-[22px] top-[21.5px] w-[230.5px] h-[214.5px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart 
+                  data={riskTrendData} 
+                  margin={{ top: 20, right: 20, left: 20, bottom: 20 }}
+                  width={230}
+                  height={214}
+                >
+                  <defs>
+                    <linearGradient id="riskAreaGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#FF5757" stopOpacity={1} />
+                      <stop offset="100%" stopColor="#FF5757" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <Area
+                    type="natural"
+                    dataKey="risk"
+                    stroke="#FF5757"
+                    strokeWidth={2}
+                    fill="url(#riskAreaGradient)"
+                    fillOpacity={1}
+                    dot={false}
+                    activeDot={false}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
           
           {/* Content */}
           <div className="flex flex-col gap-3 relative z-10">
