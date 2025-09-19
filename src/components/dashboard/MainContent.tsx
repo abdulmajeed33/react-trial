@@ -17,10 +17,12 @@ export function MainContent() {
       </div>
       
       {/* Second Row - MTTD & MTTR Trends */}
+      <div className="w-full">
+        <MTTDMTTRChart />
+      </div>
+      
+      {/* Third Row - Additional Chart & Compliance Charts */}
       <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-12 lg:col-span-8">
-          <MTTDMTTRChart />
-        </div>
         <div className="col-span-12 lg:col-span-4">
           <ChartPlaceholder 
             title="Additional Chart" 
@@ -28,18 +30,14 @@ export function MainContent() {
             height="h-80"
           />
         </div>
-      </div>
-      
-      {/* Third Row - Compliance Charts */}
-      <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-12 lg:col-span-6">
+        <div className="col-span-12 lg:col-span-4">
           <ChartPlaceholder 
             title="Compliance" 
             description="Overall compliance metrics"
             height="h-72"
           />
         </div>
-        <div className="col-span-12 lg:col-span-6">
+        <div className="col-span-12 lg:col-span-4">
           <ChartPlaceholder 
             title="Patching Compliance by Team" 
             description="Team-based compliance breakdown"

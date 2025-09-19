@@ -14,7 +14,7 @@ const chartData = [
 
 const MTTDMTTRChart: React.FC = () => {
   return (
-    <div className="bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6 w-full h-full">
+    <div className="bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6 w-full" style={{ height: '358px' }}>
       {/* Header */}
       <ChartHeader 
         title="MTTD & MTTR Trends"
@@ -24,7 +24,7 @@ const MTTDMTTRChart: React.FC = () => {
       />
 
       {/* Chart Container */}
-      <div className="flex-1 bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-4 relative">
+      <div className="flex-1 bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-4 relative min-h-[246px]">
         {/* Chart */}
         <div className="h-full w-full">
           <ResponsiveContainer width="100%" height="100%">
@@ -36,14 +36,16 @@ const MTTDMTTRChart: React.FC = () => {
               <defs>
                 {/* MTTD Blue Gradient */}
                 <linearGradient id="mttdGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#7988FF" stopOpacity={1} />
-                  <stop offset="100%" stopColor="rgba(121, 136, 255, 0)" stopOpacity={0} />
+                  <stop offset="0%" stopColor="#7988FF" stopOpacity={0.6} />
+                  <stop offset="50%" stopColor="#7988FF" stopOpacity={0.3} />
+                  <stop offset="100%" stopColor="#7988FF" stopOpacity={0} />
                 </linearGradient>
                 
                 {/* MTTR Gold/Yellow Gradient */}
                 <linearGradient id="mttrGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#F59C0B" stopOpacity={1} />
-                  <stop offset="100%" stopColor="rgba(245, 156, 11, 0)" stopOpacity={0} />
+                  <stop offset="0%" stopColor="#F59C0B" stopOpacity={0.4} />
+                  <stop offset="50%" stopColor="#F59C0B" stopOpacity={0.2} />
+                  <stop offset="100%" stopColor="#F59C0B" stopOpacity={0} />
                 </linearGradient>
               </defs>
 
