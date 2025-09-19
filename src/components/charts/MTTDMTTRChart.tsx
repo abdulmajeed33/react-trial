@@ -47,11 +47,22 @@ const MTTDMTTRChart: React.FC = () => {
                 </linearGradient>
               </defs>
 
-              {/* Grid Lines */}
+              {/* Grid Lines - Horizontal */}
               {[2, 4, 6, 8, 10].map((value) => (
                 <ReferenceLine 
-                  key={value}
+                  key={`horizontal-${value}`}
                   y={value} 
+                  stroke="#1F242F" 
+                  strokeDasharray="2 2"
+                  strokeWidth={1}
+                />
+              ))}
+
+              {/* Grid Lines - Vertical */}
+              {chartData.map((_, index) => (
+                <ReferenceLine 
+                  key={`vertical-${index}`}
+                  x={index} 
                   stroke="#1F242F" 
                   strokeDasharray="2 2"
                   strokeWidth={1}
