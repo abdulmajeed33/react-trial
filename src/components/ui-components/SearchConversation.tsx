@@ -1,6 +1,4 @@
-import { User } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '../ui/select';
-import { Avatar, AvatarFallback } from '../ui/avatar';
 import { Input } from '../ui/input';
 import { useState } from 'react';
 
@@ -32,11 +30,13 @@ export function SearchConversation() {
         <Select defaultValue="agent">
           <SelectTrigger className="flex items-center gap-1 border-none bg-transparent p-0 h-auto focus:ring-0 focus:ring-offset-0 [&>svg]:text-icon-dark-neutral-neutral">
             <div className="flex items-center gap-1">
-              <Avatar className="w-4 h-4">
-                <AvatarFallback className="bg-white text-icon-dark-neutral-neutral text-[8px] w-4 h-4">
-                  <User className="w-3 h-3 text-icon-dark-neutral-neutral" />
-                </AvatarFallback>
-              </Avatar>
+              <div className="w-4 h-4 flex items-center justify-center">
+                <img 
+                  src="/icons/agent-icon.svg" 
+                  alt="Agent"
+                  className="w-3 h-3 object-contain"
+                />
+              </div>
               <span className="font-inter font-normal text-label text-text-dark-secondary">
                 Agent
               </span>
