@@ -1,5 +1,6 @@
 import { ChartPlaceholder } from '../charts/ChartPlaceholder';
 import { TimeRangeSelector } from './TimeRangeSelector';
+import OrganizationalRiskChart from '../charts/OrganizationalRiskChart';
 
 export function MainContent() {
   return (
@@ -12,11 +13,7 @@ export function MainContent() {
       {/* First Row - Organizational Risk */}
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-8">
-          <ChartPlaceholder 
-            title="Organizational Risk" 
-            description="Risk assessment with asset breakdown"
-            height="h-80"
-          />
+          <OrganizationalRiskChart />
         </div>
         <div className="col-span-12 lg:col-span-4">
           <ChartPlaceholder 
