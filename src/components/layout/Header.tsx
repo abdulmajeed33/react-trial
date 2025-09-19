@@ -1,25 +1,58 @@
-import { Search, ChevronDown } from 'lucide-react';
+import { MagicIcon } from '../ui/MagicIcon';
 
 export function Header() {
   return (
-    <header className="h-20 bg-background-dark-neutral-neutral border-b border-dark-neutral-three px-6 flex items-center justify-between">
+    <header 
+      className="h-20 flex items-center justify-end gap-8 px-6 py-4"
+      style={{
+        background: 'rgba(22, 27, 38, 0.16)',
+        borderBottom: '1px solid #161B26',
+        width: '1152px',
+        maxWidth: '100%'
+      }}
+    >
       {/* Page Title */}
-      <div>
-        <h1 className="text-heading4 font-semibold text-text-dark-primary">Dashboards</h1>
+      <div className="mr-auto">
+        <h1 
+          className="font-inter font-semibold text-text-dark-primary"
+          style={{
+            fontSize: '24px',
+            lineHeight: '28px',
+            letterSpacing: '-0.5px',
+            color: '#F1F3FF'
+          }}
+        >
+          Dashboards
+        </h1>
       </div>
       
-      {/* Right Section */}
-      <div className="flex items-center space-x-4">
-        {/* Search Bar */}
-        <div className="bg-background-dark-neutral-three rounded-lg px-4 py-3 flex items-center space-x-3 min-w-96 border border-border-dark-neutral-neutral">
-          <Search className="w-4 h-4 text-icon-dark-neutral-neutral" />
-          <span className="text-text-dark-secondary text-body-small">⌘ + M to start conversation</span>
-          <div className="ml-auto flex items-center space-x-2">
-            <div className="w-4 h-4 bg-neutral-white rounded-sm flex items-center justify-center">
-              <div className="w-2 h-2 bg-icon-dark-neutral-neutral rounded-full"></div>
+      {/* Right Section Container */}
+      <div className="flex flex-col items-end gap-2.5 pl-28 flex-1">
+        {/* Search/Conversation Container */}
+        <div 
+          className="flex items-center gap-3 p-3 rounded-lg"
+          style={{
+            width: '400px',
+            background: 'rgba(22, 27, 38, 0.16)',
+            border: '1px solid #434EFF',
+            boxShadow: '0px 8px 8px 0px rgba(42, 61, 214, 0.16)'
+          }}
+        >
+          {/* Icon and Text Container */}
+          <div className="flex items-center gap-1 flex-1">
+            <div className="flex items-center gap-2">
+              <MagicIcon className="w-4 h-4" />
+              <span 
+                className="font-inter font-normal"
+                style={{
+                  fontSize: '14px',
+                  lineHeight: '16px',
+                  color: '#B6BCC3'
+                }}
+              >
+                ⌘ + M to start conversation
+              </span>
             </div>
-            <span className="text-text-dark-secondary text-label">Agent</span>
-            <ChevronDown className="w-4 h-4 text-icon-dark-neutral-neutral" />
           </div>
         </div>
       </div>

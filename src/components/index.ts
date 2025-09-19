@@ -4,6 +4,9 @@ export { Sidebar } from './layout/Sidebar';
 export { Header } from './layout/Header';
 export { RightPanel } from './layout/RightPanel';
 
+// UI Components
+export { MagicIcon } from './ui/MagicIcon';
+
 // Dashboard Components
 export { MainContent } from './dashboard/MainContent';
 export { TimeRangeSelector } from './dashboard/TimeRangeSelector';
