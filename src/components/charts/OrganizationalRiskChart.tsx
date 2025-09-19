@@ -147,8 +147,8 @@ const OrganizationalRiskChart: React.FC = () => {
       <div className="flex gap-3">
         {/* Left side - Risk Area Chart */}
         <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-3 flex flex-col justify-end gap-3 w-[178px] h-[236px] relative flex-shrink-0">
-                    {/* Risk Area Chart using Recharts - properly contained */}
-          <div className="absolute inset-3 overflow-hidden" style={{ zIndex: 1 }}>
+                    {/* Risk Area Chart using Recharts - full coverage */}
+          <div className="absolute inset-0 overflow-hidden rounded-xl" style={{ zIndex: 1 }}>
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart 
                 data={riskTrendData} 
@@ -183,7 +183,7 @@ const OrganizationalRiskChart: React.FC = () => {
             <span className="text-text-dark-primary text-body font-normal text-center">
               Overall Risk Score
             </span>
-            <div className="bg-background-badge-error border border-background-badge-error rounded-3xl px-2 py-1 r w-fit">
+            <div className="bg-background-badge-error border border-background-badge-error rounded-3xl px-2 py-1 w-fit">
               <span className="text-text-badge-error text-extra-small font-normal">
                 Critical
               </span>
