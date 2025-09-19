@@ -10,21 +10,30 @@ export function MainContent() {
         <TimeRangeSelector />
       </div>
       
-      {/* First Row - Organizational Risk */}
+      {/* First Row - Organizational Risk (Full Width) */}
+      <div className="w-full">
+        <OrganizationalRiskChart />
+      </div>
+      
+      {/* Second Row - MTTD & MTTR Trends */}
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-8">
-          <OrganizationalRiskChart />
-        </div>
-        <div className="col-span-12 lg:col-span-4">
           <ChartPlaceholder 
             title="MTTD & MTTR Trends" 
             description="Mean Time to Detect/Respond trends"
             height="h-80"
           />
         </div>
+        <div className="col-span-12 lg:col-span-4">
+          <ChartPlaceholder 
+            title="Additional Chart" 
+            description="Another chart placeholder"
+            height="h-80"
+          />
+        </div>
       </div>
       
-      {/* Second Row - Compliance Charts */}
+      {/* Third Row - Compliance Charts */}
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-6">
           <ChartPlaceholder 
@@ -42,7 +51,7 @@ export function MainContent() {
         </div>
       </div>
       
-      {/* Third Row - Risk & Awareness */}
+      {/* Fourth Row - Risk & Awareness */}
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-6">
           <ChartPlaceholder 
