@@ -30,7 +30,7 @@ const MTTDMTTRChart: React.FC = () => {
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               data={chartData}
-              margin={{ top: 20, right: 30, left: 0, bottom: 20 }}
+              margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
             >
               {/* Gradients */}
               <defs>
