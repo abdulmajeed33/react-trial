@@ -61,7 +61,7 @@ const riskCategories: RiskCategoryCardProps[] = [
 
 const RiskCategoryCard: React.FC<RiskCategoryCardProps> = ({ icon, name, severity, status }) => {
   return (
-    <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-4 flex flex-col items-center justify-center gap-3 h-[120px] flex-1">
+    <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-4 flex flex-col items-center justify-center gap-3 h-[112px] flex-1">
       <div className="w-6 h-6 flex items-center justify-center">
         <img 
           src={`/icons/${icon}`} 
@@ -81,7 +81,7 @@ const RiskCategoryCard: React.FC<RiskCategoryCardProps> = ({ icon, name, severit
             </span>
           </div>
         ) : (
-          <span className="text-text-badge-primary text-extra-small font-semibold text-center">
+          <span className="text-text-badge-primary text-extra-small font-semibold text-center underline">
             {severity.toUpperCase()}
           </span>
         )}
