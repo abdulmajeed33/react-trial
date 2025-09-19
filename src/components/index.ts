@@ -5,7 +5,6 @@ export { Header } from './layout/Header';
 export { RightPanel } from './layout/RightPanel';
 
 // UI Components
-export { MagicIcon } from './ui/MagicIcon';
 
 // UI Components (Custom)
 export { SearchConversation } from './ui-components/SearchConversation';

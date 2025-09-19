@@ -1,5 +1,4 @@
 import { User } from 'lucide-react';
-import { MagicIcon } from '../ui/MagicIcon';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '../ui/select';
 import { Avatar, AvatarFallback } from '../ui/avatar';
 import { Input } from '../ui/input';
@@ -13,7 +12,11 @@ export function SearchConversation() {
       {/* Left Section - Search/Conversation Area */}
       <div className="flex items-center gap-1 flex-1">
         <div className="flex items-center gap-2 flex-1">
-          <MagicIcon className="w-4 h-4 flex-shrink-0" />
+          <img 
+            src="/icons/magic-icon.svg" 
+            alt="Magic"
+            className="w-4 h-4 object-contain flex-shrink-0"
+          />
             <Input
               autoFocus
               value={inputValue}
