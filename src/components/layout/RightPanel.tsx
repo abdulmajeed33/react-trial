@@ -9,7 +9,7 @@ const rightPanelItems = [
 
 export function RightPanel() {
   return (
-    <aside className="w-16 bg-gray-900 border-l border-gray-700 flex flex-col p-4">
+    <aside className="w-16 bg-background-dark-neutral-neutral border-l border-dark-neutral-three flex flex-col p-4">
       {/* Top Items */}
       <div className="space-y-4">
         {rightPanelItems.map((item) => (
@@ -17,20 +17,20 @@ export function RightPanel() {
             <button
               className={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${
                 item.active 
-                  ? 'bg-gray-800 text-blue-400' 
-                  : 'text-gray-400 hover:text-gray-300 hover:bg-gray-800'
+                  ? 'bg-background-dark-neutral-three text-status-blue' 
+                  : 'text-icon-dark-neutral-neutral hover:text-icon-dark-neutral-active hover:bg-background-dark-neutral-three'
               }`}
             >
               <item.icon className="w-5 h-5" />
             </button>
             {item.badge && (
-              <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs font-medium">{item.badge}</span>
+              <div className="absolute -top-1 -right-1 w-5 h-5 bg-button-primary-default rounded-full flex items-center justify-center">
+                <span className="text-neutral-white text-extra-small font-medium">{item.badge}</span>
               </div>
             )}
             {/* Separator Line */}
             {item.name !== 'AI Settings' && (
-              <div className="w-8 h-px bg-gray-700 mx-auto mt-4"></div>
+              <div className="w-8 h-px bg-border-dark-neutral-neutral mx-auto mt-4"></div>
             )}
           </div>
         ))}

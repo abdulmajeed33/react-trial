@@ -16,11 +16,11 @@ const navigationItems = [
 
 export function Sidebar() {
   return (
-    <aside className="w-16 bg-gray-900 border-r border-gray-700 flex flex-col">
+    <aside className="w-16 bg-background-dark-neutral-neutral border-r border-dark-neutral-three flex flex-col">
       {/* Logo Section */}
       <div className="p-4 flex justify-center">
-        <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-6 bg-white rounded-sm"></div>
+        <div className="w-8 h-8 bg-button-primary-default rounded-lg flex items-center justify-center">
+          <div className="w-6 h-6 bg-neutral-white rounded-sm"></div>
         </div>
       </div>
       
@@ -32,8 +32,8 @@ export function Sidebar() {
               <button
                 className={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${
                   item.active 
-                    ? 'bg-gray-800 text-blue-400' 
-                    : 'text-gray-400 hover:text-gray-300 hover:bg-gray-800'
+                    ? 'bg-background-dark-neutral-three text-status-blue' 
+                    : 'text-icon-dark-neutral-neutral hover:text-icon-dark-neutral-active hover:bg-background-dark-neutral-three'
                 }`}
               >
                 <item.icon className="w-5 h-5" />
@@ -46,18 +46,18 @@ export function Sidebar() {
       {/* Bottom Section */}
       <div className="p-2 space-y-4">
         {/* AI Settings */}
-        <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-6 bg-blue-600 rounded-full"></div>
+        <div className="w-12 h-12 bg-background-dark-neutral-three rounded-lg flex items-center justify-center">
+          <div className="w-6 h-6 bg-button-primary-default rounded-full"></div>
         </div>
         
         {/* Settings */}
-        <button className="w-12 h-12 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-300 hover:bg-gray-800">
+        <button className="w-12 h-12 rounded-lg flex items-center justify-center text-icon-dark-neutral-neutral hover:text-icon-dark-neutral-active hover:bg-background-dark-neutral-three">
           <Settings className="w-5 h-5" />
         </button>
         
         {/* User Avatar */}
-        <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-          <span className="text-white font-medium text-sm">A</span>
+        <div className="w-12 h-12 bg-button-primary-default rounded-lg flex items-center justify-center">
+          <span className="text-neutral-white font-medium text-xs">A</span>
         </div>
       </div>
     </aside>

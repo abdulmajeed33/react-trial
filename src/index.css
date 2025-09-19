@@ -2,3 +2,105 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    /* Shadcn/UI Variables */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Typography Scale from Figma */
+  .text-heading1 {
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: -0.5px;
+    font-weight: 600;
+  }
+  
+  .text-heading2 {
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: -0.5px;
+    font-weight: 600;
+  }
+  
+  .text-heading3 {
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: -0.5px;
+    font-weight: 600;
+  }
+  
+  .text-heading4 {
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: -0.5px;
+    font-weight: 600;
+  }
+  
+  .text-heading5 {
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.5px;
+    font-weight: 600;
+  }
+  
+  .text-body {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0px;
+  }
+  
+  .text-body-small {
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0px;
+  }
+  
+  .text-label {
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0px;
+  }
+  
+  .text-extra-small {
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0px;
+  }
+}
+
