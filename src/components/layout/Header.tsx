@@ -14,8 +14,10 @@ export function Header() {
         <h1 
           className="font-inter font-semibold text-text-dark-primary"
           style={{
-            fontSize: 'font-size-heading-4',
-            color: 'color-text-dark-primary'
+            fontSize: '24px',
+            lineHeight: '28px',
+            letterSpacing: '-0.5px',
+            color: '#F1F3FF'
           }}
         >
           Dashboards
