@@ -1,4 +1,4 @@
-import { MagicIcon } from '../ui/MagicIcon';
+import { SearchConversation } from '../ui-components/SearchConversation';
 
 export function Header() {
   return (
@@ -14,20 +14,8 @@ export function Header() {
       
       {/* Right Section Container */}
       <div className="flex flex-col items-end gap-2.5 pl-28 flex-1">
-        {/* Search/Conversation Container */}
-        <div 
-          className="flex items-center gap-3 p-3 rounded-lg w-[400px] bg-background-dark-neutral-transparent border border-border-primary-two-dark shadow-[0px_8px_8px_0px_rgba(42,61,214,0.16)]"
-        >
-          {/* Icon and Text Container */}
-          <div className="flex items-center gap-1 flex-1">
-            <div className="flex items-center gap-2">
-              <MagicIcon className="w-4 h-4" />
-              <span className="font-inter font-normal text-body-small text-text-dark-secondary">
-                ⌘ + M to start conversation
-              </span>
-            </div>
-          </div>
-        </div>
+        {/* Search/Conversation Component */}
+        <SearchConversation />
       </div>
     </header>
   );
