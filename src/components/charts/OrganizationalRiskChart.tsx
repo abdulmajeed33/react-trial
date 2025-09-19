@@ -147,15 +147,13 @@ const OrganizationalRiskChart: React.FC = () => {
       <div className="flex gap-3">
         {/* Left side - Risk Area Chart */}
         <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-3 flex flex-col justify-end gap-3 w-[178px] h-[236px] relative flex-shrink-0">
-          {/* Risk Area Chart using Recharts - matches Figma exactly */}
-                      <div className="absolute -left-[22px] top-[21.5px] w-[230.5px] h-[214.5px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart 
-                  data={riskTrendData} 
-                  margin={{ top: 20, right: 20, left: 20, bottom: 20 }}
-                  width={230}
-                  height={214}
-                >
+                    {/* Risk Area Chart using Recharts - properly contained */}
+          <div className="absolute inset-3 overflow-hidden">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart 
+                data={riskTrendData} 
+                margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+              >
                   <defs>
                     <linearGradient id="riskAreaGradient" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stopColor="#FF5757" stopOpacity={1} />
