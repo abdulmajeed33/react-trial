@@ -1,11 +1,4 @@
 import React from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-
-// Risk data for the circular chart
-const riskData = [
-  { name: 'Critical Risk', value: 75, color: '#FF5757' },
-  { name: 'Remaining', value: 25, color: '#1F242F' }
-];
 
 interface RiskCategoryCardProps {
   icon: string;
@@ -14,7 +7,7 @@ interface RiskCategoryCardProps {
   status: 'critical' | 'configure';
 }
 
-// Risk categories data
+// Risk categories data - exact as in Figma
 const riskCategories: RiskCategoryCardProps[] = [
   {
     icon: 'network-icon.svg',
@@ -68,7 +61,7 @@ const riskCategories: RiskCategoryCardProps[] = [
 
 const RiskCategoryCard: React.FC<RiskCategoryCardProps> = ({ icon, name, severity, status }) => {
   return (
-    <div className="bg-[#0E131C] border border-[#1F242F] rounded-xl p-4 flex flex-col items-center justify-center gap-3 min-h-[120px]">
+    <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-4 flex flex-col items-center justify-center gap-3 h-[120px] flex-1">
       <div className="w-6 h-6 flex items-center justify-center">
         <img 
           src={`/icons/${icon}`} 
@@ -78,17 +71,17 @@ const RiskCategoryCard: React.FC<RiskCategoryCardProps> = ({ icon, name, severit
         />
       </div>
       <div className="flex flex-col items-center gap-3">
-        <span className="text-[#F1F3FF] text-xs font-normal leading-[14px] text-center">
+        <span className="text-text-dark-primary text-label font-normal text-center">
           {name}
         </span>
         {status === 'critical' ? (
-          <div className="bg-[rgba(255,87,87,0.12)] border border-[rgba(255,87,87,0.12)] rounded-3xl px-2 py-1">
-            <span className="text-[#FF5757] text-[10px] font-normal leading-3 text-center">
+          <div className="bg-background-badge-error border border-background-badge-error rounded-3xl px-2 py-1">
+            <span className="text-text-badge-error text-extra-small font-normal text-center">
               {severity}
             </span>
           </div>
         ) : (
-          <span className="text-[#7988FF] text-[10px] font-semibold leading-3 text-center">
+          <span className="text-text-badge-primary text-extra-small font-semibold text-center">
             {severity.toUpperCase()}
           </span>
         )}
@@ -99,11 +92,11 @@ const RiskCategoryCard: React.FC<RiskCategoryCardProps> = ({ icon, name, severit
 
 const OrganizationalRiskChart: React.FC = () => {
   return (
-    <div className="bg-[rgba(22,27,38,0.16)] border border-[#161B26] rounded-2xl p-4 flex flex-col gap-6">
+    <div className="bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6 w-full">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-1">
-          <h3 className="text-[#F1F3FF] text-sm font-semibold leading-4">
+          <h3 className="text-text-dark-primary text-body-small font-semibold">
             Organizational Risk
           </h3>
           <div className="w-[14px] h-[14px] flex items-center justify-center">
@@ -133,38 +126,37 @@ const OrganizationalRiskChart: React.FC = () => {
       {/* Main Content */}
       <div className="flex gap-3">
         {/* Left side - Circular Chart */}
-        <div className="bg-[#0E131C] border border-[#1F242F] rounded-xl p-3 flex flex-col justify-end gap-3 w-[178px] h-[236px] relative">
-          {/* Background SVG Chart */}
-          <div className="absolute -left-[22px] top-[21.5px] w-[230.5px] h-[214.5px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={riskData}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={90}
-                  startAngle={90}
-                  endAngle={450}
-                  dataKey="value"
-                  stroke="#FF5757"
-                  strokeWidth={1}
-                >
-                  {riskData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-              </PieChart>
-            </ResponsiveContainer>
+        <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-3 flex flex-col justify-end gap-3 w-[178px] h-[236px] relative flex-shrink-0">
+          {/* Background chart area with gradient - matches Figma exactly */}
+          <div className="absolute inset-0 overflow-hidden rounded-xl">
+            <svg 
+              className="absolute -left-[22px] top-[21.5px] w-[230.5px] h-[214.5px]"
+              viewBox="0 0 231 215" 
+              fill="none"
+            >
+              <defs>
+                <linearGradient id="riskGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style={{stopColor:'#FF5757', stopOpacity:1}} />
+                  <stop offset="100%" style={{stopColor:'#FF5757', stopOpacity:0}} />
+                </linearGradient>
+              </defs>
+              {/* Curved risk visualization matching Figma design */}
+              <path 
+                d="M50 180 C 50 180 60 120 80 90 C 100 60 140 40 180 50 C 220 60 230 100 220 140 C 210 180 170 200 130 190 C 90 180 70 160 50 180" 
+                fill="url(#riskGradient)" 
+                stroke="#FF5757" 
+                strokeWidth="1"
+              />
+            </svg>
           </div>
           
           {/* Content */}
           <div className="flex flex-col gap-3 relative z-10">
-            <span className="text-[#F1F3FF] text-base font-normal leading-5 text-center">
+            <span className="text-text-dark-primary text-body font-normal text-center">
               Overall Risk Score
             </span>
-            <div className="bg-[rgba(255,87,87,0.12)] border border-[rgba(255,87,87,0.12)] rounded-3xl px-2 py-1 flex justify-center">
-              <span className="text-[#FF5757] text-[10px] font-normal leading-3 text-center">
+            <div className="bg-background-badge-error border border-background-badge-error rounded-3xl px-2 py-1 flex justify-center">
+              <span className="text-text-badge-error text-extra-small font-normal text-center">
                 Critical
               </span>
             </div>
