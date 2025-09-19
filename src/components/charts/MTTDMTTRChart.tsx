@@ -24,7 +24,7 @@ const MTTDMTTRChart: React.FC = () => {
       />
 
       {/* Chart Container */}
-      <div className="flex-1 bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-4 relative min-h-[246px]">
+      <div className="flex-1 bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl p-4 relative min-h-[246px]">
         {/* Chart */}
         <div className="h-full w-full">
           <ResponsiveContainer width="100%" height="100%">
