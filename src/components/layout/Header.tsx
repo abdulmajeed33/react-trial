@@ -7,8 +7,6 @@ export function Header() {
       style={{
         background: 'rgba(22, 27, 38, 0.16)',
         borderBottom: '1px solid #161B26',
-        width: '1152px',
-        maxWidth: '100%'
       }}
     >
       {/* Page Title */}
