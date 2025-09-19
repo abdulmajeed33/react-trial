@@ -1,6 +1,7 @@
 import { ChartPlaceholder } from '../charts/ChartPlaceholder';
 import { TimeRangeSelector } from './TimeRangeSelector';
 import OrganizationalRiskChart from '../charts/OrganizationalRiskChart';
+import MTTDMTTRChart from '../charts/MTTDMTTRChart';
 
 export function MainContent() {
   return (
@@ -18,11 +19,7 @@ export function MainContent() {
       {/* Second Row - MTTD & MTTR Trends */}
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-8">
-          <ChartPlaceholder 
-            title="MTTD & MTTR Trends" 
-            description="Mean Time to Detect/Respond trends"
-            height="h-80"
-          />
+          <MTTDMTTRChart />
         </div>
         <div className="col-span-12 lg:col-span-4">
           <ChartPlaceholder 

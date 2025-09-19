@@ -16,4 +16,5 @@ export { TimeRangeSelector } from './dashboard/TimeRangeSelector';
 
 // Chart Components
 export { ChartPlaceholder } from './charts/ChartPlaceholder';
-export { default as OrganizationalRiskChart } from './charts/OrganizationalRiskChart'; 
+export { default as OrganizationalRiskChart } from './charts/OrganizationalRiskChart';
+export { default as MTTDMTTRChart } from './charts/MTTDMTTRChart'; 
