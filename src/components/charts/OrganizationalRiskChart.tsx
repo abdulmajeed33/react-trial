@@ -148,7 +148,7 @@ const OrganizationalRiskChart: React.FC = () => {
         {/* Left side - Risk Area Chart */}
         <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-3 flex flex-col justify-end gap-3 w-[178px] h-[236px] relative flex-shrink-0">
                     {/* Risk Area Chart using Recharts - properly contained */}
-          <div className="absolute inset-3 overflow-hidden">
+          <div className="absolute inset-3 overflow-hidden" style={{ zIndex: 1 }}>
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart 
                 data={riskTrendData} 
@@ -156,7 +156,9 @@ const OrganizationalRiskChart: React.FC = () => {
               >
                                   <defs>
                   <linearGradient id="riskAreaGradient" x1="0" y1="1" x2="0" y2="0">
-                    <stop offset="0%" stopColor="rgba(255, 87, 87, 1)" stopOpacity={1} />
+                    <stop offset="0%" stopColor="rgba(255, 87, 87, 0.1)" stopOpacity={1} />
+                    <stop offset="30%" stopColor="rgba(255, 87, 87, 0.4)" stopOpacity={1} />
+                    <stop offset="70%" stopColor="rgba(255, 87, 87, 0.7)" stopOpacity={1} />
                     <stop offset="100%" stopColor="rgba(255, 87, 87, 0)" stopOpacity={1} />
                   </linearGradient>
                 </defs>
@@ -177,7 +179,7 @@ const OrganizationalRiskChart: React.FC = () => {
             </div>
           
           {/* Content */}
-          <div className="flex flex-col gap-3 relative z-10">
+          <div className="flex flex-col gap-3 relative" style={{ zIndex: 10 }}>
             <span className="text-text-dark-primary text-body font-normal text-center">
               Overall Risk Score
             </span>
