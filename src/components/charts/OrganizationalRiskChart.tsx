@@ -1,5 +1,6 @@
 import React from 'react';
 import { AreaChart, Area, ResponsiveContainer } from 'recharts';
+import { ChartHeader } from '../ui-components/ChartHeader';
 
 // Risk trend data for the area chart - matches exact Figma curve shape
 const riskTrendData = [
@@ -112,36 +113,12 @@ const OrganizationalRiskChart: React.FC = () => {
   return (
     <div className="bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6 w-full">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <div className="flex items-center gap-1">
-          <h3 className="text-text-dark-primary text-body-small font-semibold">
-            Organizational Risk
-          </h3>
-          <div className="w-[14px] h-[14px] flex items-center justify-center">
-            <img 
-              src="/icons/tooltip-icon.svg" 
-              alt="Tooltip"
-              className="w-[10.5px] h-[10.5px] object-contain"
-            />
-          </div>
-        </div>
-        <div className="flex items-center gap-1">
-          <div className="w-4 h-4 flex items-center justify-center">
-            <img 
-              src="/icons/magic-icon.svg" 
-              alt="Magic"
-              className="w-4 h-4 object-contain"
-            />
-          </div>
-          <div className="w-5 h-5 flex items-center justify-center">
-            <img 
-              src="/icons/more-icon.svg" 
-              alt="More"
-              className="w-[1.25px] h-[10px] object-contain"
-            />
-          </div>
-        </div>
-      </div>
+      <ChartHeader 
+        title="Organizational Risk"
+        onRemoveWidget={() => console.log('Remove widget')}
+        onExportData={() => console.log('Export data')}
+        onSettings={() => console.log('Settings')}
+      />
 
       {/* Main Content */}
       <div className="flex gap-3">

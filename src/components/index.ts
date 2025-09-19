@@ -8,6 +8,7 @@ export { RightPanel } from './layout/RightPanel';
 
 // UI Components (Custom)
 export { SearchConversation } from './ui-components/SearchConversation';
+export { ChartHeader } from './ui-components/ChartHeader';
 
 // Dashboard Components
 export { MainContent } from './dashboard/MainContent';
