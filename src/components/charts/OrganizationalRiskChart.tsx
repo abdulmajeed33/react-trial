@@ -100,25 +100,27 @@ const OrganizationalRiskChart: React.FC = () => {
             Organizational Risk
           </h3>
           <div className="w-[14px] h-[14px] flex items-center justify-center">
-            <svg width="10.5" height="10.5" viewBox="0 0 10.5 10.5" fill="none">
-              <path d="M0 0H10.5V10.5H0V0Z" stroke="#797F89" strokeWidth="1"/>
-              <path d="M5.25 3.5V3.5" stroke="#797F89" strokeWidth="1"/>
-              <path d="M4.67 5.25L5.84 7.58" stroke="#797F89" strokeWidth="1"/>
-            </svg>
+            <img 
+              src="/icons/tooltip-icon.svg" 
+              alt="Tooltip"
+              className="w-[10.5px] h-[10.5px] object-contain"
+            />
           </div>
         </div>
         <div className="flex items-center gap-1">
           <div className="w-4 h-4 flex items-center justify-center">
-            <svg width="10.67" height="10.67" viewBox="0 0 10.67 10.67" fill="none">
-              <path d="M1.33 2.67L12 13.34" stroke="#7988FF" strokeWidth="1"/>
-              <path d="M10.67 -1L14.67 3" stroke="#7988FF" strokeWidth="1"/>
-              <path d="M10.67 13L14.67 17" stroke="#7988FF" strokeWidth="1"/>
-            </svg>
+            <img 
+              src="/icons/magic-icon.svg" 
+              alt="Magic"
+              className="w-4 h-4 object-contain"
+            />
           </div>
           <div className="w-5 h-5 flex items-center justify-center">
-            <svg width="1.25" height="10" viewBox="0 0 1.25 10" fill="none">
-              <path d="M9.38 5L10.63 15" stroke="#797F89" strokeWidth="1"/>
-            </svg>
+            <img 
+              src="/icons/more-icon.svg" 
+              alt="More"
+              className="w-[1.25px] h-[10px] object-contain"
+            />
           </div>
         </div>
       </div>
