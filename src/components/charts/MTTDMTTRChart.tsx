@@ -1,5 +1,5 @@
 import React from 'react';
-import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, ReferenceLine, CartesianGrid } from 'recharts';
 import { ChartHeader } from '../ui-components/ChartHeader';
 
 // Chart data based on the Figma design - MTTD (blue) and MTTR (gold/yellow)
@@ -49,22 +49,20 @@ const MTTDMTTRChart: React.FC = () => {
                 </linearGradient>
               </defs>
 
-              {/* Grid Lines - Horizontal */}
+              {/* Grid Lines */}
+              <CartesianGrid 
+                strokeDasharray="2 2"
+                stroke="#1F242F"
+                strokeWidth={1}
+                horizontal={true}
+                vertical={true}
+              />
+
+              {/* Horizontal Reference Lines for specific values */}
               {[2, 4, 6, 8, 10].map((value) => (
                 <ReferenceLine 
                   key={`horizontal-${value}`}
                   y={value} 
-                  stroke="#1F242F" 
-                  strokeDasharray="2 2"
-                  strokeWidth={1}
-                />
-              ))}
-
-              {/* Grid Lines - Vertical */}
-              {chartData.map((_, index) => (
-                <ReferenceLine 
-                  key={`vertical-${index}`}
-                  x={index} 
                   stroke="#1F242F" 
                   strokeDasharray="2 2"
                   strokeWidth={1}
