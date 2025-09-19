@@ -14,6 +14,7 @@ interface ChartHeaderProps {
   onRemoveWidget?: () => void;
   onExportData?: () => void;
   onSettings?: () => void;
+  onMagicClick?: () => void;
   customMenuItems?: Array<{
     label: string;
     onClick: () => void;
@@ -28,6 +29,7 @@ export function ChartHeader({
   onRemoveWidget,
   onExportData,
   onSettings,
+  onMagicClick,
   customMenuItems
 }: ChartHeaderProps) {
   const defaultMenuItems = [
@@ -56,13 +58,16 @@ export function ChartHeader({
       
       <div className="flex items-center gap-1">
         {showMagic && (
-          <div className="w-4 h-4 flex items-center justify-center">
+          <button 
+            className="w-6 h-6 flex items-center justify-center hover:bg-background-dark-neutral-three rounded p-1 transition-colors"
+            onClick={onMagicClick}
+          >
             <img 
               src="/icons/magic-icon.svg" 
               alt="Magic"
-              className="w-4 h-4 object-contain"
+              className="w-4 h-4 object-contain opacity-70 hover:opacity-100 transition-opacity"
             />
-          </div>
+          </button>
         )}
         
         {showMore && defaultMenuItems.length > 0 && (

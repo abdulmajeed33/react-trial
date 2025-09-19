@@ -118,6 +118,7 @@ const OrganizationalRiskChart: React.FC = () => {
         onRemoveWidget={() => console.log('Remove widget')}
         onExportData={() => console.log('Export data')}
         onSettings={() => console.log('Settings')}
+        onMagicClick={() => console.log('Magic clicked for Organizational Risk')}
       />
 
       {/* Main Content */}
