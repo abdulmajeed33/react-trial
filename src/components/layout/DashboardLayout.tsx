@@ -11,7 +11,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <div className="min-h-screen bg-background-dark-neutral-neutral flex">
       {/* Left Sidebar */}
-      <Sidebar />
+      {/* <Sidebar /> */}
       
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
