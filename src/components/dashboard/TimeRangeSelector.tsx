@@ -12,18 +12,22 @@ const timeRanges = [
 
 export function TimeRangeSelector() {
   return (
-    <div className="flex items-center gap-0 bg-background-dark-neutral-three border border-border-dark-neutral-three rounded-lg p-1">
-      {timeRanges.map((range) => (
+    <div className="flex items-center h-8 border border-[#1F242F] rounded-md bg-transparent">
+      {timeRanges.map((range, index) => (
         <button
           key={range.label}
-          className={`px-3 py-2 rounded-md text-label font-medium transition-colors flex items-center gap-2 ${
-            range.active
-              ? 'bg-background-dark-neutral-two text-status-blue'
-              : 'text-text-dark-secondary hover:text-text-dark-primary hover:bg-background-dark-neutral-two'
-          }`}
+          className={`
+            flex items-center justify-center gap-2 px-3 h-full text-xs font-normal transition-colors
+            ${index < timeRanges.length - 1 ? 'border-r border-[#1F242F]' : ''}
+            ${
+              range.active
+                ? 'bg-[#0E131C] text-[#F1F3FF] font-semibold'
+                : 'text-[#B6BCC3] hover:text-[#F1F3FF] hover:bg-[#0E131C]/50'
+            }
+          `}
         >
           {range.label === 'Custom' && (
-            <Calendar className="w-3 h-3" />
+            <Calendar className="w-3.5 h-3.5 text-[#797F89]" />
           )}
           {range.label}
         </button>
