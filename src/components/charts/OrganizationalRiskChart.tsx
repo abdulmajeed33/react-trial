@@ -95,7 +95,7 @@ const RiskCategoryCard: React.FC<RiskCategoryCardProps> = ({ icon, name, severit
           {name}
         </span>
         {status === 'critical' ? (
-          <div className="bg-background-badge-error border border-background-badge-error rounded-3xl px-2 py-1">
+          <div className="bg-background-badge-error border border-background-badge-error rounded-3xl px-3">
             <span className="text-text-badge-error text-extra-small font-normal text-center">
               {severity}
             </span>
