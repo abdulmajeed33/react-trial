@@ -1,26 +1,31 @@
-import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Cell } from 'recharts';
-import { ChartHeader } from '../ui-components/ChartHeader';
+import React from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+  Cell,
+} from "recharts";
+import { ChartHeader } from "../ui-components/ChartHeader";
 
 const data = [
   {
-    name: 'CIS Benchmark 5.0',
+    name: "CIS Benchmark 5.0",
     value: 90,
-    color: '#2FD897'
+    color: "#2FD897",
   },
   {
-    name: 'AWS Well-Architected', 
+    name: "AWS Well-Architected",
     value: 53,
-    color: '#FF740A'
-  }
+    color: "#FF740A",
+  },
 ];
 
 const LegendItem = ({ color, label }: { color: string; label: string }) => (
   <div className="flex items-center gap-1">
-    <div 
-      className="w-2 h-2 rounded-sm"
-      style={{ backgroundColor: color }}
-    />
+    <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: color }} />
     <span className="text-text-dark-secondary text-extra-small">{label}</span>
   </div>
 );
@@ -34,52 +39,55 @@ export default function ComplianceChart() {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
-            margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+            margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
             barCategoryGap="40%"
           >
-            <CartesianGrid 
-              strokeDasharray="2 2" 
-              stroke="#1F242F" 
+            <CartesianGrid
+              strokeDasharray="2 2"
+              stroke="#1F242F"
               horizontal={true}
               vertical={false}
             />
-            <XAxis 
+            <XAxis
               dataKey="name"
-              axisLine={false}
+              axisLine={{ stroke: "#1F242F", strokeWidth: 1 }}
               tickLine={false}
-              tick={{ 
-                fill: '#B6BCC3', 
+              tick={{
+                fill: "#B6BCC3",
                 fontSize: 10,
-                fontFamily: 'Inter'
+                fontFamily: "Inter",
               }}
               interval={0}
               angle={0}
               textAnchor="middle"
               height={40}
             />
-            <YAxis 
-              axisLine={false}
+            <YAxis
+              axisLine={{ stroke: "#1F242F", strokeWidth: 1 }}
               tickLine={false}
-              tick={{ 
-                fill: '#B6BCC3', 
+              tick={{
+                fill: "#B6BCC3",
                 fontSize: 10,
-                fontFamily: 'Inter'
+                fontFamily: "Inter",
               }}
               domain={[0, 100]}
               ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+              width={40}
             />
-            <Bar 
-              dataKey="value" 
-              radius={[6, 6, 0, 0]}
-            >
+            <Bar dataKey="value" radius={[6, 6, 0, 0]}>
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={`${entry.color}1F`} stroke={entry.color} strokeWidth={1} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={`${entry.color}1F`}
+                  stroke={entry.color}
+                  strokeWidth={1}
+                />
               ))}
             </Bar>
           </BarChart>
         </ResponsiveContainer>
       </div>
-      
+
       {/* Custom Legend */}
       <div className="flex items-center gap-4 mt-3">
         <LegendItem color="#2FD897" label="Optimal" />
@@ -88,4 +96,4 @@ export default function ComplianceChart() {
       </div>
     </div>
   );
-} 
+}
