@@ -37,7 +37,7 @@ export default function TopRiskiestVulnerabilitiesChart() {
           <BarChart
             data={data}
             layout="vertical"
-            margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
+            margin={{ top: 20, right: 20, left: -60, bottom: 0 }}
             barCategoryGap="10%"
           >
             <CartesianGrid
@@ -74,7 +74,7 @@ export default function TopRiskiestVulnerabilitiesChart() {
                 fontFamily: "Inter",
                 fontWeight: 400,
               }}
-              width={200}
+              width={190}
               interval={0}
             />
             <Bar
