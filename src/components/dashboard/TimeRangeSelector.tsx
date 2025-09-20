@@ -25,12 +25,17 @@ export function TimeRangeSelector() {
       {timeRanges.map((range, index) => (
         <Button
           key={range.label}
-          variant="time-range"
-          size="time-range"
-          data-active={activeRange === range.label}
+          variant="ghost"
+          size="sm"
           onClick={() => handleRangeClick(range.label)}
           className={`
+            h-full px-3 text-label font-normal rounded-none transition-colors
             ${index < timeRanges.length - 1 ? 'border-r border-dark-neutral-neutral' : ''}
+            ${
+              activeRange === range.label
+                ? 'bg-background-dark-neutral-two text-text-dark-primary font-semibold hover:bg-background-dark-neutral-two'
+                : 'text-text-dark-secondary hover:text-text-dark-primary hover:bg-background-dark-neutral-two/50'
+            }
           `}
         >
           {range.label === 'Custom' && (

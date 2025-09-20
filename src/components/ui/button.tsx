@@ -19,16 +19,12 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        "chart-icon": "hover:bg-background-dark-neutral-three rounded transition-colors [&_img]:opacity-70 [&_img]:hover:opacity-100 [&_img]:transition-opacity",
-        "time-range": "text-text-dark-secondary hover:text-text-dark-primary hover:bg-background-dark-neutral-two/50 data-[active=true]:bg-background-dark-neutral-two data-[active=true]:text-text-dark-primary data-[active=true]:font-semibold data-[active=true]:hover:bg-background-dark-neutral-two rounded-none",
       },
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
-        "chart-icon": "h-6 w-6 p-1",
-        "time-range": "h-full px-3 text-label font-normal",
       },
     },
     defaultVariants: {

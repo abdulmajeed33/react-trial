@@ -60,14 +60,15 @@ export function ChartHeader({
       <div className="flex items-center gap-1">
         {showMagic && (
           <Button
-            variant="chart-icon"
-            size="chart-icon"
+            variant="ghost"
+            size="icon"
+            className="w-6 h-6 p-1 hover:bg-background-dark-neutral-three rounded transition-colors"
             onClick={onMagicClick}
           >
             <img 
               src="/icons/magic-icon.svg" 
               alt="Magic"
-              className="w-4 h-4 object-contain"
+              className="w-4 h-4 object-contain opacity-70 hover:opacity-100 transition-opacity"
             />
           </Button>
         )}
@@ -76,13 +77,14 @@ export function ChartHeader({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                variant="chart-icon"
-                size="chart-icon"
+                variant="ghost"
+                size="icon"
+                className="w-6 h-6 p-1 hover:bg-background-dark-neutral-three rounded transition-colors"
               >
                 <img 
                   src="/icons/more-icon.svg" 
                   alt="More options"
-                  className="w-3 h-3 object-contain"
+                  className="w-3 h-3 object-contain opacity-70 hover:opacity-100 transition-opacity"
                 />
               </Button>
             </DropdownMenuTrigger>
