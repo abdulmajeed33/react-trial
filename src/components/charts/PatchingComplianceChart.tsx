@@ -13,27 +13,37 @@ import { LegendItem } from "../ui-components/LegendItem";
 
 const data = [
   {
-    name: "CIS Benchmark 5.0",
-    value: 90,
-    color: "#2FD897",
+    name: "Engineering",
+    value: 20,
+    color: "#FF5757", // Critical - Red
   },
   {
-    name: "AWS Well-Architected",
-    value: 53,
-    color: "#FF740A",
+    name: "IT Operators",
+    value: 85,
+    color: "#2FD897", // Optimal - Green
+  },
+  {
+    name: "Finance",
+    value: 95,
+    color: "#2FD897", // Optimal - Green
+  },
+  {
+    name: "HR",
+    value: 52,
+    color: "#F59C0B", // Caution - Orange
   },
 ];
 
-export default function ComplianceChart() {
+export default function PatchingComplianceChart() {
   return (
     <div className="w-full h-full bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6">
-      <ChartHeader title="Compliance" />
+      <ChartHeader title="Patching Compliance by Team" />
       
       <div className="h-[244px] relative bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
-            margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
+            margin={{ top: 20, right: 20, left: 0}}
             barCategoryGap="40%"
           >
             <CartesianGrid
@@ -49,7 +59,6 @@ export default function ComplianceChart() {
               tick={{
                 fill: "#B6BCC3",
                 fontSize: 10,
-                fontFamily: "Inter",
               }}
               interval={0}
               angle={0}
@@ -86,7 +95,7 @@ export default function ComplianceChart() {
       {/* Custom Legend */}
       <div className="flex items-center gap-4">
         <LegendItem color="#2FD897" label="Optimal" />
-        <LegendItem color="#FF740A" label="Caution" />
+        <LegendItem color="#F59C0B" label="Caution" />
         <LegendItem color="#FF5757" label="Critical" />
       </div>
     </div>

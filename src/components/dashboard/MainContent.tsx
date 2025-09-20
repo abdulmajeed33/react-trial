@@ -3,6 +3,7 @@ import { TimeRangeSelector } from './TimeRangeSelector';
 import OrganizationalRiskChart from '../charts/OrganizationalRiskChart';
 import MTTDMTTRChart from '../charts/MTTDMTTRChart';
 import ComplianceChart from '../charts/ComplianceChart';
+import PatchingComplianceChart from '../charts/PatchingComplianceChart';
 
 export function MainContent() {
   return (
@@ -28,11 +29,7 @@ export function MainContent() {
           <ComplianceChart />
         </div>
         <div className="col-span-12 lg:col-span-6">
-          <ChartPlaceholder 
-            title="Patching Compliance by Team" 
-            description="Team-based compliance breakdown"
-            height="h-72"
-          />
+          <PatchingComplianceChart />
         </div>
       </div>
       
