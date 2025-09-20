@@ -5,6 +5,8 @@ import ComplianceChart from '../charts/ComplianceChart';
 import PatchingComplianceChart from '../charts/PatchingComplianceChart';
 import SecurityAwarenessChart from '../charts/SecurityAwarenessChart';
 import TopRiskiestAssetsChart from '../charts/TopRiskiestAssetsChart';
+import SecurityAwarenessLineChart from '../charts/SecurityAwarenessLineChart';
+import { ChartPlaceholder } from '../charts/ChartPlaceholder';
 
 export function MainContent() {
   return (
@@ -41,6 +43,20 @@ export function MainContent() {
         </div>
         <div className="col-span-12 lg:col-span-6">
           <SecurityAwarenessChart />
+        </div>
+      </div>
+
+      {/* Fifth Row - Security Awareness Line Chart */}
+      <div className="grid grid-cols-12 gap-6">
+        <div className="col-span-12 lg:col-span-6">
+            <SecurityAwarenessLineChart />
+        </div>
+        <div className="col-span-12 lg:col-span-6">
+          <ChartPlaceholder
+            title="Security Awareness Line Chart"
+            description="Security awareness line chart"
+            height="h-72"
+          />
         </div>
       </div>
     </div>
