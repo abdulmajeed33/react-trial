@@ -76,6 +76,7 @@ export default function SecurityAwarenessChart() {
               }}
               domain={[0, 100]}
               ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+              interval={0}
               width={40}
             />
             <Bar dataKey="value" radius={[6, 6, 0, 0]}>
