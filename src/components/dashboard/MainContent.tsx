@@ -1,10 +1,10 @@
-import { ChartPlaceholder } from '../charts/ChartPlaceholder';
 import { TimeRangeSelector } from './TimeRangeSelector';
 import OrganizationalRiskChart from '../charts/OrganizationalRiskChart';
 import MTTDMTTRChart from '../charts/MTTDMTTRChart';
 import ComplianceChart from '../charts/ComplianceChart';
 import PatchingComplianceChart from '../charts/PatchingComplianceChart';
 import SecurityAwarenessChart from '../charts/SecurityAwarenessChart';
+import TopRiskiestAssetsChart from '../charts/TopRiskiestAssetsChart';
 
 export function MainContent() {
   return (
@@ -37,11 +37,7 @@ export function MainContent() {
       {/* Fourth Row - Risk & Awareness */}
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-6">
-          <ChartPlaceholder 
-            title="Top Riskiest Assets" 
-            description="Asset risk distribution"
-            height="h-72"
-          />
+            <TopRiskiestAssetsChart />
         </div>
         <div className="col-span-12 lg:col-span-6">
           <SecurityAwarenessChart />
