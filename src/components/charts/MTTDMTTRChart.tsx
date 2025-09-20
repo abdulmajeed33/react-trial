@@ -37,15 +37,13 @@ const MTTDMTTRChart: React.FC = () => {
               <defs>
                 {/* MTTD Blue Gradient */}
                 <linearGradient id="mttdGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#7988FF" stopOpacity={0.6} />
-                  <stop offset="50%" stopColor="#7988FF" stopOpacity={0.3} />
+                  <stop offset="0%" stopColor="#7988FF" stopOpacity={0.2} />
                   <stop offset="100%" stopColor="#7988FF" stopOpacity={0} />
                 </linearGradient>
                 
                 {/* MTTR Gold/Yellow Gradient */}
                 <linearGradient id="mttrGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#F59C0B" stopOpacity={0.4} />
-                  <stop offset="50%" stopColor="#F59C0B" stopOpacity={0.2} />
+                  <stop offset="0%" stopColor="#F59C0B" stopOpacity={0.2} />
                   <stop offset="100%" stopColor="#F59C0B" stopOpacity={0} />
                 </linearGradient>
               </defs>

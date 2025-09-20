@@ -139,10 +139,8 @@ const OrganizationalRiskChart: React.FC = () => {
               >
                                   <defs>
                   <linearGradient id="riskAreaGradient" x1="0" y1="1" x2="0" y2="0">
-                    <stop offset="0%" stopColor="rgba(255, 87, 87, 0.1)" stopOpacity={1} />
-                    <stop offset="30%" stopColor="rgba(255, 87, 87, 0.4)" stopOpacity={1} />
-                    <stop offset="70%" stopColor="rgba(255, 87, 87, 0.7)" stopOpacity={1} />
-                    <stop offset="100%" stopColor="rgba(255, 87, 87, 0)" stopOpacity={1} />
+                    <stop offset="0%" stopColor="#FF5757" stopOpacity={0} />
+                    <stop offset="100%" stopColor="#FF5757" stopOpacity={0.15} />
                   </linearGradient>
                 </defs>
                   <Area
