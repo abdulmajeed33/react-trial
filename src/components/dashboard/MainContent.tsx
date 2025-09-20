@@ -6,6 +6,7 @@ import PatchingComplianceChart from '../charts/PatchingComplianceChart';
 import SecurityAwarenessChart from '../charts/SecurityAwarenessChart';
 import TopRiskiestAssetsChart from '../charts/TopRiskiestAssetsChart';
 import SecurityAwarenessLineChart from '../charts/SecurityAwarenessLineChart';
+import PhishingStatsChart from '../charts/PhishingStatsChart';
 import { ChartPlaceholder } from '../charts/ChartPlaceholder';
 
 export function MainContent() {
@@ -52,11 +53,7 @@ export function MainContent() {
             <SecurityAwarenessLineChart />
         </div>
         <div className="col-span-12 lg:col-span-6">
-          <ChartPlaceholder
-            title="Security Awareness Line Chart"
-            description="Security awareness line chart"
-            height="h-72"
-          />
+          <PhishingStatsChart />
         </div>
       </div>
     </div>
