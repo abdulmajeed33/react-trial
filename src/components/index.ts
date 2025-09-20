@@ -14,8 +14,3 @@ export { ChartHeader } from './ui-components/ChartHeader';
 // Dashboard Components
 export { MainContent } from './dashboard/MainContent';
 export { TimeRangeSelector } from './dashboard/TimeRangeSelector';
-
-// Chart Components
-export { ChartPlaceholder } from './charts/ChartPlaceholder';
-export { default as OrganizationalRiskChart } from './charts/OrganizationalRiskChart';
-export { default as MTTDMTTRChart } from './charts/MTTDMTTRChart'; 
