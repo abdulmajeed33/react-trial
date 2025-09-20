@@ -8,6 +8,7 @@ import TopRiskiestAssetsChart from '../charts/TopRiskiestAssetsChart';
 import SecurityAwarenessLineChart from '../charts/SecurityAwarenessLineChart';
 import PhishingStatsChart from '../charts/PhishingStatsChart';
 import { ChartPlaceholder } from '../charts/ChartPlaceholder';
+import TopRiskiestVulnerabilitiesChart from '../charts/TopRiskiestVulnerabilitiesChart';
 
 export function MainContent() {
   return (
@@ -54,6 +55,13 @@ export function MainContent() {
         </div>
         <div className="col-span-12 lg:col-span-6">
           <PhishingStatsChart />
+        </div>
+      </div>
+
+      {/* Sixth Row - Top Riskiest Vulnerabilities */}
+      <div className="grid grid-cols-12 gap-6">
+        <div className="col-span-12 lg:col-span-6">
+          <TopRiskiestVulnerabilitiesChart />
         </div>
       </div>
     </div>
