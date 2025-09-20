@@ -30,7 +30,7 @@ export default function SecurityAwarenessLineChart() {
         }
       />
 
-      <div className="h-[244px] relative bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl">
+      <div className="h-[282px] relative bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={data}
