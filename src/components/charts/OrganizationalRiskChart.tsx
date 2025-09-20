@@ -1,6 +1,7 @@
 import React from 'react';
 import { AreaChart, Area, ResponsiveContainer } from 'recharts';
 import { ChartHeader } from '../ui-components/ChartHeader';
+import { Button } from '../ui/button';
 
 // Risk trend data for the area chart - matches exact Figma curve shape
 const riskTrendData = [
@@ -100,9 +101,13 @@ const RiskCategoryCard: React.FC<RiskCategoryCardProps> = ({ icon, name, severit
             </span>
           </div>
         ) : (
-          <span className="text-text-badge-primary text-extra-small font-semibold text-center underline">
+          <Button 
+            variant="link" 
+            className="!text-extra-small font-semibold !p-0 !h-auto"
+            onClick={() => console.log('Configure clicked for:', name)}
+          >
             {severity.toUpperCase()}
-          </span>
+          </Button>
         )}
       </div>
     </div>
