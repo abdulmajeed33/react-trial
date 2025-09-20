@@ -20,7 +20,7 @@ export function SearchConversation() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="⌘ + M to start conversation"
-              className="border-none bg-transparent p-0 h-auto text-body-small text-text-dark-primary placeholder:text-text-dark-secondary focus-visible:ring-0 focus-visible:ring-offset-0 font-inter"
+              className="border-none bg-transparent p-0 h-auto text-body-small text-text-dark-primary placeholder:text-text-dark-secondary focus-visible:ring-0 focus-visible:ring-offset-0"
             />
         </div>
       </div>
