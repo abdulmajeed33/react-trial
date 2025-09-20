@@ -4,6 +4,7 @@ import OrganizationalRiskChart from '../charts/OrganizationalRiskChart';
 import MTTDMTTRChart from '../charts/MTTDMTTRChart';
 import ComplianceChart from '../charts/ComplianceChart';
 import PatchingComplianceChart from '../charts/PatchingComplianceChart';
+import SecurityAwarenessChart from '../charts/SecurityAwarenessChart';
 
 export function MainContent() {
   return (
@@ -43,11 +44,7 @@ export function MainContent() {
           />
         </div>
         <div className="col-span-12 lg:col-span-6">
-          <ChartPlaceholder 
-            title="Security Awareness Score" 
-            description="Quarterly awareness metrics"
-            height="h-72"
-          />
+          <SecurityAwarenessChart />
         </div>
       </div>
     </div>
