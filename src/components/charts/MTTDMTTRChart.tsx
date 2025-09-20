@@ -1,6 +1,7 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, ReferenceLine, CartesianGrid } from 'recharts';
 import { ChartHeader } from '../ui-components/ChartHeader';
+import { LegendItem } from '../ui-components/LegendItem';
 
 // Chart data based on the Figma design - MTTD (blue) and MTTR (gold/yellow)
 const chartData = [
@@ -128,21 +129,8 @@ const MTTDMTTRChart: React.FC = () => {
 
       {/* Custom Legend */}
       <div className="flex gap-4">
-        {/* MTTD Legend Item */}
-        <div className="flex items-center gap-1">
-          <div className="w-2 h-2 bg-[#7988FF] rounded-sm"></div>
-          <span className="text-text-dark-secondary text-extra-small font-normal">
-            MTTD
-          </span>
-        </div>
-
-        {/* MTTR Legend Item */}
-        <div className="flex items-center gap-1">
-          <div className="w-2 h-2 bg-[#F59C0B] rounded-sm"></div>
-          <span className="text-text-dark-secondary text-extra-small font-normal">
-            MTTR
-          </span>
-        </div>
+        <LegendItem color="#7988FF" label="MTTD" />
+        <LegendItem color="#F59C0B" label="MTTR" />
       </div>
     </div>
   );

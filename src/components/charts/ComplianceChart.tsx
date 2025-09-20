@@ -9,6 +9,7 @@ import {
   Cell,
 } from "recharts";
 import { ChartHeader } from "../ui-components/ChartHeader";
+import { LegendItem } from "../ui-components/LegendItem";
 
 const data = [
   {
@@ -22,13 +23,6 @@ const data = [
     color: "#FF740A",
   },
 ];
-
-const LegendItem = ({ color, label }: { color: string; label: string }) => (
-  <div className="flex items-center gap-1">
-    <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: color }} />
-    <span className="text-text-dark-secondary text-extra-small">{label}</span>
-  </div>
-);
 
 export default function ComplianceChart() {
   return (
@@ -89,7 +83,7 @@ export default function ComplianceChart() {
       </div>
 
       {/* Custom Legend */}
-      <div className="flex items-center gap-4 mt-3">
+      <div className="flex items-center gap-4">
         <LegendItem color="#2FD897" label="Optimal" />
         <LegendItem color="#FF740A" label="Caution" />
         <LegendItem color="#FF5757" label="Critical" />
