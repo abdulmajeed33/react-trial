@@ -55,12 +55,12 @@ export default function ComplianceChart() {
               tick={{
                 fill: "#B6BCC3",
                 fontSize: 10,
-                fontFamily: "Inter",
               }}
               interval={0}
               angle={0}
               textAnchor="middle"
-              height={40}
+              height={50}
+              dy={15}
             />
             <YAxis
               axisLine={{ stroke: "#1F242F", strokeWidth: 1 }}
