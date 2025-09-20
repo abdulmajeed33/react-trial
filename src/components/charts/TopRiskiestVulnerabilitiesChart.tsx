@@ -19,6 +19,10 @@ const data = [
   { name: "Incorrect function settings", value: 58 },
 ];
 
+// will be used this with dynamic data
+// const BAR_HEIGHT = 40;
+// const chartHeight = Math.max(data.length * BAR_HEIGHT, 200);
+
 export default function TopRiskiestVulnerabilitiesChart() {
   return (
     <div className="bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6 w-full h-full">
