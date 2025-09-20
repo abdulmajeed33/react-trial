@@ -2,6 +2,7 @@ import { ChartPlaceholder } from '../charts/ChartPlaceholder';
 import { TimeRangeSelector } from './TimeRangeSelector';
 import OrganizationalRiskChart from '../charts/OrganizationalRiskChart';
 import MTTDMTTRChart from '../charts/MTTDMTTRChart';
+import ComplianceChart from '../charts/ComplianceChart';
 
 export function MainContent() {
   return (
@@ -21,23 +22,12 @@ export function MainContent() {
         <MTTDMTTRChart />
       </div>
       
-      {/* Third Row - Additional Chart & Compliance Charts */}
+      {/* Third Row - Compliance Charts */}
       <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-12 lg:col-span-4">
-          <ChartPlaceholder 
-            title="Additional Chart" 
-            description="Another chart placeholder"
-            height="h-80"
-          />
+        <div className="col-span-12 lg:col-span-6">
+          <ComplianceChart />
         </div>
-        <div className="col-span-12 lg:col-span-4">
-          <ChartPlaceholder 
-            title="Compliance" 
-            description="Overall compliance metrics"
-            height="h-72"
-          />
-        </div>
-        <div className="col-span-12 lg:col-span-4">
+        <div className="col-span-12 lg:col-span-6">
           <ChartPlaceholder 
             title="Patching Compliance by Team" 
             description="Team-based compliance breakdown"
