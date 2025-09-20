@@ -92,15 +92,22 @@ export default function ThreatAnatomyChart() {
           <div className="text-gray-400 text-xs">Total Misconfiguration</div>
         </div>
 
+        <div className="absolute top-0 bottom-0 left-1/4 w-px bg-gray-600 opacity-50" style={{ 
+          backgroundImage: 'repeating-linear-gradient(to bottom, #374151 0px, #374151 4px, transparent 4px, transparent 8px)' 
+        }}></div>
+        <div className="absolute top-0 bottom-0 left-1/2 w-px bg-gray-600 opacity-50" style={{ 
+          backgroundImage: 'repeating-linear-gradient(to bottom, #374151 0px, #374151 4px, transparent 4px, transparent 8px)' 
+        }}></div>
+        <div className="absolute top-0 bottom-0 left-3/4 w-px bg-gray-600 opacity-50" style={{ 
+          backgroundImage: 'repeating-linear-gradient(to bottom, #374151 0px, #374151 4px, transparent 4px, transparent 8px)' 
+        }}></div>
+
+
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={data}
             margin={{ top: 60, right: 0, left: 0, bottom: 60 }}
           >
-             {/* Dividers */}
-            <ReferenceLine x={0.5} stroke="#1F242F" strokeDasharray="2 2" strokeWidth={1} />
-            <ReferenceLine x={1.5} stroke="#1F242F" strokeDasharray="2 2" strokeWidth={1} />
-            <ReferenceLine x={2.5} stroke="#1F242F" strokeDasharray="2 2" strokeWidth={1} />
 
             {/* Guide lines */}
             <ReferenceLine y={161000} stroke="#1F242F" strokeDasharray="5 5" strokeWidth={1} />
