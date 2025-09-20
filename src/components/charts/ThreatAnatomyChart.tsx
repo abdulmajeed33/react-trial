@@ -16,12 +16,28 @@ type ChartData = {
   misconfigurations: number;
 };
 
-// Data that creates the funnel effect - vulnerabilities decrease dramatically
+// Data that creates the funnel effect with proper stacking
 const data: ChartData[] = [
-  { stage: 0, vulnerabilities: 171000, misconfigurations: 161000 },
-  { stage: 1, vulnerabilities: 15000, misconfigurations: 0 },
-  { stage: 2, vulnerabilities: 3000, misconfigurations: 0 },
-  { stage: 3, vulnerabilities: 127, misconfigurations: 0 },
+  { 
+    stage: 0, 
+    vulnerabilities: 171000, 
+    misconfigurations: 161000,
+  },
+  { 
+    stage: 1, 
+    vulnerabilities: 15000, 
+    misconfigurations: 0,
+  },
+  { 
+    stage: 2, 
+    vulnerabilities: 3000, 
+    misconfigurations: 0,
+  },
+  { 
+    stage: 3, 
+    vulnerabilities: 127, 
+    misconfigurations: 0,
+  },
 ];
 
 type CustomTooltipProps = {
@@ -43,7 +59,7 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload, label })
         </p>
         {payload.map((entry, index) => (
           <p key={index} className="text-sm" style={{ color: entry.color }}>
-            {entry.dataKey === "vulnerabilities"
+            {entry.dataKey === "vulnerabilities" || entry.dataKey === "totalVulnerabilities"
               ? "Vulnerabilities"
               : "Misconfigurations"}
             : {entry.value.toLocaleString()}
@@ -56,11 +72,9 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload, label })
 };
 
 export default function ThreatAnatomyChart() {
-  // Calculate the max value and create centered domain
-  const maxVuln = Math.max(...data.map(d => d.vulnerabilities));
-  const maxMisconfig = Math.max(...data.map(d => d.misconfigurations));
-  const maxValue = Math.max(maxVuln, maxMisconfig);
-  const padding = maxValue * 0.3; // 30% padding above and below
+  // Calculate the max value for proper centering
+  const maxValue = Math.max(...data.map(d => d.vulnerabilities));
+  const padding = maxValue * 0.2; // Reduce padding for better fit
   
   return (
     <div className="bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6 w-full h-full">
@@ -113,8 +127,9 @@ export default function ThreatAnatomyChart() {
           <AreaChart
             data={data}
             margin={{ top: 60, right: 0, left: 0, bottom: 60 }}
+            stackOffset="silhouette"
           >
-            {/* Guide lines - positioned relative to the centered data */}
+            {/* Guide lines */}
             <ReferenceLine y={161000} stroke="#1F242F" strokeDasharray="5 5" strokeWidth={1} />
             <ReferenceLine y={0} stroke="#FF740A" strokeWidth={1} />
 
@@ -122,11 +137,11 @@ export default function ThreatAnatomyChart() {
             <XAxis type="number" dataKey="stage" domain={[0, 3]} hide={true} />
             <YAxis 
               type="number" 
-              domain={[-padding, maxValue + padding]} 
+              domain={[0, maxValue + padding]} 
               hide={true} 
             />
 
-            {/* Misconfigurations area (orange, bottom) */}
+            {/* Misconfigurations area (orange, bottom) - base layer */}
             <Area
               type="monotone"
               dataKey="misconfigurations"
@@ -134,9 +149,10 @@ export default function ThreatAnatomyChart() {
               strokeWidth={2}
               fill="rgba(255, 116, 10, 0.3)"
               fillOpacity={1}
+              stackId="1"
             />
 
-            {/* Vulnerabilities area (red, top) */}
+            {/* Vulnerabilities area (red, top) - stacked on top */}
             <Area
               type="monotone"
               dataKey="vulnerabilities"
@@ -144,6 +160,7 @@ export default function ThreatAnatomyChart() {
               strokeWidth={2}
               fill="rgba(255, 87, 87, 0.3)"
               fillOpacity={1}
+              stackId="1"
             />
 
             <Tooltip content={<CustomTooltip />} />
