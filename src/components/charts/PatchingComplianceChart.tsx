@@ -44,7 +44,7 @@ export default function PatchingComplianceChart() {
           <BarChart
             data={data}
             margin={{ top: 20, right: 20, left: 0}}
-            barCategoryGap="40%"
+            barCategoryGap="28%"
           >
             <CartesianGrid
               strokeDasharray="2 2"
