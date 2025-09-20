@@ -98,35 +98,36 @@ export default function ThreatAnatomyChart(): React.ReactElement {
 
       <div className="flex-1 bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl relative min-h-[300px] p-6">
         {/* Dynamic positioned labels */}
-        <div className="absolute top-6 left-16 text-center z-10">
+        {/* Labels aligned from left to right evenly */}
+        <div className="absolute top-6 left-[4%] text-center z-10">
           <div className="text-white text-lg font-bold font-mono">
             {getLabel(0, "vuln")}
           </div>
           <div className="text-gray-400 text-xs">Total Vulnerabilities</div>
         </div>
 
-        <div className="absolute top-6 left-1/3 text-center z-10">
+        <div className="absolute top-6 left-[28%] text-center z-10">
           <div className="text-white text-lg font-bold font-mono">
             {getLabel(1, "vuln")}
           </div>
           <div className="text-gray-400 text-xs">Critical and High</div>
         </div>
 
-        <div className="absolute top-6 left-2/3 text-center z-10">
+        <div className="absolute top-6 left-[52%] text-center z-10">
           <div className="text-white text-lg font-bold font-mono">
             {getLabel(2, "vuln")}
           </div>
           <div className="text-gray-400 text-xs">Has Public Exploit</div>
         </div>
 
-        <div className="absolute top-6 right-16 text-center z-10">
+        <div className="absolute top-6 left-[78%] text-center z-10">
           <div className="text-white text-lg font-bold font-mono">
             {getLabel(3, "vuln")}
           </div>
           <div className="text-gray-400 text-xs">Critical Attack Paths</div>
         </div>
 
-        <div className="absolute bottom-6 left-16 text-center z-10">
+        <div className="absolute bottom-6 left-[4%] text-center z-10">
           <div className="text-white text-lg font-bold font-mono">
             {getLabel(0, "misconfig")}
           </div>
