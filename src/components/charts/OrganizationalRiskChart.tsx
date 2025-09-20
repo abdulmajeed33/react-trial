@@ -166,7 +166,7 @@ const OrganizationalRiskChart: React.FC = () => {
             <span className="text-text-dark-primary text-body font-normal text-center">
               Overall Risk Score
             </span>
-            <div className="bg-background-badge-error border border-background-badge-error rounded-3xl px-2 py-1 w-fit">
+            <div className="bg-background-badge-error border border-background-badge-error rounded-3xl px-3 w-fit">
               <span className="text-text-badge-error text-extra-small font-normal">
                 Critical
               </span>
