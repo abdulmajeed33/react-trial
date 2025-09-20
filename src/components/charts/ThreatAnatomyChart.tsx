@@ -5,7 +5,7 @@ import {
   XAxis,
   YAxis,
   ResponsiveContainer,
-  Tooltip,
+  // Tooltip,  // Commented out
   ReferenceLine,
 } from "recharts";
 import { ChartHeader } from "../ui-components/ChartHeader";
@@ -40,40 +40,41 @@ const data: ChartData[] = [
   },
 ];
 
-type CustomTooltipProps = {
-  active?: boolean;
-  payload?: Array<{
-    color: string;
-    dataKey: string;
-    value: number;
-  }>;
-  label?: number | string;
-};
+// Commented out tooltip component
+// type CustomTooltipProps = {
+//   active?: boolean;
+//   payload?: Array<{
+//     color: string;
+//     dataKey: string;
+//     value: number;
+//   }>;
+//   label?: number | string;
+// };
 
-const CustomTooltip: React.FC<CustomTooltipProps> = ({
-  active,
-  payload,
-  label,
-}) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="bg-background-dark-neutral-three border border-border-dark-neutral-three rounded-lg p-3 shadow-lg">
-        <p className="text-text-dark-primary text-sm font-medium">
-          Stage {typeof label === "number" ? label + 1 : label}
-        </p>
-        {payload.map((entry, index) => (
-          <p key={index} className="text-sm" style={{ color: entry.color }}>
-            {entry.dataKey === "vulnerabilities"
-              ? "Vulnerabilities"
-              : "Misconfigurations"}
-            : {entry.value.toLocaleString()}
-          </p>
-        ))}
-      </div>
-    );
-  }
-  return null;
-};
+// const CustomTooltip: React.FC<CustomTooltipProps> = ({
+//   active,
+//   payload,
+//   label,
+// }) => {
+//   if (active && payload && payload.length) {
+//     return (
+//       <div className="bg-background-dark-neutral-three border border-border-dark-neutral-three rounded-lg p-3 shadow-lg">
+//         <p className="text-text-dark-primary text-sm font-medium">
+//           Stage {typeof label === "number" ? label + 1 : label}
+//         </p>
+//         {payload.map((entry, index) => (
+//           <p key={index} className="text-sm" style={{ color: entry.color }}>
+//             {entry.dataKey === "vulnerabilities"
+//               ? "Vulnerabilities"
+//               : "Misconfigurations"}
+//             : {entry.value.toLocaleString()}
+//           </p>
+//         ))}
+//       </div>
+//     );
+//   }
+//   return null;
+// };
 
 export default function ThreatAnatomyChart(): React.ReactElement {
   // Calculate dynamic labels from actual data
@@ -185,6 +186,8 @@ export default function ThreatAnatomyChart(): React.ReactElement {
               fill="rgba(255, 116, 10, 0.3)"
               fillOpacity={1}
               stackId="1"
+              dot={false}
+              activeDot={false}
             />
 
             {/* Vulnerabilities area (red) */}
@@ -196,9 +199,12 @@ export default function ThreatAnatomyChart(): React.ReactElement {
               fill="rgba(255, 87, 87, 0.3)"
               fillOpacity={1}
               stackId="1"
+              dot={false}
+              activeDot={false}
             />
 
-            <Tooltip content={<CustomTooltip />} />
+            {/* Commented out tooltip */}
+            {/* <Tooltip content={<CustomTooltip />} /> */}
           </AreaChart>
         </ResponsiveContainer>
       </div>
