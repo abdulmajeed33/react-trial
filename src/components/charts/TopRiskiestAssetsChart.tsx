@@ -1,5 +1,5 @@
 import React from 'react';
-import { PieChart, Pie, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { ChartHeader } from '../ui-components/ChartHeader';
 import { LegendItem } from '../ui-components/LegendItem';
 
@@ -12,7 +12,7 @@ const data = [
 
 export default function TopRiskiestAssetsChart() {
   return (
-    <div className="bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6 w-full h-full" >
+    <div className="bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6 w-full h-full">
       <ChartHeader 
         title="Top Riskiest Assets"
         onRemoveWidget={() => console.log('Remove widget')}
@@ -21,7 +21,7 @@ export default function TopRiskiestAssetsChart() {
         onMagicClick={() => console.log('Magic clicked for Top Riskiest Assets')}
       />
 
-      <div className="flex-1 bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl p-4 relative h-[246px] flex items-center justify-center">
+        <div className="flex-1 bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl p-4 relative h-[244px] flex items-center justify-center">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
@@ -32,20 +32,15 @@ export default function TopRiskiestAssetsChart() {
               outerRadius={100}
               paddingAngle={5}
               dataKey="value"
-              strokeWidth={3}
-              fill="none"
+              strokeWidth={0}
+              fill="transparent"
             >
               {data.map((entry, index) => (
-                <Pie
-                  key={`segment-${index}`}
-                  data={[entry]}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={100}
-                  stroke={entry.color}
-                  strokeWidth={3}
-                  fill="none"
+                <Cell 
+                  key={`cell-${index}`} 
+                  stroke={entry.color} 
+                  strokeWidth={1}
+                  fill={`${entry.color}1F`}
                 />
               ))}
             </Pie>
