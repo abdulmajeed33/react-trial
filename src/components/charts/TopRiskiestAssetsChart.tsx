@@ -30,7 +30,7 @@ export default function TopRiskiestAssetsChart() {
               cy="50%"
               innerRadius={70}
               outerRadius={100}
-              paddingAngle={5}
+              paddingAngle={2}
               dataKey="value"
               strokeWidth={0}
               fill="transparent"
