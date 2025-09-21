@@ -9,15 +9,15 @@ const rightPanelItems = [
 
 export function RightPanel() {
   return (
-    <aside className="bg-background-dark-neutral-neutral border-l border-dark-neutral-three flex flex-col p-4">
+    <aside className="bg-background-dark-neutral-neutral border-l border-dark-neutral-three flex flex-col px-4 py-6 gap-64">
       {/* Top Items */}
-      <div className="space-y-4">
+      <div className="flex flex-col items-center gap-4">
         {rightPanelItems.map((item) => {
           const IconComponent = item.icon;
           return (
-            <div key={item.name} className="relative">
+            <div key={item.name} className="relative flex flex-col items-center gap-1">
               <button
-                className={`relative w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${
+                className={`relative flex items-center justify-center transition-colors p-1 rounded-lg w-10 h-8 ${
                   item.active 
                     ? 'bg-background-dark-neutral-three text-icon-dark-primary-active' 
                     : 'text-icon-dark-neutral-neutral hover:text-icon-dark-neutral-active hover:bg-background-dark-neutral-three'
@@ -25,14 +25,14 @@ export function RightPanel() {
               >
                 <IconComponent className="w-5 h-5" />
                 {item.badge && (
-                  <div className="absolute -bottom-1 -right-0 w-5 h-5 bg-button-primary-default rounded-full flex items-center justify-center z-10">
-                    <span className="text-neutral-white text-extra-small font-medium">{item.badge}</span>
+                  <div className="absolute bg-button-primary-default rounded-full flex items-center justify-center z-10 w-4 h-4 -right-0 -bottom-1.5">
+                    <span className="text-neutral-white text-extra-small">{item.badge}</span>
                   </div>
                 )}
               </button>
               {/* Separator Line */}
               {item.name !== 'AI Settings' && (
-                <div className="w-8 h-px bg-border-dark-neutral-neutral mx-auto mt-4"></div>
+                <div className="bg-border-dark-neutral-neutral w-8 h-px mt-4" />
               )}
             </div>
           );
