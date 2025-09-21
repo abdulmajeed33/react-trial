@@ -17,19 +17,19 @@ export function RightPanel() {
           return (
             <div key={item.name} className="relative">
               <button
-                className={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${
+                className={`relative w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${
                   item.active 
                     ? 'bg-background-dark-neutral-three text-icon-dark-primary-active' 
                     : 'text-icon-dark-neutral-neutral hover:text-icon-dark-neutral-active hover:bg-background-dark-neutral-three'
                 }`}
               >
                 <IconComponent className="w-5 h-5" />
+                {item.badge && (
+                  <div className="absolute -bottom-1 -right-0 w-5 h-5 bg-button-primary-default rounded-full flex items-center justify-center z-10">
+                    <span className="text-neutral-white text-extra-small font-medium">{item.badge}</span>
+                  </div>
+                )}
               </button>
-              {item.badge && (
-                <div className="absolute -top-1 -right-1 w-5 h-5 bg-button-primary-default rounded-full flex items-center justify-center">
-                  <span className="text-neutral-white text-extra-small font-medium">{item.badge}</span>
-                </div>
-              )}
               {/* Separator Line */}
               {item.name !== 'AI Settings' && (
                 <div className="w-8 h-px bg-border-dark-neutral-neutral mx-auto mt-4"></div>
