@@ -182,7 +182,7 @@ export default function ThreatAnatomyChart(): React.ReactElement {
               type="monotone"
               dataKey="misconfigurations"
               stroke="#FF740A"
-              strokeWidth={2}
+              strokeWidth={1}
               fill="rgba(255, 116, 10, 0.3)"
               fillOpacity={1}
               stackId="1"
@@ -195,7 +195,7 @@ export default function ThreatAnatomyChart(): React.ReactElement {
               type="monotone"
               dataKey="vulnerabilities"
               stroke="#FF5757"
-              strokeWidth={2}
+              strokeWidth={1}
               fill="rgba(255, 87, 87, 0.3)"
               fillOpacity={1}
               stackId="1"
