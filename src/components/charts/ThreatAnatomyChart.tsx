@@ -30,13 +30,13 @@ const data: ChartData[] = [
   },
   {
     stage: 2,
-    vulnerabilities: 60000,
-    misconfigurations: 50000,
+    vulnerabilities: 0,
+    misconfigurations: 0,
   },
   {
     stage: 3,
-    vulnerabilities: 80000,
-    misconfigurations: 70000,
+    vulnerabilities: 40000,
+    misconfigurations: 20000,
   },
 ];
 
