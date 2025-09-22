@@ -10,15 +10,16 @@ import {
 } from "recharts";
 import { ChartHeader } from "../../ui-components/ChartHeader";
 import { LegendItem } from "../../ui-components/LegendItem";
+import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
 
 export interface HorizontalBarChartData {
   name: string;
   value: number;
-  color?: string;
+  category?: ChartCategory; // Optional for backward compatibility
 }
 
 export interface LegendData {
-  color: string;
+  category: ChartCategory;
   label: string;
 }
 
@@ -42,7 +43,7 @@ export interface HorizontalBarChartProps {
     bottom?: number;
   };
   // Horizontal bar chart specific props
-  defaultBarColor?: string; // Default color for bars when not specified in data
+  defaultBarColor?: string; // Default color for bars when category is not specified
   barRadius?: [number, number, number, number]; // Bar border radius [topLeft, topRight, bottomRight, bottomLeft]
   yAxisWidth?: number; // Width for Y-axis labels
   xAxisTicks?: number[]; // Custom ticks for X-axis
@@ -72,12 +73,20 @@ export default function HorizontalBarChart({
   
   // Default legend items if not provided and showLegend is true
   const defaultLegendItems: LegendData[] = [
-    { color: "#2FD897", label: "Optimal" },
-    { color: "#F59C0B", label: "Caution" },
-    { color: "#FF5757", label: "Critical" }
+    { category: ChartCategory.OPTIMAL, label: "Optimal" },
+    { category: ChartCategory.CAUTION, label: "Caution" },
+    { category: ChartCategory.CRITICAL, label: "Critical" }
   ];
 
   const finalLegendItems = legendItems || (showLegend ? defaultLegendItems : []);
+
+  // Helper function to get color for a category
+  const getColorForCategory = (category?: ChartCategory): string => {
+    if (category) {
+      return CATEGORY_COLORS[category] || defaultBarColor;
+    }
+    return defaultBarColor;
+  };
 
   return (
     <div className="bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6 w-full h-full">
@@ -160,11 +169,12 @@ export default function HorizontalBarChart({
                 marginBottom: '4px',
                 fontFamily: 'Inter'
               }}
-              formatter={(value: number, _: string, props: { payload?: { name: string; value: number; color?: string } }) => {
+              formatter={(value: number, _: string, props: { payload?: { name: string; value: number; category?: ChartCategory } }) => {
                 const entry = data.find(d => d.name === props.payload?.name);
                 const displayValue = valueUnit === '%' ? `${value}%` : valueUnit === 'count' ? `${value}` : `${value}`;
+                const color = entry ? getColorForCategory(entry.category) : defaultBarColor;
                 return [
-                  <span style={{ color: entry?.color || defaultBarColor }}>
+                  <span style={{ color }}>
                     {displayValue}
                   </span>,
                   valueLabel
@@ -175,35 +185,40 @@ export default function HorizontalBarChart({
             <Bar
               dataKey="value"
               radius={barRadius}
-              fill={`${defaultBarColor}1F`} // 12% opacity
-              stroke={defaultBarColor}
-              strokeWidth={1}
             >
-              {data.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={entry.color ? `${entry.color}1F` : `${defaultBarColor}1F`}
-                  stroke={entry.color || defaultBarColor}
-                  strokeWidth={1}
-                />
-              ))}
+              {data.map((entry, index) => {
+                const color = getColorForCategory(entry.category);
+                return (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={`${color}1F`}
+                    stroke={color}
+                    strokeWidth={1}
+                  />
+                );
+              })}
             </Bar>
           </BarChart>
         </ResponsiveContainer>
       </div>
 
-      {/* Custom Legend */}
+      {/* Static Legend */}
       {showLegend && finalLegendItems.length > 0 && (
         <div className="flex items-center gap-4">
-          {finalLegendItems.map((item, index) => (
-            <LegendItem 
-              key={index}
-              color={item.color} 
-              label={item.label} 
-            />
-          ))}
+          {finalLegendItems.map((item, index) => {
+            const color = getColorForCategory(item.category);
+            
+            return (
+              <div key={index}>
+                <LegendItem 
+                  color={color} 
+                  label={item.label} 
+                />
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
   );
-} 
+}
