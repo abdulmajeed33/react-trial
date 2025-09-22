@@ -5,6 +5,7 @@ import {
   YAxis,
   CartesianGrid,
   ResponsiveContainer,
+  Tooltip,
 } from "recharts";
 import { ChartHeader } from "../ui-components/ChartHeader";
 
@@ -73,6 +74,36 @@ export default function SecurityAwarenessLineChart() {
               ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
               interval={0}
               dx={-10}
+            />
+
+            <Tooltip
+              cursor={{ stroke: "none" }}
+              contentStyle={{
+                backgroundColor: '#0E131C',
+                border: '1px solid #161B26',
+                borderRadius: '8px',
+                padding: '8px 12px',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
+                color: '#ffffff'
+              }}
+              itemStyle={{
+                fontSize: '12px',
+                fontWeight: '600',
+                fontFamily: 'Inter'
+              }}
+              labelStyle={{
+                color: '#cccccc',
+                fontSize: '11px',
+                fontWeight: '500',
+                marginBottom: '4px',
+                fontFamily: 'Inter'
+              }}
+              formatter={(value: number) => {
+                return [
+                  <span style={{ color: '#7988FF' }}>{value}%</span>,
+                  'Security Score'
+                ];
+              }}
             />
 
             {/* Purple Line */}
