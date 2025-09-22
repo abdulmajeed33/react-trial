@@ -68,7 +68,7 @@ export default function PieChart({
       
       <div 
         className="flex-1 bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl p-4 relative flex items-center justify-center"
-        style={{ height: `${height}px` }}
+        style={{ minHeight: `${height}px` }}
       >
         <ResponsiveContainer width="100%" height="100%">
           <RechartsPieChart>
