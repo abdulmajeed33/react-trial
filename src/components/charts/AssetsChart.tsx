@@ -1,25 +1,26 @@
+import { ChartCategory } from "./common/chartConstants";
 import VerticalBarChart, { type BarChartData } from "./common/VerticalBarChart";
 
 const data: BarChartData[] = [
   {
     name: "Critical",
     value: 65,
-    color: "#7988FF",
+    category: ChartCategory.ASSETS,
   },
   {
     name: "High", 
     value: 16,
-    color: "#7988FF",
+    category: ChartCategory.ASSETS,
   },
   {
     name: "Medium",
     value: 8,
-    color: "#7988FF",
+    category: ChartCategory.ASSETS,
   },
   {
     name: "Low",
     value: 55,
-    color: "#7988FF",
+    category: ChartCategory.ASSETS,
   },
 ];
 

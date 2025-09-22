@@ -8,6 +8,7 @@ export const ChartCategory = {
   HIGH: "high",
   MEDIUM: "medium",
   LOW: "low",   
+  ASSETS: "assets",
 } as const;
 
 // Type for the category values
@@ -22,5 +23,6 @@ export const CATEGORY_COLORS: Record<ChartCategory, string> = {
   [ChartCategory.CRITICAL]: "#FF5757",
   [ChartCategory.HIGH]: "#EF4444",
   [ChartCategory.MEDIUM]: "#F59C0B", 
-  [ChartCategory.LOW]: "#22C55E",
+  [ChartCategory.LOW]: "#7988FF",
+  [ChartCategory.ASSETS]: "#7988FF",
 }; 
