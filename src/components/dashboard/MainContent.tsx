@@ -8,7 +8,6 @@ import TopRiskiestAssetsChart from '../charts/TopRiskiestAssetsChart';
 import SecurityAwarenessLineChart from '../charts/SecurityAwarenessLineChart';
 import PhishingStatsChart from '../charts/PhishingStatsChart';
 import TopRiskiestVulnerabilitiesChart from '../charts/TopRiskiestVulnerabilitiesChart';
-import ThreatAnatomyChart from '../charts/ThreatAnatomyChart';
 import AssetsChart from '../charts/AssetsChart';
 
 export function MainContent() {
@@ -66,13 +65,6 @@ export function MainContent() {
         </div>
         <div className="col-span-12 lg:col-span-6">
           <AssetsChart />
-        </div>
-      </div>
-
-      {/* Seventh Row - Threat Anatomy */}
-      <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-12 lg:col-span-12">
-          <ThreatAnatomyChart />
         </div>
       </div>
     </div>
