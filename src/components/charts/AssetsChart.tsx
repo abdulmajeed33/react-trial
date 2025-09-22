@@ -35,7 +35,13 @@ const data = [
 export default function AssetsChart() {
   return (
     <div className="w-full h-full bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6">
-      <ChartHeader title="Assets with Most Alerts" />
+      <ChartHeader
+        title="Assets with Most Alerts"
+        onRemoveWidget={() => console.log("Remove widget")}
+        onExportData={() => console.log("Export data")}
+        onSettings={() => console.log("Settings")}
+        onMagicClick={() => console.log("Magic clicked for Assets with Most Alerts")}
+      />
       
       <div className="h-[288px] relative bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl">
         <ResponsiveContainer width="100%" height="100%">

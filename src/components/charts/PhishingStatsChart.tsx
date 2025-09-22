@@ -25,7 +25,13 @@ const data = [
 export default function PhishingStatsChart() {
   return (
     <div className="w-full h-full bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6">
-      <ChartHeader title="Phishing Stats" />
+      <ChartHeader
+        title="Phishing Stats"
+        onRemoveWidget={() => console.log("Remove widget")}
+        onExportData={() => console.log("Export data")}
+        onSettings={() => console.log("Settings")}
+        onMagicClick={() => console.log("Magic clicked for Phishing Stats")}
+      />
       
       <div className="h-[250px] relative bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl flex items-center justify-center">
         <ResponsiveContainer width="100%" height="100%">
