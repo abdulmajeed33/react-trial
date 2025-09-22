@@ -11,6 +11,8 @@ import TopRiskiestVulnerabilitiesChart from '../charts/TopRiskiestVulnerabilitie
 import AssetsChart from '../charts/AssetsChart';
 import AvgVulnerabilityAgeChart from '../charts/AvgVulnerabilityAgeChart';
 import RiskiestTeamsChart from '../charts/RiskiestTeamsChart';
+import SLABreachesChart from '../charts/SLABreachesChart';
+import ControlHealthChart from '../charts/ControlHealthChart';
 
 export function MainContent() {
   return (
@@ -77,6 +79,16 @@ export function MainContent() {
         </div>
         <div className="col-span-12 lg:col-span-6">
           <RiskiestTeamsChart />
+        </div>
+      </div>
+
+      {/* Eighth Row - SLABreachesChart */}
+      <div className="grid grid-cols-12 gap-6">
+        <div className="col-span-12 lg:col-span-6">
+          <SLABreachesChart />
+        </div>
+        <div className="col-span-12 lg:col-span-6">
+          <ControlHealthChart />
         </div>
       </div>
     </div>

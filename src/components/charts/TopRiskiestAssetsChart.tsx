@@ -1,19 +1,8 @@
 import PieChart from './common/PieChart';
 import type { PieChartData } from './common/PieChart';
 
-export interface TopRiskiestAssetsChartProps {
-  onRemoveWidget?: () => void;
-  onExportData?: () => void;
-  onSettings?: () => void;
-  onMagicClick?: () => void;
-}
 
-export default function TopRiskiestAssetsChart({
-  onRemoveWidget,
-  onExportData,
-  onSettings,
-  onMagicClick,
-}: TopRiskiestAssetsChartProps) {
+export default function TopRiskiestAssetsChart() {
   
   const data: PieChartData[] = [
     { name: 'Critical', value: 35, color: '#FF5757' },
@@ -21,6 +10,7 @@ export default function TopRiskiestAssetsChart({
     { name: 'Medium', value: 25, color: '#F59C0B' },
     { name: 'Low', value: 10, color: '#7988FF' },
   ];
+  
 
   return (
     <PieChart
@@ -33,10 +23,10 @@ export default function TopRiskiestAssetsChart({
       outerRadius={100}
       paddingAngle={2}
       showLegend={true}
-      onRemoveWidget={onRemoveWidget}
-      onExportData={onExportData}
-      onSettings={onSettings}
-      onMagicClick={onMagicClick}
+      onRemoveWidget={() => console.log("Remove widget")}
+      onExportData={() => console.log("Export data")}
+      onSettings={() => console.log("Settings")}
+      onMagicClick={() => console.log("Magic clicked for Top Riskiest Assets")}
     />
   );
 }

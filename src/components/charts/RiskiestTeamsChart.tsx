@@ -1,19 +1,7 @@
 import VerticalBarChart from './common/VerticalBarChart';
 import type { BarChartData, LegendData } from './common/VerticalBarChart';
 
-export interface RiskiestTeamsChartProps {
-  onRemoveWidget?: () => void;
-  onExportData?: () => void;
-  onSettings?: () => void;
-  onMagicClick?: () => void;
-}
-
-export default function RiskiestTeamsChart({
-  onRemoveWidget,
-  onExportData,
-  onSettings,
-  onMagicClick,
-}: RiskiestTeamsChartProps) {
+export default function RiskiestTeamsChart() {
   
   // Data based on Figma design - bar heights relative to 100% scale
   const data: BarChartData[] = [
@@ -40,10 +28,10 @@ export default function RiskiestTeamsChart({
       barCategoryGap="40%"
       showLegend={true}
       legendItems={legendItems}
-      onRemoveWidget={onRemoveWidget}
-      onExportData={onExportData}
-      onSettings={onSettings}
-      onMagicClick={onMagicClick}
+      onRemoveWidget={() => console.log("Remove widget")}
+      onExportData={() => console.log("Export data")}
+      onSettings={() => console.log("Settings")}
+      onMagicClick={() => console.log("Magic clicked for Riskiest Teams")}
     />
   );
 } 
