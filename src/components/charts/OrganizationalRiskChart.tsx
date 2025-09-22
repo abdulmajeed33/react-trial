@@ -1,7 +1,7 @@
-import React from 'react';
-import { AreaChart, Area, ResponsiveContainer } from 'recharts';
-import { ChartHeader } from '../ui-components/ChartHeader';
-import { Button } from '../ui/button';
+import React from "react";
+import { AreaChart, Area, ResponsiveContainer, Tooltip } from "recharts";
+import { ChartHeader } from "../ui-components/ChartHeader";
+import { Button } from "../ui/button";
 
 // Risk trend data for the area chart - matches exact Figma curve shape
 const riskTrendData = [
@@ -17,94 +17,102 @@ const riskTrendData = [
   { x: 9, risk: 95 },
   { x: 10, risk: 98 },
   { x: 11, risk: 99 },
-  { x: 12, risk: 100 }
+  { x: 12, risk: 100 },
 ];
 
 interface RiskCategoryCardProps {
   icon: string;
   name: string;
   severity: string;
-  status: 'critical' | 'configure';
+  status: "critical" | "configure";
 }
 
 // Risk categories data - exact as in Figma
 const riskCategories: RiskCategoryCardProps[] = [
   {
-    icon: 'network-icon.svg',
-    name: 'Network',
-    severity: 'Critical',
-    status: 'critical' as const
+    icon: "network-icon.svg",
+    name: "Network",
+    severity: "Critical",
+    status: "critical" as const,
   },
   {
-    icon: 'server-icon.svg',
-    name: 'Servers',
-    severity: 'Critical',
-    status: 'critical' as const
+    icon: "server-icon.svg",
+    name: "Servers",
+    severity: "Critical",
+    status: "critical" as const,
   },
   {
-    icon: 'cloud-icon.svg',
-    name: 'Cloud',
-    severity: 'Critical',
-    status: 'critical' as const
+    icon: "cloud-icon.svg",
+    name: "Cloud",
+    severity: "Critical",
+    status: "critical" as const,
   },
   {
-    icon: 'data-icon.svg',
-    name: 'Data',
-    severity: 'Critical',
-    status: 'critical' as const
+    icon: "data-icon.svg",
+    name: "Data",
+    severity: "Critical",
+    status: "critical" as const,
   },
   {
-    icon: 'employees-icon.svg',
-    name: 'Employees',
-    severity: 'Configure',
-    status: 'configure' as const
+    icon: "employees-icon.svg",
+    name: "Employees",
+    severity: "Configure",
+    status: "configure" as const,
   },
   {
-    icon: 'applications-icon.svg',
-    name: 'Applications',
-    severity: 'Configure',
-    status: 'configure' as const
+    icon: "applications-icon.svg",
+    name: "Applications",
+    severity: "Configure",
+    status: "configure" as const,
   },
   {
-    icon: 'suppliers-icon.svg',
-    name: 'Suppliers',
-    severity: 'Configure',
-    status: 'configure' as const
+    icon: "suppliers-icon.svg",
+    name: "Suppliers",
+    severity: "Configure",
+    status: "configure" as const,
   },
   {
-    icon: 'devices-icon.svg',
-    name: 'Devices',
-    severity: 'Configure',
-    status: 'configure' as const
-  }
+    icon: "devices-icon.svg",
+    name: "Devices",
+    severity: "Configure",
+    status: "configure" as const,
+  },
 ];
 
-const RiskCategoryCard: React.FC<RiskCategoryCardProps> = ({ icon, name, severity, status }) => {
+const RiskCategoryCard: React.FC<RiskCategoryCardProps> = ({
+  icon,
+  name,
+  severity,
+  status,
+}) => {
   return (
     <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-4 flex flex-col items-center justify-center gap-3 h-[112px] flex-1">
       <div className="w-6 h-6 flex items-center justify-center">
-        <img 
-          src={`/icons/${icon}`} 
+        <img
+          src={`/icons/${icon}`}
           alt={name}
           className="w-full h-full object-contain"
-          style={{ filter: 'brightness(0) saturate(100%) invert(87%) sepia(6%) saturate(563%) hue-rotate(197deg) brightness(95%) contrast(91%)' }}
+          style={{
+            filter:
+              "brightness(0) saturate(100%) invert(87%) sepia(6%) saturate(563%) hue-rotate(197deg) brightness(95%) contrast(91%)",
+          }}
         />
       </div>
       <div className="flex flex-col items-center gap-3">
         <span className="text-text-dark-primary text-label font-normal text-center">
           {name}
         </span>
-        {status === 'critical' ? (
+        {status === "critical" ? (
           <div className="bg-background-badge-error border border-background-badge-error rounded-3xl px-3">
             <span className="text-text-badge-error text-extra-small font-normal text-center">
               {severity}
             </span>
           </div>
         ) : (
-          <Button 
-            variant="link" 
+          <Button
+            variant="link"
             className="!text-extra-small font-semibold !p-0 !h-auto"
-            onClick={() => console.log('Configure clicked for:', name)}
+            onClick={() => console.log("Configure clicked for:", name)}
           >
             {severity.toUpperCase()}
           </Button>
@@ -118,47 +126,92 @@ const OrganizationalRiskChart: React.FC = () => {
   return (
     <div className="bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6 w-full">
       {/* Header */}
-      <ChartHeader 
+      <ChartHeader
         title="Organizational Risk"
-        onRemoveWidget={() => console.log('Remove widget')}
-        onExportData={() => console.log('Export data')}
-        onSettings={() => console.log('Settings')}
-        onMagicClick={() => console.log('Magic clicked for Organizational Risk')}
+        onRemoveWidget={() => console.log("Remove widget")}
+        onExportData={() => console.log("Export data")}
+        onSettings={() => console.log("Settings")}
+        onMagicClick={() =>
+          console.log("Magic clicked for Organizational Risk")
+        }
       />
 
       {/* Main Content */}
       <div className="flex gap-3">
         {/* Left side - Risk Area Chart */}
         <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-3 flex flex-col justify-end gap-3 w-[178px] h-[236px] relative flex-shrink-0">
-                    {/* Risk Area Chart using Recharts - full coverage */}
-          <div className="absolute inset-0 overflow-hidden rounded-xl" style={{ zIndex: 1 }}>
+          {/* Risk Area Chart using Recharts - full coverage */}
+          <div
+            className="absolute inset-0 overflow-hidden rounded-xl"
+            style={{ zIndex: 1 }}
+          >
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart 
-                data={riskTrendData} 
+              <AreaChart
+                data={riskTrendData}
                 margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
               >
-                                  <defs>
-                  <linearGradient id="riskAreaGradient" x1="0" y1="1" x2="0" y2="0">
+                <defs>
+                  <linearGradient
+                    id="riskAreaGradient"
+                    x1="0"
+                    y1="1"
+                    x2="0"
+                    y2="0"
+                  >
                     <stop offset="0%" stopColor="#FF5757" stopOpacity={0} />
-                    <stop offset="100%" stopColor="#FF5757" stopOpacity={0.15} />
+                    <stop
+                      offset="100%"
+                      stopColor="#FF5757"
+                      stopOpacity={0.15}
+                    />
                   </linearGradient>
                 </defs>
-                  <Area
-                    type="natural"
-                    dataKey="risk"
-                    stroke="#FF5757"
-                    strokeWidth={2}
-                    fill="url(#riskAreaGradient)"
-                    fillOpacity={1}
-                    dot={false}
-                    activeDot={false}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-          
+                <Tooltip
+                  cursor={{ stroke: "none" }}
+                  contentStyle={{
+                    backgroundColor: '#0E131C',
+                    border: '1px solid #161B26',
+                    borderRadius: "8px",
+                    padding: "8px 12px",
+                    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)",
+                    color: "#ffffff",
+                  }}
+                  itemStyle={{
+                    color: "#FF5757",
+                    fontSize: "12px",
+                    fontWeight: "600",
+                  }}
+                  labelStyle={{
+                    color: "#cccccc", // Light gray for label
+                    fontSize: "11px",
+                    fontWeight: "500",
+                    marginBottom: "2px",
+                  }}
+                  formatter={(value: number) => {
+                    return [
+                      <span className="text-text-badge-error text-extra-small font-normal">
+                        {value}%
+                      </span>,
+                      "Risk",
+                    ];
+                  }}
+                />
+                <Area
+                  type="natural"
+                  dataKey="risk"
+                  stroke="#FF5757"
+                  strokeWidth={2}
+                  fill="url(#riskAreaGradient)"
+                  fillOpacity={1}
+                  dot={false}
+                  activeDot={false}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+
           {/* Content */}
           <div className="flex flex-col gap-3 relative" style={{ zIndex: 10 }}>
             <span className="text-text-dark-primary text-body font-normal text-center">
@@ -186,7 +239,7 @@ const OrganizationalRiskChart: React.FC = () => {
               />
             ))}
           </div>
-          
+
           {/* Bottom Row */}
           <div className="grid grid-cols-4 gap-3">
             {riskCategories.slice(4, 8).map((category, index) => (
@@ -205,4 +258,4 @@ const OrganizationalRiskChart: React.FC = () => {
   );
 };
 
-export default OrganizationalRiskChart; 
+export default OrganizationalRiskChart;
