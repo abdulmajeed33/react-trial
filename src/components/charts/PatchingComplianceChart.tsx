@@ -1,25 +1,26 @@
 import VerticalBarChart, { type BarChartData } from "./common/VerticalBarChart";
+import { ChartCategory } from "./common/chartConstants";
 
 const data: BarChartData[] = [
   {
     name: "Engineering",
     value: 20,
-    color: "#FF5757", // Critical - Red
+    category: ChartCategory.CRITICAL, // Critical - Red
   },
   {
     name: "IT Operators",
     value: 85,
-    color: "#2FD897", // Optimal - Green
+    category: ChartCategory.OPTIMAL, // Optimal - Green
   },
   {
     name: "Finance",
     value: 95,
-    color: "#2FD897", // Optimal - Green
+    category: ChartCategory.OPTIMAL, // Optimal - Green
   },
   {
     name: "HR",
     value: 52,
-    color: "#F59C0B", // Caution - Orange
+    category: ChartCategory.CAUTION, // Caution - Orange
   },
 ];
 

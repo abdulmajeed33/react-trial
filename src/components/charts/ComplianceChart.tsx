@@ -1,15 +1,16 @@
 import VerticalBarChart, { type BarChartData } from "./common/VerticalBarChart";
+import { ChartCategory } from "./common/chartConstants";
 
 const data: BarChartData[] = [
   {
     name: "CIS Benchmark 5.0",
     value: 90,
-    color: "#2FD897",
+    category: ChartCategory.OPTIMAL,
   },
   {
     name: "AWS Well-Architected",
     value: 53,
-    color: "#FF740A",
+    category: ChartCategory.CAUTION,
   },
 ];
 

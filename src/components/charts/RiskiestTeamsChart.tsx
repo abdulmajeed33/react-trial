@@ -1,21 +1,22 @@
 import VerticalBarChart from './common/VerticalBarChart';
 import type { BarChartData, LegendData } from './common/VerticalBarChart';
+import { ChartCategory } from './common/chartConstants';
 
 export default function RiskiestTeamsChart() {
   
   // Data based on Figma design - bar heights relative to 100% scale
   const data: BarChartData[] = [
-    { name: "Engineering", value: 21, color: "#FF5757" }, // ~39px height from 188px total
-    { name: "IT Operators", value: 83, color: "#2FD897" }, // ~156px height from 188px total  
-    { name: "Finance", value: 94, color: "#2FD897" }, // ~176px height from 188px total
-    { name: "HR", value: 52, color: "#F59C0B" }, // ~98px height from 188px total
+    { name: "Engineering", value: 21, category: ChartCategory.CRITICAL }, // ~39px height from 188px total
+    { name: "IT Operators", value: 83, category: ChartCategory.OPTIMAL }, // ~156px height from 188px total  
+    { name: "Finance", value: 94, category: ChartCategory.OPTIMAL }, // ~176px height from 188px total
+    { name: "HR", value: 52, category: ChartCategory.CAUTION }, // ~98px height from 188px total
   ];
 
-  // Legend items matching Figma colors
+  // Legend items matching categories
   const legendItems: LegendData[] = [
-    { color: "#2FD897", label: "Optimal" },
-    { color: "#FF740A", label: "Caution" }, 
-    { color: "#FF5757", label: "Critical" }
+    { category: ChartCategory.OPTIMAL, label: "Optimal" },
+    { category: ChartCategory.CAUTION, label: "Caution" }, 
+    { category: ChartCategory.CRITICAL, label: "Critical" }
   ];
 
   return (
