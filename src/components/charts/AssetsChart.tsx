@@ -1,16 +1,6 @@
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  ResponsiveContainer,
-  Cell,
-  Tooltip,
-} from "recharts";
-import { ChartHeader } from "../ui-components/ChartHeader";
+import VerticalBarChart, { type BarChartData } from "./common/VerticalBarChart";
 
-const data = [
+const data: BarChartData[] = [
   {
     name: "Critical",
     value: 65,
@@ -35,103 +25,18 @@ const data = [
 
 export default function AssetsChart() {
   return (
-    <div className="w-full h-full bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6">
-      <ChartHeader
-        title="Assets with Most Alerts"
-        onRemoveWidget={() => console.log("Remove widget")}
-        onExportData={() => console.log("Export data")}
-        onSettings={() => console.log("Settings")}
-        onMagicClick={() => console.log("Magic clicked for Assets with Most Alerts")}
-      />
-      
-      <div className="h-[288px] relative bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={data}
-            margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
-            barCategoryGap="30%"
-          >
-            <CartesianGrid
-              strokeDasharray="2 2"
-              stroke="#1F242F"
-              horizontal={true}
-              vertical={false}
-            />
-            <XAxis
-              dataKey="name"
-              axisLine={{ stroke: "#1F242F", strokeWidth: 1 }}
-              tickLine={false}
-              tick={{
-                fill: "#B6BCC3",
-                fontSize: 10,
-                fontFamily: "Inter",
-              }}
-              interval={0}
-              angle={0}
-              textAnchor="middle"
-              height={50}
-              dy={15}
-            />
-            <YAxis
-              axisLine={{ stroke: "#1F242F", strokeWidth: 1 }}
-              tickLine={false}
-              tick={{
-                fill: "#B6BCC3",
-                fontSize: 10,
-                fontFamily: "Inter",
-              }}
-              domain={[0, 100]}
-              ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
-              interval={0}
-              width={40}
-            />
-            <Tooltip
-              cursor={{ fill: 'rgba(255, 255, 255, 0.05)' }}
-              contentStyle={{
-                backgroundColor: '#0E131C',
-                border: '1px solid #161B26',
-                borderRadius: '8px',
-                padding: '8px 12px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
-                color: '#ffffff'
-              }}
-              itemStyle={{
-                color: '#ffffff',
-                fontSize: '12px',
-                fontWeight: '500',
-                fontFamily: 'Inter'
-              }}
-              labelStyle={{
-                color: '#cccccc',
-                fontSize: '11px',
-                fontWeight: '500',
-                marginBottom: '4px',
-                fontFamily: 'Inter'
-              }}
-              formatter={(value: number, _: string, props: { payload?: { name: string; value: number; color: string } }) => {
-                const entry = data.find(d => d.name === props.payload?.name);
-                return [
-                  <span style={{ color: entry?.color || '#7988FF' }}>
-                    {value}
-                  </span>,
-                  'Assets Count'
-                ];
-              }}
-              labelFormatter={(label: string) => label}
-            />
-            <Bar dataKey="value" radius={[6, 6, 0, 0]}>
-              {data.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={`${entry.color}1F`}
-                  stroke={entry.color}
-                  strokeWidth={1}
-                />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-    </div>
+    <VerticalBarChart
+      title="Assets with Most Alerts"
+      data={data}
+      valueUnit="count"
+      valueLabel="Assets Count"
+      height={288}
+      barCategoryGap="30%"
+      showLegend={false}
+      onRemoveWidget={() => console.log("Remove widget")}
+      onExportData={() => console.log("Export data")}
+      onSettings={() => console.log("Settings")}
+      onMagicClick={() => console.log("Magic clicked for Assets with Most Alerts")}
+    />
   );
 }
