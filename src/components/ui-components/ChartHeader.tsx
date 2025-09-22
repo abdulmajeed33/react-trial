@@ -56,7 +56,7 @@ export function ChartHeader({
         )}
       </div>
       
-      <div className="flex items-center">
+      <div className="flex items-center gap-1">
         {showMagic && (
           <Button
             variant="ghost"
@@ -67,7 +67,7 @@ export function ChartHeader({
             <img 
               src="/icons/magic-icon.svg" 
               alt="Magic"
-              className="w-4 h-4 object-contain hover:opacity-100 transition-opacity"
+              className="w-6 h-6 object-contain hover:opacity-100 transition-opacity"
             />
           </Button>
         )}
