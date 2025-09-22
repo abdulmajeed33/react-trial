@@ -1,8 +1,8 @@
 import { MessageCircle, BarChart3, Activity, Settings } from 'lucide-react';
 
 const rightPanelItems = [
-  { name: 'Chat', icon: MessageCircle, active: false, badge: '2' },
-  { name: 'Insights', icon: BarChart3, active: true, badge: '3' },
+  { name: 'Chat', icon: MessageCircle, active: true, badge: '2' },
+  { name: 'Insights', icon: BarChart3, active: false, badge: '3' },
   { name: 'Activity Monitor', icon: Activity, active: false },
   { name: 'AI Settings', icon: Settings, active: false },
 ];
