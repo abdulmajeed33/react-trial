@@ -9,6 +9,8 @@ import SecurityAwarenessLineChart from '../charts/SecurityAwarenessLineChart';
 import PhishingStatsChart from '../charts/PhishingStatsChart';
 import TopRiskiestVulnerabilitiesChart from '../charts/TopRiskiestVulnerabilitiesChart';
 import AssetsChart from '../charts/AssetsChart';
+import AvgVulnerabilityAgeChart from '../charts/AvgVulnerabilityAgeChart';
+import RiskiestTeamsChart from '../charts/RiskiestTeamsChart';
 
 export function MainContent() {
   return (
@@ -65,6 +67,16 @@ export function MainContent() {
         </div>
         <div className="col-span-12 lg:col-span-6">
           <AssetsChart />
+        </div>
+      </div>
+
+      {/* Seventh Row - Avg. Vulnerability Age */}
+      <div className="grid grid-cols-12 gap-6">
+        <div className="col-span-12 lg:col-span-6">
+          <AvgVulnerabilityAgeChart />
+        </div>
+        <div className="col-span-12 lg:col-span-6">
+          <RiskiestTeamsChart />
         </div>
       </div>
     </div>
