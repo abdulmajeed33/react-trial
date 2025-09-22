@@ -9,7 +9,7 @@ const rightPanelItems = [
 
 export function RightPanel() {
   return (
-    <aside className="bg-background-dark-neutral-neutral border-l border-border-dark-neutral-three flex flex-col px-4 py-6 gap-64">
+    <aside className="bg-background-dark-neutral-neutral border-l border-stroke-dark-neutral-neutral flex flex-col px-4 py-6 gap-64">
       {/* Top Items */}
       <div className="flex flex-col items-center gap-4">
         {rightPanelItems.map((item) => {

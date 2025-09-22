@@ -6,7 +6,7 @@ export function SearchConversation() {
   const [inputValue, setInputValue] = useState('');
 
   return (
-    <div className="flex items-center gap-3 p-3 rounded-lg w-[400px] bg-background-dark-neutral-transparent border border-border-primary-two-dark shadow-[0px_8px_8px_0px_rgba(42,61,214,0.16)]">
+    <div className="flex items-center gap-3 p-3 rounded-[6px] w-[400px] bg-background-dark-neutral-transparent border border-border-primary-two-dark shadow-[0px_8px_8px_0px_rgba(42,61,214,0.16)]">
       {/* Left Section - Search/Conversation Area */}
       <div className="flex items-center gap-1 flex-1">
         <div className="flex items-center gap-2 flex-1">

@@ -33,7 +33,7 @@ export function TimeRangeSelector() {
             ${index < timeRanges.length - 1 ? 'border-r border-border-dark-neutral-neutral' : ''}
             ${
               activeRange === range.label
-                ? 'bg-background-dark-neutral-two text-text-dark-primary font-semibold hover:bg-background-dark-neutral-two'
+                ? 'bg-background-dark-neutral-two text-text-dark-primary hover:text-text-dark-primary font-semibold hover:bg-background-dark-neutral-two'
                 : 'text-text-dark-secondary hover:text-text-dark-primary hover:bg-background-dark-neutral-two/50'
             }
           `}
