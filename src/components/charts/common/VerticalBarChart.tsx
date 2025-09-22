@@ -8,6 +8,7 @@ import {
   Cell,
   Tooltip,
 } from "recharts";
+import { useState } from "react";
 import { ChartHeader } from "../../ui-components/ChartHeader";
 import { LegendItem } from "../../ui-components/LegendItem";
 
@@ -15,11 +16,13 @@ export interface BarChartData {
   name: string;
   value: number;
   color: string;
+  category?: string; // Add category field to map data to legend items
 }
 
 export interface LegendData {
   color: string;
   label: string;
+  category?: string; // Add category field to map legend to data
 }
 
 export interface VerticalBarChartProps {
@@ -61,12 +64,55 @@ export default function VerticalBarChart({
   
   // Default legend items if not provided and showLegend is true
   const defaultLegendItems: LegendData[] = [
-    { color: "#2FD897", label: "Optimal" },
-    { color: "#F59C0B", label: "Caution" },
-    { color: "#FF5757", label: "Critical" }
+    { color: "#2FD897", label: "Optimal", category: "optimal" },
+    { color: "#F59C0B", label: "Caution", category: "caution" },
+    { color: "#FF5757", label: "Critical", category: "critical" }
   ];
 
   const finalLegendItems = legendItems || (showLegend ? defaultLegendItems : []);
+  
+  // State to track active legend items (initially all are active)
+  const [activeLegendItems, setActiveLegendItems] = useState<Set<string>>(
+    new Set(finalLegendItems.map((item, index) => item.category || item.label || index.toString()))
+  );
+
+  // Function to handle legend item click
+  const handleLegendClick = (item: LegendData, index: number) => {
+    const itemKey = item.category || item.label || index.toString();
+    setActiveLegendItems(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(itemKey)) {
+        // If it's the last active item, don't deactivate it
+        if (newSet.size > 1) {
+          newSet.delete(itemKey);
+        }
+      } else {
+        newSet.add(itemKey);
+      }
+      return newSet;
+    });
+  };
+
+  // Filter data based on active legend items
+  const filteredData = data.filter(dataItem => {
+    // If no category mapping is provided, show all data
+    if (!finalLegendItems.some(item => item.category)) {
+      return true;
+    }
+    
+    // Check if this data item's category/color matches any active legend item
+    const matchingLegendItem = finalLegendItems.find(legendItem => 
+      (legendItem.category && dataItem.category === legendItem.category) ||
+      (legendItem.color === dataItem.color)
+    );
+    
+    if (matchingLegendItem) {
+      const itemKey = matchingLegendItem.category || matchingLegendItem.label;
+      return activeLegendItems.has(itemKey);
+    }
+    
+    return true; // Show items that don't match any legend category
+  });
 
   return (
     <div className="w-full h-full bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6">
@@ -84,7 +130,7 @@ export default function VerticalBarChart({
       >
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
-            data={data}
+            data={filteredData}
             margin={margin}
             barCategoryGap={barCategoryGap}
           >
@@ -146,7 +192,7 @@ export default function VerticalBarChart({
                 fontFamily: 'Inter'
               }}
               formatter={(value: number, _: string, props: { payload?: { name: string; value: number; color: string } }) => {
-                const entry = data.find(d => d.name === props.payload?.name);
+                const entry = filteredData.find(d => d.name === props.payload?.name);
                 const displayValue = valueUnit === '%' ? `${value}%` : valueUnit === 'count' ? `${value}` : `${value}`;
                 return [
                   <span style={{ color: entry?.color || '#ffffff' }}>
@@ -158,7 +204,7 @@ export default function VerticalBarChart({
               labelFormatter={(label: string) => label}
             />
             <Bar dataKey="value" radius={[6, 6, 0, 0]}>
-              {data.map((entry, index) => (
+              {filteredData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={`${entry.color}1F`}
@@ -171,16 +217,29 @@ export default function VerticalBarChart({
         </ResponsiveContainer>
       </div>
 
-      {/* Custom Legend */}
+      {/* Custom Legend with Click Functionality */}
       {showLegend && finalLegendItems.length > 0 && (
         <div className="flex items-center gap-4">
-          {finalLegendItems.map((item, index) => (
-            <LegendItem 
-              key={index}
-              color={item.color} 
-              label={item.label} 
-            />
-          ))}
+          {finalLegendItems.map((item, index) => {
+            const itemKey = item.category || item.label || index.toString();
+            const isActive = activeLegendItems.has(itemKey);
+            
+            return (
+              <div
+                key={index}
+                onClick={() => handleLegendClick(item, index)}
+                className={`cursor-pointer transition-opacity duration-200 ${
+                  isActive ? 'opacity-100' : 'opacity-40'
+                }`}
+                title={`Click to ${isActive ? 'hide' : 'show'} ${item.label}`}
+              >
+                <LegendItem 
+                  color={item.color} 
+                  label={item.label} 
+                />
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
