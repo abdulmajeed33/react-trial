@@ -1,4 +1,3 @@
-import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, ReferenceLine, CartesianGrid } from 'recharts';
 import { ChartHeader } from '../ui-components/ChartHeader';
 import { LegendItem } from '../ui-components/LegendItem';

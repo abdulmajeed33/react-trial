@@ -1,4 +1,3 @@
-import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { ChartHeader } from '../ui-components/ChartHeader';
 import { LegendItem } from '../ui-components/LegendItem';

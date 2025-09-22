@@ -1,4 +1,3 @@
-import React from "react";
 import {
   BarChart,
   Bar,
@@ -88,7 +87,7 @@ export default function TopRiskiestVulnerabilitiesChart() {
               stroke="#FF5757"
               strokeWidth={1}
             >
-              {data.map((entry, index) => (
+              {data.map((_, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill="rgba(255, 87, 87, 0.12)"

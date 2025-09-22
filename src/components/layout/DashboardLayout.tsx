@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 import { RightPanel } from './RightPanel';
 
