@@ -21,7 +21,7 @@ export function TimeRangeSelector() {
   };
 
   return (
-    <div className="flex items-center h-8 border border-dark-neutral-neutral rounded-md bg-transparent">
+    <div className="flex items-center h-8 border border-border-dark-neutral-neutral rounded-md bg-transparent">
       {timeRanges.map((range, index) => (
         <Button
           key={range.label}
@@ -30,7 +30,7 @@ export function TimeRangeSelector() {
           onClick={() => handleRangeClick(range.label)}
           className={`
             h-full px-3 text-label font-normal rounded-none transition-colors
-            ${index < timeRanges.length - 1 ? 'border-r border-dark-neutral-neutral' : ''}
+            ${index < timeRanges.length - 1 ? 'border-r border-border-dark-neutral-neutral' : ''}
             ${
               activeRange === range.label
                 ? 'bg-background-dark-neutral-two text-text-dark-primary font-semibold hover:bg-background-dark-neutral-two'
