@@ -6,6 +6,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   Cell,
+  Tooltip,
 } from "recharts";
 import { ChartHeader } from "../ui-components/ChartHeader";
 import { LegendItem } from "../ui-components/LegendItem";
@@ -75,6 +76,43 @@ export default function ComplianceChart() {
               interval={0}
               width={40}
             />
+            
+            {/* Fixed Tooltip - proper formatter return format */}
+            <Tooltip
+              cursor={{ fill: 'rgba(255, 255, 255, 0.05)' }}
+              contentStyle={{
+                backgroundColor: '#0E131C',
+                border: '1px solid #161B26',
+                borderRadius: '8px',
+                padding: '8px 12px',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
+                color: '#ffffff'
+              }}
+              itemStyle={{
+                color: '#ffffff', // This will now apply to the label
+                fontSize: '12px',
+                fontWeight: '500',
+                fontFamily: 'Inter'
+              }}
+              labelStyle={{
+                color: '#cccccc',
+                fontSize: '11px',
+                fontWeight: '500',
+                marginBottom: '4px',
+                fontFamily: 'Inter'
+              }}
+              formatter={(value: number, _: string, props: { payload?: { name: string; value: number; color: string } }) => {
+                const entry = data.find(d => d.name === props.payload?.name);
+                return [
+                  <span style={{ color: entry?.color || '#ffffff' }}>
+                    {value}%
+                  </span>,
+                  'Compliance Score' // Plain string, not JSX
+                ];
+              }}
+              labelFormatter={(label: string) => label}
+            />
+
             <Bar dataKey="value" radius={[6, 6, 0, 0]}>
               {data.map((entry, index) => (
                 <Cell
