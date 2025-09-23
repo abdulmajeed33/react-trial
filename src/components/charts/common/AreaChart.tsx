@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   AreaChart as RechartsAreaChart,
   Area,
@@ -80,9 +81,17 @@ export default function AreaChart({
   useGradients = true
 }: AreaChartProps) {
   
+  // State management for hidden series - using Set for efficient lookups
+  const [hiddenSeries, setHiddenSeries] = useState<Set<string>>(new Set());
+  
   // Normalize dataKeys to DataKeyConfig format
   const normalizedDataKeys: DataKeyConfig[] = dataKeys.map(key => 
     typeof key === 'string' ? { key, category: undefined } : key
+  );
+
+  // Filter visible data keys based on hidden series state
+  const visibleDataKeys = normalizedDataKeys.filter(dataKeyConfig => 
+    !hiddenSeries.has(dataKeyConfig.key)
   );
 
   // Default legend items
@@ -101,8 +110,21 @@ export default function AreaChart({
     return defaultAreaColor;
   };
 
-  // Generate gradient definitions for each series
-  const gradientDefs = useGradients ? normalizedDataKeys.map((dataKeyConfig, index) => {
+  // Click handler for legend items to toggle series visibility
+  const handleLegendClick = (dataKey: string) => {
+    setHiddenSeries(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(dataKey)) {
+        newSet.delete(dataKey);
+      } else {
+        newSet.add(dataKey);
+      }
+      return newSet;
+    });
+  };
+
+  // Generate gradient definitions for visible series only
+  const gradientDefs = useGradients ? visibleDataKeys.map((dataKeyConfig, index) => {
     const color = getColorForCategory(dataKeyConfig.category);
     return (
       <linearGradient key={`gradient-${index}`} id={`${dataKeyConfig.key}Gradient`} x1="0" y1="0" x2="0" y2="1">
@@ -204,6 +226,11 @@ export default function AreaChart({
                 fontFamily: 'Inter'
               }}
               formatter={(value: number, name: string) => {
+                // Only show tooltip for visible series
+                if (hiddenSeries.has(name)) {
+                  return [null, null];
+                }
+                
                 const dataKeyConfig = normalizedDataKeys.find(config => config.key === name);
                 const color = dataKeyConfig ? getColorForCategory(dataKeyConfig.category) : defaultAreaColor;
                 const displayName = name === 'mttd' ? 'MTTD' : name === 'mttr' ? 'MTTR' : name;
@@ -223,8 +250,8 @@ export default function AreaChart({
               }}
             />
 
-            {/* Areas - render in reverse order so first series appears on top */}
-            {normalizedDataKeys.slice().reverse().map((dataKeyConfig) => {
+            {/* Areas - render only visible series in reverse order so first series appears on top */}
+            {visibleDataKeys.slice().reverse().map((dataKeyConfig) => {
               const color = getColorForCategory(dataKeyConfig.category);
               const fillValue = useGradients ? `url(#${dataKeyConfig.key}Gradient)` : `${color}1F`;
               
@@ -246,17 +273,24 @@ export default function AreaChart({
         </ResponsiveContainer>
       </div>
 
-      {/* Static Legend */}
+      {/* Interactive Legend */}
       {showLegend && finalLegendItems.length > 0 && (
         <div className="flex items-center gap-4">
           {finalLegendItems.map((item, index) => {
             const color = getColorForCategory(item.category);
+            // Find the corresponding data key for this legend item
+            const dataKey = normalizedDataKeys.find(dk => 
+              getColorForCategory(dk.category) === color
+            )?.key || item.label.toLowerCase();
+            const isHidden = hiddenSeries.has(dataKey);
             
             return (
               <div key={index}>
                 <LegendItem 
                   color={color} 
-                  label={item.label} 
+                  label={item.label}
+                  onClick={() => handleLegendClick(dataKey)}
+                  disabled={isHidden}
                 />
               </div>
             );
