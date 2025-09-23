@@ -220,7 +220,13 @@ const SimpleAreaChart: React.FC<SimpleAreaChartProps> = ({
 
       {/* Overlay Content Layer */}
       {overlayContent && (
-        <div className="absolute inset-0 flex flex-col justify-end gap-3 p-3" style={{ zIndex: 10 }}>
+        <div 
+          className="absolute inset-0 flex flex-col justify-end gap-3 p-3" 
+          style={{ 
+            zIndex: 10, 
+            pointerEvents: 'none' // Allow mouse events to pass through to chart
+          }}
+        >
           {overlayContent.customContent ? (
             overlayContent.customContent
           ) : (
@@ -231,10 +237,13 @@ const SimpleAreaChart: React.FC<SimpleAreaChartProps> = ({
                 </span>
               )}
               {overlayContent.badge && (
-                <div className={
-                  overlayContent.badge.customStyle || 
-                  getBadgeStyle(overlayContent.badge.category)
-                }>
+                <div 
+                  className={
+                    overlayContent.badge.customStyle || 
+                    getBadgeStyle(overlayContent.badge.category)
+                  }
+                  style={{ pointerEvents: 'auto' }} // Re-enable events for interactive badge
+                >
                   <span className={getBadgeTextStyle(overlayContent.badge.category)}>
                     {overlayContent.badge.text}
                   </span>
