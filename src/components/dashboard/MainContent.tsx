@@ -15,6 +15,7 @@ import SLABreachesChart from '../charts/SLABreachesChart';
 import ControlHealthChart from '../charts/ControlHealthChart';
 import ControlCoverageChart from '../charts/ControlCoverageChart';
 import TopAttackVectorsChart from '../charts/TopAttackVectorsChart';
+import OpenCasesChart from '../charts/OpenCasesChart';
 
 export function MainContent() {
   return (
@@ -101,6 +102,13 @@ export function MainContent() {
         </div>
         <div className="col-span-12 lg:col-span-6">
           <TopAttackVectorsChart />
+        </div>
+      </div>
+
+      {/* Tenth Row - Open Cases */}
+      <div className="grid grid-cols-12 gap-6">
+        <div className="col-span-12 lg:col-span-6">
+          <OpenCasesChart />
         </div>
       </div>
     </div>
