@@ -4,21 +4,26 @@ import { Button } from "../ui/button";
 import SimpleAreaChart from "./common/SimpleAreaChart";
 import { ChartCategory } from "./common/chartConstants";
 
-// Risk trend data for the area chart - matches exact Figma curve shape
+// Risk trend data for the area chart - supports both numeric and date string values
+// Example data formats:
+// 1. Month abbreviations (current)
+// 2. Full dates: { x: "2024-01-01", risk: 10 }
+// 3. Numeric: { x: 0, risk: 10 }
+// 4. Custom labels: { x: "Q1", risk: 10 }
 const riskTrendData = [
-  { x: 0, risk: 10 },
-  { x: 1, risk: 12 },
-  { x: 2, risk: 15 },
-  { x: 3, risk: 20 },
-  { x: 4, risk: 30 },
-  { x: 5, risk: 45 },
-  { x: 6, risk: 65 },
-  { x: 7, risk: 80 },
-  { x: 8, risk: 90 },
-  { x: 9, risk: 95 },
-  { x: 10, risk: 98 },
-  { x: 11, risk: 99 },
-  { x: 12, risk: 100 },
+  { x: "Jan", risk: 10 },
+  { x: "Feb", risk: 12 },
+  { x: "Mar", risk: 15 },
+  { x: "Apr", risk: 20 },
+  { x: "May", risk: 30 },
+  { x: "Jun", risk: 45 },
+  { x: "Jul", risk: 65 },
+  { x: "Aug", risk: 80 },
+  { x: "Sep", risk: 90 },
+  { x: "Oct", risk: 95 },
+  { x: "Nov", risk: 98 },
+  { x: "Dec", risk: 99 },
+  { x: "Current", risk: 100 },
 ];
 
 interface RiskCategoryCardProps {

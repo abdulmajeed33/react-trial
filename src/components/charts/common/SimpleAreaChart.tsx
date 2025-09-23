@@ -1,5 +1,5 @@
 import React from "react";
-import { AreaChart, Area, ResponsiveContainer, Tooltip } from "recharts";
+import { AreaChart, Area, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
 
 /**
@@ -15,16 +15,26 @@ import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
  * 
  * Example usage:
  * ```tsx
- * // Basic usage with category
+ * // Basic usage with numeric data
+ * const numericData = [
+ *   { x: 0, risk: 10 },
+ *   { x: 1, risk: 20 },
+ *   { x: 2, risk: 30 }
+ * ];
  * <SimpleAreaChart 
- *   data={data} 
+ *   data={numericData} 
  *   dataKey="risk" 
  *   category={ChartCategory.CRITICAL} 
  * />
  * 
- * // With overlay content
+ * // With date strings
+ * const dateData = [
+ *   { x: "Jan", risk: 10 },
+ *   { x: "Feb", risk: 20 },
+ *   { x: "Mar", risk: 30 }
+ * ];
  * <SimpleAreaChart 
- *   data={data} 
+ *   data={dateData} 
  *   dataKey="risk" 
  *   category={ChartCategory.CRITICAL}
  *   overlayContent={{
@@ -33,9 +43,14 @@ import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
  *   }}
  * />
  * 
- * // With custom overlay content
+ * // With full date strings
+ * const fullDateData = [
+ *   { x: "2024-01-01", performance: 85 },
+ *   { x: "2024-02-01", performance: 90 },
+ *   { x: "2024-03-01", performance: 95 }
+ * ];
  * <SimpleAreaChart 
- *   data={data} 
+ *   data={fullDateData} 
  *   dataKey="performance" 
  *   category={ChartCategory.GOOD}
  *   overlayContent={{
@@ -46,8 +61,8 @@ import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
  */
 
 export interface SimpleAreaChartData {
-  x: number;
-  [key: string]: number; // Allow flexible data keys
+  x: number | string; // Support both numeric and string (date) values
+  [key: string]: number | string; // Allow flexible data keys including strings
 }
 
 export interface OverlayContentProps {
@@ -172,6 +187,9 @@ const SimpleAreaChart: React.FC<SimpleAreaChartProps> = ({
                 <stop offset="100%" stopColor={finalColor} stopOpacity={gradientOpacity.start} />
               </linearGradient>
             </defs>
+            
+            {/* Hidden X-axis for proper string/date handling */}
+            <XAxis dataKey="x" hide={true} />
             
             {showTooltip && (
               <Tooltip
