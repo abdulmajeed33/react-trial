@@ -1,26 +1,43 @@
 import AreaChart from './common/AreaChart';
+import { ChartCategory } from './common/chartConstants';
 
-// Chart data based on the Figma design - MTTD (blue) and MTTR (gold/yellow)
+// Chart data with categories array
 const chartData = [
-  { name: 'Mar', mttd: 3, mttr: 10 },
-  { name: 'Apr', mttd: 2, mttr: 8 },
-  { name: 'May', mttd: 5.5, mttr: 5 },
-  { name: 'Jun', mttd: 6, mttr: 6.5 },
-  { name: 'Jul', mttd: 5, mttr: 10 },
-  { name: 'Aug', mttd: 3, mttr: 9 }
-];
-
-// Define the data series for the area chart
-const dataSeries = [
-  {
-    dataKey: 'mttd',
-    name: 'MTTD',
-    color: '#7988FF'
+  { 
+    name: 'Mar', 
+    mttd: 3, 
+    mttr: 10,
+    categories: [ChartCategory.MTTD, ChartCategory.MTTR]
   },
-  {
-    dataKey: 'mttr',
-    name: 'MTTR', 
-    color: '#F59C0B'
+  { 
+    name: 'Apr', 
+    mttd: 2, 
+    mttr: 8,
+    categories: [ChartCategory.MTTD, ChartCategory.MTTR]
+  },
+  { 
+    name: 'May', 
+    mttd: 5.5, 
+    mttr: 5,
+    categories: [ChartCategory.MTTD, ChartCategory.MTTR]
+  },
+  { 
+    name: 'Jun', 
+    mttd: 6, 
+    mttr: 6.5,
+    categories: [ChartCategory.MTTD, ChartCategory.MTTR]
+  },
+  { 
+    name: 'Jul', 
+    mttd: 5, 
+    mttr: 10,
+    categories: [ChartCategory.MTTD, ChartCategory.MTTR]
+  },
+  { 
+    name: 'Aug', 
+    mttd: 3, 
+    mttr: 9,
+    categories: [ChartCategory.MTTD, ChartCategory.MTTR]
   }
 ];
 
@@ -29,7 +46,7 @@ const MTTDMTTRChart: React.FC = () => {
     <AreaChart
       title="MTTD & MTTR Trends"
       data={chartData}
-      dataSeries={dataSeries}
+      dataKeys={['mttd', 'mttr']}
       valueUnit="hrs"
       height={246}
       showLegend={true}
