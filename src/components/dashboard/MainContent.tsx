@@ -16,6 +16,7 @@ import ControlHealthChart from '../charts/ControlHealthChart';
 import ControlCoverageChart from '../charts/ControlCoverageChart';
 import TopAttackVectorsChart from '../charts/TopAttackVectorsChart';
 import OpenCasesChart from '../charts/OpenCasesChart';
+import AssetCompliancePatchingChart from '../charts/AssetCompliancePatchingChart';
 
 export function MainContent() {
   return (
@@ -109,6 +110,9 @@ export function MainContent() {
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 lg:col-span-6">
           <OpenCasesChart />
+        </div>
+        <div className="col-span-12 lg:col-span-6">
+          <AssetCompliancePatchingChart />
         </div>
       </div>
     </div>
