@@ -140,15 +140,15 @@ const OrganizationalRiskChart: React.FC = () => {
       {/* Main Content */}
       <div className="flex gap-3">
         {/* Left side - Risk Area Chart */}
-        <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-3 flex flex-col justify-end gap-3 w-[178px] h-[236px] relative flex-shrink-0">
+        <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl w-[178px] h-[236px] relative flex-shrink-0 overflow-hidden">
           {/* Risk Area Chart using SimpleAreaChart component */}
           {/* 
+            SimpleAreaChart with overlay content - everything in one component!
             Easy to change chart appearance by switching categories:
             - ChartCategory.CRITICAL (red) - current
             - ChartCategory.WARNING (orange)
             - ChartCategory.CAUTION (yellow)
             - ChartCategory.GOOD (green)
-            - Or use custom color prop instead
           */}
           <SimpleAreaChart
             data={riskTrendData}
@@ -160,19 +160,15 @@ const OrganizationalRiskChart: React.FC = () => {
             areaType="natural"
             valueUnit="%"
             tooltipLabel="Risk"
+            className="absolute inset-0 overflow-hidden"
+            overlayContent={{
+              title: "Overall Risk Score",
+              badge: {
+                text: "Critical",
+                category: ChartCategory.CRITICAL
+              }
+            }}
           />
-
-          {/* Content */}
-          <div className="flex flex-col gap-3 relative" style={{ zIndex: 10 }}>
-            <span className="text-text-dark-primary text-body font-normal text-center">
-              Overall Risk Score
-            </span>
-            <div className="bg-background-badge-error border border-background-badge-error rounded-3xl px-3 w-fit">
-              <span className="text-text-badge-error text-extra-small font-normal">
-                Critical
-              </span>
-            </div>
-          </div>
         </div>
 
         {/* Right side - Risk Categories Grid */}
