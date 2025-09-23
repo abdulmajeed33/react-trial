@@ -1,4 +1,3 @@
-import React from "react";
 import { ChartCategory } from "../charts/common/chartConstants";
 
 export interface BadgeProps {
