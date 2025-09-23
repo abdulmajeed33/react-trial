@@ -27,58 +27,64 @@ const riskTrendData = [
 ];
 
 interface RiskCategoryCardProps {
-  icon: string;
   name: string;
   severity: string;
   status: "critical" | "configure";
 }
 
-// Risk categories data - exact as in Figma
+// Icon mapping based on category name
+const getIconForCategory = (name: string): string => {
+  const iconMap: Record<string, string> = {
+    "Network": "network-icon.svg",
+    "Servers": "server-icon.svg", 
+    "Cloud": "cloud-icon.svg",
+    "Data": "data-icon.svg",
+    "Employees": "employees-icon.svg",
+    "Applications": "applications-icon.svg",
+    "Suppliers": "suppliers-icon.svg",
+    "Devices": "devices-icon.svg",
+  };
+  return iconMap[name] || "default-icon.svg";
+};
+
+// Risk categories data - icons mapped by status/name
 const riskCategories: RiskCategoryCardProps[] = [
   {
-    icon: "network-icon.svg",
     name: "Network",
     severity: "Critical",
     status: "critical" as const,
   },
   {
-    icon: "server-icon.svg",
     name: "Servers",
     severity: "Critical",
     status: "critical" as const,
   },
   {
-    icon: "cloud-icon.svg",
     name: "Cloud",
     severity: "Critical",
     status: "critical" as const,
   },
   {
-    icon: "data-icon.svg",
     name: "Data",
     severity: "Critical",
     status: "critical" as const,
   },
   {
-    icon: "employees-icon.svg",
     name: "Employees",
     severity: "Configure",
     status: "configure" as const,
   },
   {
-    icon: "applications-icon.svg",
     name: "Applications",
     severity: "Configure",
     status: "configure" as const,
   },
   {
-    icon: "suppliers-icon.svg",
     name: "Suppliers",
     severity: "Configure",
     status: "configure" as const,
   },
   {
-    icon: "devices-icon.svg",
     name: "Devices",
     severity: "Configure",
     status: "configure" as const,
@@ -86,11 +92,12 @@ const riskCategories: RiskCategoryCardProps[] = [
 ];
 
 const RiskCategoryCard: React.FC<RiskCategoryCardProps> = ({
-  icon,
   name,
   severity,
   status,
 }) => {
+  const icon = getIconForCategory(name);
+  
   return (
     <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-4 flex flex-col items-center justify-center gap-3 h-[112px] flex-1">
       <div className="w-6 h-6 flex items-center justify-center">
@@ -183,7 +190,6 @@ const OrganizationalRiskChart: React.FC = () => {
             {riskCategories.slice(0, 4).map((category, index) => (
               <RiskCategoryCard
                 key={index}
-                icon={category.icon}
                 name={category.name}
                 severity={category.severity}
                 status={category.status}
@@ -196,7 +202,6 @@ const OrganizationalRiskChart: React.FC = () => {
             {riskCategories.slice(4, 8).map((category, index) => (
               <RiskCategoryCard
                 key={index + 4}
-                icon={category.icon}
                 name={category.name}
                 severity={category.severity}
                 status={category.status}
