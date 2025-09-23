@@ -1,8 +1,8 @@
 import React from "react";
 import { ChartHeader } from "../ui-components/ChartHeader";
-import { Button } from "../ui/button";
 import SimpleAreaChart from "./common/SimpleAreaChart";
 import { ChartCategory } from "./common/chartConstants";
+import { Badge } from "../ui/badge";
 
 // Risk trend data for the area chart - supports both numeric and date string values
 // Example data formats:
@@ -116,19 +116,19 @@ const RiskCategoryCard: React.FC<RiskCategoryCardProps> = ({
           {name}
         </span>
         {status === "critical" ? (
-          <div className="bg-background-badge-error border border-background-badge-error rounded-3xl px-3">
-            <span className="text-text-badge-error text-extra-small font-normal text-center">
-              {severity}
-            </span>
-          </div>
+          <Badge
+            text={severity}
+            category={ChartCategory.CRITICAL}
+            variant="pill"
+            size="small"
+          />
         ) : (
-          <Button
+          <Badge
+            text={severity}
             variant="link"
-            className="!text-extra-small font-semibold !p-0 !h-auto"
+            size="small"
             onClick={() => console.log("Configure clicked for:", name)}
-          >
-            {severity.toUpperCase()}
-          </Button>
+          />
         )}
       </div>
     </div>

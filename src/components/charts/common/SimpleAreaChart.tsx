@@ -1,6 +1,7 @@
 import React from "react";
 import { AreaChart, Area, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
+import { Badge } from "../../ui/badge";
 
 /**
  * SimpleAreaChart - A flexible area chart component for embedded/overlay usage
@@ -71,6 +72,7 @@ export interface OverlayContentProps {
     text: string;
     category?: ChartCategory;
     customStyle?: string; // Custom CSS classes for badge
+    onClick?: () => void; // Optional click handler for interactive badges
   };
   customContent?: React.ReactNode; // For completely custom overlay content
 }
@@ -137,34 +139,7 @@ const SimpleAreaChart: React.FC<SimpleAreaChartProps> = ({
   const finalTooltipFormatter = tooltipFormatter || defaultTooltipFormatter;
   const finalTooltipLabel = tooltipLabel || dataKey.charAt(0).toUpperCase() + dataKey.slice(1);
 
-  // Helper function to get badge styling based on category
-  const getBadgeStyle = (badgeCategory?: ChartCategory) => {
-    // Default badge styling based on category
-    const baseClasses = "border rounded-3xl px-3 w-fit";
-    
-    if (badgeCategory === ChartCategory.CRITICAL) {
-      return `bg-background-badge-error border-background-badge-error ${baseClasses}`;
-    } else if (badgeCategory === ChartCategory.WARNING) {
-      return `bg-background-badge-warning border-background-badge-warning ${baseClasses}`;
-    } else if (badgeCategory === ChartCategory.GOOD || badgeCategory === ChartCategory.OPTIMAL) {
-      return `bg-background-badge-success border-background-badge-success ${baseClasses}`;
-    } else {
-      // Fallback styling using the chart color
-      return `${baseClasses}`;
-    }
-  };
 
-  const getBadgeTextStyle = (badgeCategory?: ChartCategory) => {
-    if (badgeCategory === ChartCategory.CRITICAL) {
-      return "text-text-badge-error text-extra-small font-normal";
-    } else if (badgeCategory === ChartCategory.WARNING) {
-      return "text-text-badge-warning text-extra-small font-normal";
-    } else if (badgeCategory === ChartCategory.GOOD || badgeCategory === ChartCategory.OPTIMAL) {
-      return "text-text-badge-success text-extra-small font-normal";
-    } else {
-      return "text-extra-small font-normal";
-    }
-  };
 
   return (
     <div className={`relative w-full h-full ${containerClassName}`}>
@@ -255,17 +230,14 @@ const SimpleAreaChart: React.FC<SimpleAreaChartProps> = ({
                 </span>
               )}
               {overlayContent.badge && (
-                <div 
-                  className={
-                    overlayContent.badge.customStyle || 
-                    getBadgeStyle(overlayContent.badge.category)
-                  }
-                  style={{ pointerEvents: 'auto' }} // Re-enable events for interactive badge
-                >
-                  <span className={getBadgeTextStyle(overlayContent.badge.category)}>
-                    {overlayContent.badge.text}
-                  </span>
-                </div>
+                <Badge
+                  text={overlayContent.badge.text}
+                  category={overlayContent.badge.category}
+                  variant="pill"
+                  size="small"
+                  className={overlayContent.badge.customStyle}
+                  onClick={overlayContent.badge.onClick}
+                />
               )}
             </>
           )}
