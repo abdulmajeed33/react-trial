@@ -11,19 +11,19 @@ import { ChartCategory } from "./common/chartConstants";
 // 3. Numeric: { x: 0, risk: 10 }
 // 4. Custom labels: { x: "Q1", risk: 10 }
 const riskTrendData = [
-  { x: "Jan", risk: 10 },
-  { x: "Feb", risk: 12 },
-  { x: "Mar", risk: 15 },
-  { x: "Apr", risk: 20 },
-  { x: "May", risk: 30 },
-  { x: "Jun", risk: 45 },
-  { x: "Jul", risk: 65 },
-  { x: "Aug", risk: 80 },
-  { x: "Sep", risk: 90 },
-  { x: "Oct", risk: 95 },
-  { x: "Nov", risk: 98 },
-  { x: "Dec", risk: 99 },
-  { x: "Current", risk: 100 },
+  { "x": "2025-09-01", "risk": 10 },
+  { "x": "2025-09-02", "risk": 12 },
+  { "x": "2025-09-03", "risk": 15 },
+  { "x": "2025-09-04", "risk": 20 },
+  { "x": "2025-09-05", "risk": 30 },
+  { "x": "2025-09-06", "risk": 45 },
+  { "x": "2025-09-07", "risk": 65 },
+  { "x": "2025-09-08", "risk": 80 },
+  { "x": "2025-09-09", "risk": 90 },
+  { "x": "2025-09-10", "risk": 95 },
+  { "x": "2025-09-11", "risk": 98 },
+  { "x": "2025-09-12", "risk": 99 },
+  { "x": "2025-09-13", "risk": 100 }
 ];
 
 interface RiskCategoryCardProps {
