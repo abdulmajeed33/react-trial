@@ -15,7 +15,7 @@ import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
 export interface BarChartData {
   name: string;
   value: number;
-  category: ChartCategory;
+  category: ChartCategory
 }
 
 export interface LegendData {

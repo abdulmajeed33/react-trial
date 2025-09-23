@@ -1,12 +1,11 @@
-import React from 'react';
 import HorizontalBarChart, { type HorizontalBarChartData } from './common/HorizontalBarChart';
 
 // Mock data based on Figma design
 const topAttackVectorsData: HorizontalBarChartData[] = [
-  { name: 'Phishing', value: 85, color: '#FF5757' },
-  { name: 'Malware', value: 72, color: '#FF5757' },
-  { name: 'Web Attack', value: 45, color: '#FF5757' },
-  { name: 'Insider Threat', value: 58, color: '#FF5757' },
+  { name: 'Phishing', value: 85 },
+  { name: 'Malware', value: 72 },
+  { name: 'Web Attack', value: 45 },
+  { name: 'Insider Threat', value: 58 },
 ];
 
 export default function TopAttackVectorsChart() {

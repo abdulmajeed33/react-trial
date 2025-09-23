@@ -1,14 +1,14 @@
-import React from 'react';
 import HorizontalBarChart, { type HorizontalBarChartData } from './common/HorizontalBarChart';
 
 // Mock data based on Figma design
 const controlCoverageData: HorizontalBarChartData[] = [
-  { name: 'Antivirus', value: 92, color: '#FF5757' },
-  { name: 'Firewall', value: 78, color: '#FF5757' },
-  { name: 'SIEM', value: 65, color: '#FF5757' },
-  { name: 'WAF', value: 88, color: '#FF5757' },
-  { name: 'VA', value: 95, color: '#FF5757' },
+  { name: 'Antivirus', value: 92 },
+  { name: 'Firewall', value: 78 },
+  { name: 'SIEM', value: 65 },
+  { name: 'WAF', value: 88 },
+  { name: 'VA', value: 95 },
 ];
+
 
 
 export default function ControlCoverageChart() {
