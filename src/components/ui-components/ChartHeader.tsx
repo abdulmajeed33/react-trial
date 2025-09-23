@@ -94,7 +94,7 @@ export function ChartHeader({
               {defaultMenuItems.map((item, index) => (
                 <DropdownMenuItem 
                   key={index}
-                  className="text-text-dark-primary hover:bg-background-dark-neutral-two cursor-pointer"
+                  className="text-text-dark-primary hover:bg-background-dark-neutral-two hover:text-text-dark-primary focus:bg-background-dark-neutral-two focus:text-text-dark-primary cursor-pointer"
                   onClick={item.onClick}
                 >
                   {item.label}
