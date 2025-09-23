@@ -15,7 +15,7 @@ import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
 export interface BarChartData {
   name: string;
   value: number;
-  category: ChartCategory
+  category?: ChartCategory;
 }
 
 export interface LegendData {
@@ -32,6 +32,7 @@ export interface VerticalBarChartProps {
   barCategoryGap?: string; // Gap between bars
   showLegend?: boolean;
   legendItems?: LegendData[];
+  defaultBarColor?: string; // Default color for bars when no category is provided
   onRemoveWidget?: () => void;
   onExportData?: () => void;
   onSettings?: () => void;
@@ -53,6 +54,7 @@ export default function VerticalBarChart({
   barCategoryGap = "28%",
   showLegend = true,
   legendItems,
+  defaultBarColor = "#FF5757",
   onRemoveWidget,
   onExportData,
   onSettings,
@@ -70,8 +72,11 @@ export default function VerticalBarChart({
   const finalLegendItems = legendItems || (showLegend ? defaultLegendItems : []);
 
   // Helper function to get color for a category
-  const getColorForCategory = (category: ChartCategory): string => {
-    return CATEGORY_COLORS[category] || "#6B7280";
+  const getColorForCategory = (category?: ChartCategory): string => {
+    if (category) {
+      return CATEGORY_COLORS[category] || defaultBarColor;
+    }
+    return defaultBarColor;
   };
 
   return (
@@ -151,10 +156,10 @@ export default function VerticalBarChart({
                 marginBottom: '4px',
                 fontFamily: 'Inter'
               }}
-              formatter={(value: number, _: string, props: { payload?: { name: string; value: number; category: ChartCategory } }) => {
+              formatter={(value: number, _: string, props: { payload?: { name: string; value: number; category?: ChartCategory } }) => {
                 const entry = data.find(d => d.name === props.payload?.name);
                 const displayValue = valueUnit === '%' ? `${value}%` : valueUnit === 'count' ? `${value}` : `${value}`;
-                const color = entry ? getColorForCategory(entry.category) : '#ffffff';
+                const color = entry ? getColorForCategory(entry.category) : defaultBarColor;
                 return [
                   <span style={{ color }}>
                     {displayValue}

@@ -1,26 +1,22 @@
-import { ChartCategory } from "./common/chartConstants";
 import VerticalBarChart, { type BarChartData } from "./common/VerticalBarChart";
 
 const data: BarChartData[] = [
   {
     name: "Critical",
-    value: 65,
-    category: ChartCategory.ASSETS,
+    value: 65
   },
   {
     name: "High", 
     value: 16,
-    category: ChartCategory.ASSETS,
   },
   {
     name: "Medium",
     value: 8,
-    category: ChartCategory.ASSETS,
+
   },
   {
     name: "Low",
     value: 55,
-    category: ChartCategory.ASSETS,
   },
 ];
 
@@ -34,6 +30,7 @@ export default function AssetsChart() {
       height={288}
       barCategoryGap="30%"
       showLegend={false}
+      defaultBarColor="#7988FF"
       onRemoveWidget={() => console.log("Remove widget")}
       onExportData={() => console.log("Export data")}
       onSettings={() => console.log("Settings")}
