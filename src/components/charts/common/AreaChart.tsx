@@ -8,7 +8,6 @@ import {
   Tooltip,
   ReferenceLine,
 } from "recharts";
-import { ChartHeader } from "../../ui-components/ChartHeader";
 import { LegendItem } from "../../ui-components/LegendItem";
 import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
 
@@ -29,7 +28,6 @@ export interface LegendData {
 }
 
 export interface AreaChartProps {
-  title: string;
   data: AreaChartData[];
   dataKeys: string[] | DataKeyConfig[]; // Can be simple strings or objects with category
   valueUnit?: '%' | 'hrs' | 'count' | ''; // For tooltip formatting
@@ -37,10 +35,6 @@ export interface AreaChartProps {
   showLegend?: boolean;
   legendItems?: LegendData[];
   defaultAreaColor?: string; // Default color for areas when no category is provided
-  onRemoveWidget?: () => void;
-  onExportData?: () => void;
-  onSettings?: () => void;
-  onMagicClick?: () => void;
   margin?: {
     top?: number;
     right?: number;
@@ -65,7 +59,6 @@ export interface AreaChartProps {
 }
 
 export default function AreaChart({
-  title,
   data,
   dataKeys,
   valueUnit = '',
@@ -73,10 +66,6 @@ export default function AreaChart({
   showLegend = true,
   legendItems,
   defaultAreaColor = "#FF5757",
-  onRemoveWidget,
-  onExportData,
-  onSettings,
-  onMagicClick,
   margin = { top: 0, right: 0, left: 0, bottom: 0 },
   areaType = "monotone",
   strokeWidth = 1,
@@ -124,15 +113,7 @@ export default function AreaChart({
   }) : [];
 
   return (
-    <div className="w-full h-full bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6">
-      <ChartHeader
-        title={title}
-        onRemoveWidget={onRemoveWidget}
-        onExportData={onExportData}
-        onSettings={onSettings}
-        onMagicClick={onMagicClick}
-      />
-      
+    <div className="flex flex-col gap-6 w-full h-full">      
       <div 
         className="bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl p-4 relative"
         style={{ height: `${height}px` }}

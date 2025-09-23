@@ -1,6 +1,7 @@
 import VerticalBarChart from './common/VerticalBarChart';
 import type { BarChartData, LegendData } from './common/VerticalBarChart';
 import { ChartCategory } from './common/chartConstants';
+import { ChartHeader } from '../ui-components/ChartHeader';
 
 export default function RiskiestTeamsChart() {
   
@@ -20,19 +21,24 @@ export default function RiskiestTeamsChart() {
   ];
 
   return (
-    <VerticalBarChart
-      title="Riskiest Teams"
-      data={data}
-      valueUnit="%"
-      valueLabel="Risk Score"
-      height={244}
-      barCategoryGap="40%"
-      showLegend={true}
-      legendItems={legendItems}
-      onRemoveWidget={() => console.log("Remove widget")}
-      onExportData={() => console.log("Export data")}
-      onSettings={() => console.log("Settings")}
-      onMagicClick={() => console.log("Magic clicked for Riskiest Teams")}
-    />
+    <div className="w-full h-full bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6">
+      <ChartHeader
+        title="Riskiest Teams"
+        onRemoveWidget={() => console.log("Remove widget")}
+        onExportData={() => console.log("Export data")}
+        onSettings={() => console.log("Settings")}
+        onMagicClick={() => console.log("Magic clicked for Riskiest Teams")}
+      />
+      
+      <VerticalBarChart
+        data={data}
+        valueUnit="%"
+        valueLabel="Risk Score"
+        height={244}
+        barCategoryGap="40%"
+        showLegend={true}
+        legendItems={legendItems}
+      />
+    </div>
   );
 } 

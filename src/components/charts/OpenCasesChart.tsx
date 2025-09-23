@@ -1,5 +1,6 @@
 import VerticalBarChart, { type BarChartData } from "./common/VerticalBarChart";
 import { ChartCategory } from "./common/chartConstants";
+import { ChartHeader } from "../ui-components/ChartHeader";
 
 const data: BarChartData[] = [
   {
@@ -26,18 +27,23 @@ const data: BarChartData[] = [
 
 export default function OpenCasesChart() {
   return (
-    <VerticalBarChart
-      title="Open Cases (Severity-wise)"
-      data={data}
-      valueUnit="count"
-      valueLabel="Cases Count"
-      height={244}
-      barCategoryGap="40%"
-      showLegend={true}
-      onRemoveWidget={() => console.log("Remove widget")}
-      onExportData={() => console.log("Export data")}
-      onSettings={() => console.log("Settings")}
-      onMagicClick={() => console.log("Magic clicked for Open Cases")}
-    />
+    <div className="w-full h-full bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6">
+      <ChartHeader
+        title="Open Cases (Severity-wise)"
+        onRemoveWidget={() => console.log("Remove widget")}
+        onExportData={() => console.log("Export data")}
+        onSettings={() => console.log("Settings")}
+        onMagicClick={() => console.log("Magic clicked for Open Cases")}
+      />
+      
+      <VerticalBarChart
+        data={data}
+        valueUnit="count"
+        valueLabel="Cases Count"
+        height={244}
+        barCategoryGap="40%"
+        showLegend={true}
+      />
+    </div>
   );
 } 

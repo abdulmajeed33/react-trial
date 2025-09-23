@@ -8,7 +8,6 @@ import {
   Cell,
   Tooltip,
 } from "recharts";
-import { ChartHeader } from "../../ui-components/ChartHeader";
 import { LegendItem } from "../../ui-components/LegendItem";
 import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
 
@@ -24,7 +23,6 @@ export interface LegendData {
 }
 
 export interface HorizontalBarChartProps {
-  title: string;
   data: HorizontalBarChartData[];
   valueUnit?: '%' | '' | 'count'; // For tooltip formatting
   valueLabel: string; // Label for tooltip (e.g., 'Risk Level', 'Count')
@@ -32,10 +30,6 @@ export interface HorizontalBarChartProps {
   barCategoryGap?: string; // Gap between bars
   showLegend?: boolean;
   legendItems?: LegendData[];
-  onRemoveWidget?: () => void;
-  onExportData?: () => void;
-  onSettings?: () => void;
-  onMagicClick?: () => void;
   margin?: {
     top?: number;
     right?: number;
@@ -51,7 +45,6 @@ export interface HorizontalBarChartProps {
 }
 
 export default function HorizontalBarChart({
-  title,
   data,
   valueUnit = '%',
   valueLabel,
@@ -59,10 +52,6 @@ export default function HorizontalBarChart({
   barCategoryGap = "10%",
   showLegend = false,
   legendItems,
-  onRemoveWidget,
-  onExportData,
-  onSettings,
-  onMagicClick,
   margin = { top: 20, right: 20, left: -60, bottom: 0 },
   defaultBarColor = "#FF5757",
   barRadius = [0, 8, 8, 0],
@@ -89,15 +78,7 @@ export default function HorizontalBarChart({
   };
 
   return (
-    <div className="bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6 w-full h-full">
-      <ChartHeader
-        title={title}
-        onRemoveWidget={onRemoveWidget}
-        onExportData={onExportData}
-        onSettings={onSettings}
-        onMagicClick={onMagicClick}
-      />
-
+    <div className="flex flex-col gap-6 w-full h-full">
       <div 
         className="flex-1 bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl relative"
         style={{ minHeight: `${height}px` }}

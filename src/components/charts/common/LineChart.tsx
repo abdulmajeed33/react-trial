@@ -7,7 +7,6 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
-import { ChartHeader } from "../../ui-components/ChartHeader";
 import { LegendItem } from "../../ui-components/LegendItem";
 import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
 
@@ -23,7 +22,6 @@ export interface LegendData {
 }
 
 export interface LineChartProps {
-  title: string;
   data: LineChartData[];
   valueUnit?: '%' | '' | 'count'; // For tooltip formatting
   valueLabel: string; // Label for tooltip (e.g., 'Security Score', 'Count')
@@ -31,10 +29,6 @@ export interface LineChartProps {
   showLegend?: boolean;
   legendItems?: LegendData[];
   defaultLineColor?: string; // Default color for line when no category is provided
-  onRemoveWidget?: () => void;
-  onExportData?: () => void;
-  onSettings?: () => void;
-  onMagicClick?: () => void;
   margin?: {
     top?: number;
     right?: number;
@@ -55,7 +49,6 @@ export interface LineChartProps {
 }
 
 export default function LineChart({
-  title,
   data,
   valueUnit = '%',
   valueLabel,
@@ -63,10 +56,6 @@ export default function LineChart({
   showLegend = false,
   legendItems,
   defaultLineColor = "#7988FF",
-  onRemoveWidget,
-  onExportData,
-  onSettings,
-  onMagicClick,
   margin = { top: 20, right: 20, left: 0, bottom: 0 },
   lineType = "monotone",
   strokeWidth = 2,
@@ -98,15 +87,7 @@ export default function LineChart({
   const lineColor = getLineColor();
 
   return (
-    <div className="w-full h-full bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6">
-      <ChartHeader
-        title={title}
-        onRemoveWidget={onRemoveWidget}
-        onExportData={onExportData}
-        onSettings={onSettings}
-        onMagicClick={onMagicClick}
-      />
-      
+    <div className="flex flex-col gap-6 w-full h-full">
       <div 
         className="bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl relative"
         style={{ height: `${height}px` }}

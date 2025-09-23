@@ -8,7 +8,6 @@ import {
   Cell,
   Tooltip,
 } from "recharts";
-import { ChartHeader } from "../../ui-components/ChartHeader";
 import { LegendItem } from "../../ui-components/LegendItem";
 import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
 
@@ -24,7 +23,6 @@ export interface LegendData {
 }
 
 export interface VerticalBarChartProps {
-  title: string;
   data: BarChartData[];
   valueUnit?: '%' | '' | 'count'; // For tooltip formatting
   valueLabel: string; // Label for tooltip (e.g., 'Compliance Score', 'Assets Count')
@@ -33,10 +31,6 @@ export interface VerticalBarChartProps {
   showLegend?: boolean;
   legendItems?: LegendData[];
   defaultBarColor?: string; // Default color for bars when no category is provided
-  onRemoveWidget?: () => void;
-  onExportData?: () => void;
-  onSettings?: () => void;
-  onMagicClick?: () => void;
   margin?: {
     top?: number;
     right?: number;
@@ -49,7 +43,6 @@ export interface VerticalBarChartProps {
 }
 
 export default function VerticalBarChart({
-  title,
   data,
   valueUnit = '%',
   valueLabel,
@@ -58,10 +51,6 @@ export default function VerticalBarChart({
   showLegend = true,
   legendItems,
   defaultBarColor = "#FF5757",
-  onRemoveWidget,
-  onExportData,
-  onSettings,
-  onMagicClick,
   margin = { top: 20, right: 20, left: 0, bottom: 0 },
   yAxisTicks = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
   domain = [0, 100]
@@ -85,15 +74,7 @@ export default function VerticalBarChart({
   };
 
   return (
-    <div className="w-full h-full bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6">
-      <ChartHeader
-        title={title}
-        onRemoveWidget={onRemoveWidget}
-        onExportData={onExportData}
-        onSettings={onSettings}
-        onMagicClick={onMagicClick}
-      />
-      
+    <div className="flex flex-col gap-6 w-full h-full">
       <div 
         className="relative bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl"
         style={{ height: `${height}px` }}

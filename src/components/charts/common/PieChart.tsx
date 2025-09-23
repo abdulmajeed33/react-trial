@@ -1,5 +1,4 @@
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-import { ChartHeader } from '../../ui-components/ChartHeader';
 import { LegendItem } from '../../ui-components/LegendItem';
 import { ChartCategory, CATEGORY_COLORS } from './chartConstants';
 
@@ -16,7 +15,6 @@ export interface LegendData {
 }
 
 export interface PieChartProps {
-  title: string;
   data: PieChartData[];
   valueUnit?: '%' | '' | 'count'; // For tooltip formatting
   valueLabel: string; // Label for tooltip (e.g., 'Risk Level', 'Assets Count')
@@ -27,14 +25,9 @@ export interface PieChartProps {
   showLegend?: boolean;
   legendItems?: LegendData[];
   defaultPieColor?: string; // Default color for segments when no category is provided
-  onRemoveWidget?: () => void;
-  onExportData?: () => void;
-  onSettings?: () => void;
-  onMagicClick?: () => void;
 }
 
 export default function PieChart({
-  title,
   data,
   valueUnit = '%',
   valueLabel,
@@ -45,10 +38,6 @@ export default function PieChart({
   showLegend = true,
   legendItems,
   defaultPieColor = "#FF5757",
-  onRemoveWidget,
-  onExportData,
-  onSettings,
-  onMagicClick,
 }: PieChartProps) {
   
   // Default legend items if not provided and showLegend is true
@@ -69,15 +58,7 @@ export default function PieChart({
   };
 
   return (
-    <div className="w-full h-full bg-background-dark-neutral-transparent border border-border-dark-neutral-dark rounded-2xl p-4 flex flex-col gap-6">
-      <ChartHeader
-        title={title}
-        onRemoveWidget={onRemoveWidget}
-        onExportData={onExportData}
-        onSettings={onSettings}
-        onMagicClick={onMagicClick}
-      />
-      
+    <div className="flex flex-col gap-6 w-full h-full">
       <div 
         className="bg-background-dark-neutral border border-border-dark-neutral-neutral rounded-xl relative flex items-center justify-center"
         style={{ height: `${height}px` }}
