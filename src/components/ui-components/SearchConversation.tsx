@@ -1,10 +1,6 @@
 import { Select, SelectContent, SelectItem, SelectTrigger } from '../ui/select';
-import { Input } from '../ui/input';
-import { useState } from 'react';
 
 export function SearchConversation() {
-  const [inputValue, setInputValue] = useState('');
-
   return (
     <div className="flex items-center gap-3 p-3 rounded-[6px] w-[400px] bg-background-dark-neutral-transparent border border-border-primary-two-dark shadow-[0px_8px_8px_0px_rgba(42,61,214,0.16)]">
       {/* Left Section - Search/Conversation Area */}
@@ -15,13 +11,13 @@ export function SearchConversation() {
             alt="Magic"
             className="w-5 h-5 object-contain flex-shrink-0"
           />
-            <Input
-              autoFocus
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              placeholder="⌘ + M to start conversation"
-              className="border-none bg-transparent p-0 h-auto text-body-small text-text-dark-primary placeholder:text-text-dark-secondary focus-visible:ring-0 focus-visible:ring-offset-0"
-            />
+          <p className="text-body-small text-text-dark-secondary">
+            <span className="text-text-dark-primary">
+            ⌘ + M
+            </span>
+            {` `}
+            to start conversation
+          </p>
         </div>
       </div>
 
