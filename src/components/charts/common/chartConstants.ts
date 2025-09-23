@@ -21,7 +21,7 @@ export const CATEGORY_COLORS: Record<ChartCategory, string> = {
   [ChartCategory.CAUTION]: "#F59C0B",
   [ChartCategory.WARNING]: "#FFA500",
   [ChartCategory.CRITICAL]: "#FF5757",
-  [ChartCategory.HIGH]: "#EF4444",
+  [ChartCategory.HIGH]: "#FF740A",
   [ChartCategory.MEDIUM]: "#F59C0B", 
   [ChartCategory.LOW]: "#7988FF",
   [ChartCategory.ASSETS]: "#7988FF",

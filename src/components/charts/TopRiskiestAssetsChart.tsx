@@ -1,14 +1,22 @@
 import PieChart from './common/PieChart';
-import type { PieChartData } from './common/PieChart';
-
+import type { PieChartData, LegendData } from './common/PieChart';
+import { ChartCategory } from './common/chartConstants';
 
 export default function TopRiskiestAssetsChart() {
   
   const data: PieChartData[] = [
-    { name: 'Critical', value: 35, color: '#FF5757' },
-    { name: 'High', value: 30, color: '#FF740A' },
-    { name: 'Medium', value: 25, color: '#F59C0B' },
-    { name: 'Low', value: 10, color: '#7988FF' },
+    { name: 'Critical', value: 35, category: ChartCategory.CRITICAL },
+    { name: 'High', value: 30, category: ChartCategory.HIGH },
+    { name: 'Medium', value: 25, category: ChartCategory.MEDIUM },
+    { name: 'Low', value: 10, category: ChartCategory.LOW },
+  ];
+
+  // Legend items matching risk categories
+  const legendItems: LegendData[] = [
+    { category: ChartCategory.CRITICAL, label: 'Critical' },
+    { category: ChartCategory.HIGH, label: 'High' },
+    { category: ChartCategory.MEDIUM, label: 'Medium' },
+    { category: ChartCategory.LOW, label: 'Low' },
   ];
   
 
@@ -23,6 +31,7 @@ export default function TopRiskiestAssetsChart() {
       outerRadius={100}
       paddingAngle={2}
       showLegend={true}
+      legendItems={legendItems}
       onRemoveWidget={() => console.log("Remove widget")}
       onExportData={() => console.log("Export data")}
       onSettings={() => console.log("Settings")}

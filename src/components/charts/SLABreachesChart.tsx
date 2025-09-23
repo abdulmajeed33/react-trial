@@ -1,21 +1,22 @@
 import PieChart from './common/PieChart';
 import type { PieChartData, LegendData } from './common/PieChart';
+import { ChartCategory } from './common/chartConstants';
 
 export default function SLABreachesChart() {
   
   // Data estimated from Figma visual proportions
   // Based on the concentric circles showing different segments
   const data: PieChartData[] = [
-    { name: 'Compliant', value: 60, color: '#2FD897' }, // Largest segment (green)
-    { name: 'At Risk', value: 25, color: '#FF740A' }, // Medium segment (orange)
-    { name: 'Breached', value: 15, color: '#FF5757' }, // Smallest segment (red)
+    { name: 'Compliant', value: 60, category: ChartCategory.OPTIMAL }, // Largest segment (green)
+    { name: 'At Risk', value: 25, category: ChartCategory.CAUTION }, // Medium segment (orange)
+    { name: 'Breached', value: 15, category: ChartCategory.CRITICAL }, // Smallest segment (red)
   ];
 
-  // Legend items matching Figma colors
+  // Legend items matching categories
   const legendItems: LegendData[] = [
-    { color: '#2FD897', label: 'Compliant' },
-    { color: '#FF740A', label: 'At Risk' },
-    { color: '#FF5757', label: 'Breached' },
+    { category: ChartCategory.OPTIMAL, label: 'Compliant' },
+    { category: ChartCategory.CAUTION, label: 'At Risk' },
+    { category: ChartCategory.CRITICAL, label: 'Breached' },
   ];
 
   return (

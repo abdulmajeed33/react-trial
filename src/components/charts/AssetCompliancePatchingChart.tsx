@@ -1,19 +1,20 @@
 import PieChart from './common/PieChart';
 import type { PieChartData, LegendData } from './common/PieChart';
+import { ChartCategory } from './common/chartConstants';
 
 export default function AssetCompliancePatchingChart() {
   
   // Data based on Figma visual proportions
   // The design shows a larger green (compliant) segment and smaller red (non-compliant) segment
   const data: PieChartData[] = [
-    { name: 'Compliant', value: 75, color: '#2FD897' }, // Green - larger segment
-    { name: 'Non-Compliant', value: 25, color: '#FF5757' }, // Red - smaller segment
+    { name: 'Compliant', value: 75, category: ChartCategory.OPTIMAL }, // Green - larger segment
+    { name: 'Non-Compliant', value: 25, category: ChartCategory.CRITICAL }, // Red - smaller segment
   ];
 
   // Legend items matching Figma colors and labels
   const legendItems: LegendData[] = [
-    { color: '#2FD897', label: 'Compliant' },
-    { color: '#FF5757', label: 'Non-Compliant' },
+    { category: ChartCategory.OPTIMAL, label: 'Compliant' },
+    { category: ChartCategory.CRITICAL, label: 'Non-Compliant' },
   ];
 
   return (

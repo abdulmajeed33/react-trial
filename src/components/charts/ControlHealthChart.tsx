@@ -1,21 +1,22 @@
 import PieChart from './common/PieChart';
 import type { PieChartData, LegendData } from './common/PieChart';
+import { ChartCategory } from './common/chartConstants';
 
 export default function ControlHealthChart() {
   
   // Data estimated from Figma visual proportions
   // Based on the concentric circles showing different segments
   const data: PieChartData[] = [
-    { name: 'Healthy', value: 55, color: '#2FD897' }, // Largest segment (green)
-    { name: 'Degraded', value: 30, color: '#FF740A' }, // Medium segment (orange)
-    { name: 'Offline', value: 15, color: '#FF5757' }, // Smallest segment (red)
+    { name: 'Healthy', value: 55, category: ChartCategory.OPTIMAL }, // Largest segment (green)
+    { name: 'Degraded', value: 30, category: ChartCategory.CAUTION }, // Medium segment (orange)
+    { name: 'Offline', value: 15, category: ChartCategory.CRITICAL }, // Smallest segment (red)
   ];
 
   // Legend items matching Figma colors
   const legendItems: LegendData[] = [
-    { color: '#2FD897', label: 'Healthy' },
-    { color: '#FF740A', label: 'Degraded' },
-    { color: '#FF5757', label: 'Offline' },
+    { category: ChartCategory.OPTIMAL, label: 'Healthy' },
+    { category: ChartCategory.CAUTION, label: 'Degraded' },
+    { category: ChartCategory.CRITICAL, label: 'Offline' },
   ];
 
   return (
