@@ -14,9 +14,13 @@ import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
 
 export interface AreaChartData {
   name: string;
-  categories: ChartCategory[]; // Array of categories for each data series in order
-  [key: string]: string | number | ChartCategory[]; // Allow dynamic keys for multiple data series
-  // For example: { name: "Mar", mttd: 3, mttr: 10, categories: [ChartCategory.MTTD, ChartCategory.MTTR] }
+  [key: string]: string | number; // Allow dynamic keys for multiple data series
+  // For example: { name: "Mar", mttd: 3, mttr: 10 }
+}
+
+export interface DataKeyConfig {
+  key: string;
+  category?: ChartCategory;
 }
 
 export interface LegendData {
@@ -27,11 +31,12 @@ export interface LegendData {
 export interface AreaChartProps {
   title: string;
   data: AreaChartData[];
-  dataKeys: string[]; // Define which data keys to render as areas (e.g., ['mttd', 'mttr'])
+  dataKeys: string[] | DataKeyConfig[]; // Can be simple strings or objects with category
   valueUnit?: '%' | 'hrs' | 'count' | ''; // For tooltip formatting
   height?: number; // Chart container height
   showLegend?: boolean;
   legendItems?: LegendData[];
+  defaultAreaColor?: string; // Default color for areas when no category is provided
   onRemoveWidget?: () => void;
   onExportData?: () => void;
   onSettings?: () => void;
@@ -67,6 +72,7 @@ export default function AreaChart({
   height = 246,
   showLegend = true,
   legendItems,
+  defaultAreaColor = "#FF5757",
   onRemoveWidget,
   onExportData,
   onSettings,
@@ -85,8 +91,10 @@ export default function AreaChart({
   useGradients = true
 }: AreaChartProps) {
   
-  // Get categories from the first data point
-  const seriesCategories = data.length > 0 ? data[0].categories : [];
+  // Normalize dataKeys to DataKeyConfig format
+  const normalizedDataKeys: DataKeyConfig[] = dataKeys.map(key => 
+    typeof key === 'string' ? { key, category: undefined } : key
+  );
 
   // Default legend items
   const defaultLegendItems: LegendData[] = [
@@ -97,16 +105,18 @@ export default function AreaChart({
   const finalLegendItems = legendItems || (showLegend ? defaultLegendItems : []);
 
   // Helper function to get color for a category
-  const getColorForCategory = (category: ChartCategory): string => {
-    return CATEGORY_COLORS[category];
+  const getColorForCategory = (category?: ChartCategory): string => {
+    if (category) {
+      return CATEGORY_COLORS[category] || defaultAreaColor;
+    }
+    return defaultAreaColor;
   };
 
   // Generate gradient definitions for each series
-  const gradientDefs = useGradients ? dataKeys.map((dataKey, index) => {
-    const category = seriesCategories[index];
-    const color = getColorForCategory(category);
+  const gradientDefs = useGradients ? normalizedDataKeys.map((dataKeyConfig, index) => {
+    const color = getColorForCategory(dataKeyConfig.category);
     return (
-      <linearGradient key={`gradient-${index}`} id={`${dataKey}Gradient`} x1="0" y1="0" x2="0" y2="1">
+      <linearGradient key={`gradient-${index}`} id={`${dataKeyConfig.key}Gradient`} x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stopColor={color} stopOpacity={0.2} />
         <stop offset="100%" stopColor={color} stopOpacity={0} />
       </linearGradient>
@@ -213,10 +223,9 @@ export default function AreaChart({
                 fontFamily: 'Inter'
               }}
               formatter={(value: number, name: string) => {
-                const dataKeyIndex = dataKeys.findIndex(key => key === name);
-                const category = dataKeyIndex >= 0 ? seriesCategories[dataKeyIndex] : undefined;
-                const color = category ? getColorForCategory(category) : '#ffffff';
-                const displayName = dataKeyIndex >= 0 ? (name === 'mttd' ? 'MTTD' : name === 'mttr' ? 'MTTR' : name) : name;
+                const dataKeyConfig = normalizedDataKeys.find(config => config.key === name);
+                const color = dataKeyConfig ? getColorForCategory(dataKeyConfig.category) : defaultAreaColor;
+                const displayName = name === 'mttd' ? 'MTTD' : name === 'mttr' ? 'MTTR' : name;
                 
                 let displayValue = `${value}`;
                 if (valueUnit === '%') displayValue = `${value}%`;
@@ -234,17 +243,15 @@ export default function AreaChart({
             />
 
             {/* Areas - render in reverse order so first series appears on top */}
-            {dataKeys.slice().reverse().map((dataKey, reverseIndex) => {
-              const originalIndex = dataKeys.length - 1 - reverseIndex;
-              const category = seriesCategories[originalIndex];
-              const color = getColorForCategory(category);
-              const fillValue = useGradients ? `url(#${dataKey}Gradient)` : `${color}1F`;
+            {normalizedDataKeys.slice().reverse().map((dataKeyConfig) => {
+              const color = getColorForCategory(dataKeyConfig.category);
+              const fillValue = useGradients ? `url(#${dataKeyConfig.key}Gradient)` : `${color}1F`;
               
-                              return (
-                  <Area
-                    key={dataKey}
-                    type={areaType}
-                    dataKey={dataKey}
+              return (
+                <Area
+                  key={dataKeyConfig.key}
+                  type={areaType}
+                  dataKey={dataKeyConfig.key}
                   stroke={color}
                   strokeWidth={strokeWidth}
                   fill={fillValue}
@@ -262,7 +269,7 @@ export default function AreaChart({
       {showLegend && finalLegendItems.length > 0 && (
         <div className="flex items-center gap-4">
           {finalLegendItems.map((item, index) => {
-            const color = CATEGORY_COLORS[item.category];
+            const color = getColorForCategory(item.category);
             
             return (
               <div key={index}>

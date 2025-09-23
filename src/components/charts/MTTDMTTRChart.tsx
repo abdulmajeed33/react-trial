@@ -1,43 +1,42 @@
 import AreaChart from './common/AreaChart';
 import { ChartCategory } from './common/chartConstants';
 
-// Chart data with categories array
+// Chart data without categories array - categories are now handled by dataKeys configuration
 const chartData = [
   { 
     name: 'Mar', 
     mttd: 3, 
     mttr: 10,
-    categories: [ChartCategory.MTTD, ChartCategory.MTTR]
   },
   { 
     name: 'Apr', 
     mttd: 2, 
     mttr: 8,
-    categories: [ChartCategory.MTTD, ChartCategory.MTTR]
   },
   { 
     name: 'May', 
     mttd: 5.5, 
     mttr: 5,
-    categories: [ChartCategory.MTTD, ChartCategory.MTTR]
   },
   { 
     name: 'Jun', 
     mttd: 6, 
     mttr: 6.5,
-    categories: [ChartCategory.MTTD, ChartCategory.MTTR]
   },
   { 
     name: 'Jul', 
     mttd: 5, 
     mttr: 10,
-    categories: [ChartCategory.MTTD, ChartCategory.MTTR]
   },
   { 
     name: 'Aug', 
     mttd: 3, 
     mttr: 9,
-    categories: [ChartCategory.MTTD, ChartCategory.MTTR]
+  },
+  {
+    name: 'Sep',
+    mttd: 0,
+    mttr: 0,
   }
 ];
 
@@ -46,7 +45,10 @@ const MTTDMTTRChart: React.FC = () => {
     <AreaChart
       title="MTTD & MTTR Trends"
       data={chartData}
-      dataKeys={['mttd', 'mttr']}
+      dataKeys={[
+        { key: 'mttd', category: ChartCategory.MTTD },
+        { key: 'mttr', category: ChartCategory.MTTR },
+      ]}
       valueUnit="hrs"
       height={246}
       showLegend={true}
