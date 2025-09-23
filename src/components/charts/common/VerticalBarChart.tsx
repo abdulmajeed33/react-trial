@@ -43,6 +43,9 @@ export interface VerticalBarChartProps {
     left?: number;
     bottom?: number;
   };
+  // Vertical bar chart specific props
+  yAxisTicks?: number[]; // Custom ticks for Y-axis
+  domain?: [number, number]; // Domain for Y-axis values
 }
 
 export default function VerticalBarChart({
@@ -59,7 +62,9 @@ export default function VerticalBarChart({
   onExportData,
   onSettings,
   onMagicClick,
-  margin = { top: 20, right: 20, left: 0, bottom: 0 }
+  margin = { top: 20, right: 20, left: 0, bottom: 0 },
+  yAxisTicks = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+  domain = [0, 100]
 }: VerticalBarChartProps) {
   
   // Default legend items if not provided and showLegend is true
@@ -128,8 +133,8 @@ export default function VerticalBarChart({
                 fontSize: 10,
                 fontFamily: "Inter",
               }}
-              domain={[0, 100]}
-              ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+              domain={domain}
+              ticks={yAxisTicks}
               interval={0}
               width={40}
             />
