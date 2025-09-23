@@ -1,7 +1,7 @@
 import React from "react";
-import { AreaChart, Area, ResponsiveContainer, Tooltip } from "recharts";
 import { ChartHeader } from "../ui-components/ChartHeader";
 import { Button } from "../ui/button";
+import SimpleAreaChart from "./common/SimpleAreaChart";
 
 // Risk trend data for the area chart - matches exact Figma curve shape
 const riskTrendData = [
@@ -140,77 +140,22 @@ const OrganizationalRiskChart: React.FC = () => {
       <div className="flex gap-3">
         {/* Left side - Risk Area Chart */}
         <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-3 flex flex-col justify-end gap-3 w-[178px] h-[236px] relative flex-shrink-0">
-          {/* Risk Area Chart using Recharts - full coverage */}
-          <div
-            className="absolute inset-0 overflow-hidden rounded-xl"
-            style={{ zIndex: 1 }}
-          >
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart
-                data={riskTrendData}
-                margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-              >
-                <defs>
-                  <linearGradient
-                    id="riskAreaGradient"
-                    x1="0"
-                    y1="1"
-                    x2="0"
-                    y2="0"
-                  >
-                    <stop offset="0%" stopColor="#FF5757" stopOpacity={0} />
-                    <stop
-                      offset="100%"
-                      stopColor="#FF5757"
-                      stopOpacity={0.15}
-                    />
-                  </linearGradient>
-                </defs>
-                <Tooltip
-                  cursor={{ stroke: "none" }}
-                  contentStyle={{
-                    backgroundColor: '#0E131C',
-                    border: '1px solid #161B26',
-                    borderRadius: "8px",
-                    padding: "8px 12px",
-                    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)",
-                    color: "#ffffff",
-                  }}
-                  itemStyle={{
-                    color: "#FF5757",
-                    fontSize: "12px",
-                    fontWeight: "600",
-                  }}
-                  labelStyle={{
-                    color: "#cccccc", // Light gray for label
-                    fontSize: "11px",
-                    fontWeight: "500",
-                    marginBottom: "2px",
-                  }}
-                  formatter={(value: number) => {
-                    return [
-                      <span className="text-text-badge-error text-extra-small font-normal">
-                        {value}%
-                      </span>,
-                      "Risk",
-                    ];
-                  }}
-                />
-                <Area
-                  type="natural"
-                  dataKey="risk"
-                  stroke="#FF5757"
-                  strokeWidth={2}
-                  fill="url(#riskAreaGradient)"
-                  fillOpacity={1}
-                  dot={false}
-                  activeDot={false}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
+          {/* Risk Area Chart using SimpleAreaChart component */}
+          <SimpleAreaChart
+            data={riskTrendData}
+            dataKey="risk"
+            color="#FF5757"
+            gradientId="riskAreaGradient"
+            gradientOpacity={{ start: 0.15, end: 0 }}
+            strokeWidth={2}
+            areaType="natural"
+            tooltipFormatter={(value: number) => (
+              <span className="text-text-badge-error text-extra-small font-normal">
+                {value}%
+              </span>
+            )}
+            tooltipLabel="Risk"
+          />
 
           {/* Content */}
           <div className="flex flex-col gap-3 relative" style={{ zIndex: 10 }}>
