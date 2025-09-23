@@ -59,13 +59,13 @@ export function SearchConversation() {
             </div>
           </SelectTrigger>
           <SelectContent className="bg-background-dark-neutral-three border border-border-dark-neutral-three">
-            <SelectItem value="agent" className="text-text-dark-primary">
+            <SelectItem value="agent" className="text-text-dark-primary hover:bg-background-dark-neutral-two hover:text-text-dark-primary focus:bg-background-dark-neutral-two focus:text-text-dark-primary">
               Agent
             </SelectItem>
-            <SelectItem value="assistant" className="text-text-dark-primary">
+            <SelectItem value="assistant" className="text-text-dark-primary hover:bg-background-dark-neutral-two hover:text-text-dark-primary focus:bg-background-dark-neutral-two focus:text-text-dark-primary">
               Assistant
             </SelectItem>
-            <SelectItem value="copilot" className="text-text-dark-primary">
+            <SelectItem value="copilot" className="text-text-dark-primary hover:bg-background-dark-neutral-two hover:text-text-dark-primary focus:bg-background-dark-neutral-two focus:text-text-dark-primary">
               Copilot
             </SelectItem>
           </SelectContent>
