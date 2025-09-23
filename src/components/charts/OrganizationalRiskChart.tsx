@@ -2,6 +2,7 @@ import React from "react";
 import { ChartHeader } from "../ui-components/ChartHeader";
 import { Button } from "../ui/button";
 import SimpleAreaChart from "./common/SimpleAreaChart";
+import { ChartCategory } from "./common/chartConstants";
 
 // Risk trend data for the area chart - matches exact Figma curve shape
 const riskTrendData = [
@@ -141,19 +142,23 @@ const OrganizationalRiskChart: React.FC = () => {
         {/* Left side - Risk Area Chart */}
         <div className="bg-background-dark-neutral-two border border-border-dark-neutral-neutral rounded-xl p-3 flex flex-col justify-end gap-3 w-[178px] h-[236px] relative flex-shrink-0">
           {/* Risk Area Chart using SimpleAreaChart component */}
+          {/* 
+            Easy to change chart appearance by switching categories:
+            - ChartCategory.CRITICAL (red) - current
+            - ChartCategory.WARNING (orange)
+            - ChartCategory.CAUTION (yellow)
+            - ChartCategory.GOOD (green)
+            - Or use custom color prop instead
+          */}
           <SimpleAreaChart
             data={riskTrendData}
             dataKey="risk"
-            color="#FF5757"
+            category={ChartCategory.CRITICAL}
             gradientId="riskAreaGradient"
             gradientOpacity={{ start: 0.15, end: 0 }}
             strokeWidth={2}
             areaType="natural"
-            tooltipFormatter={(value: number) => (
-              <span className="text-text-badge-error text-extra-small font-normal">
-                {value}%
-              </span>
-            )}
+            valueUnit="%"
             tooltipLabel="Risk"
           />
 

@@ -1,5 +1,34 @@
 import React from "react";
 import { AreaChart, Area, ResponsiveContainer, Tooltip } from "recharts";
+import { ChartCategory, CATEGORY_COLORS } from "./chartConstants";
+
+/**
+ * SimpleAreaChart - A flexible area chart component for embedded/overlay usage
+ * 
+ * Features:
+ * - Category-based styling using chartConstants
+ * - Custom gradient backgrounds
+ * - Configurable tooltips with unit formatting
+ * - No axes or grid lines for clean overlay appearance
+ * - Absolute positioning for container coverage
+ * 
+ * Example usage:
+ * ```tsx
+ * // Using category (recommended)
+ * <SimpleAreaChart 
+ *   data={data} 
+ *   dataKey="risk" 
+ *   category={ChartCategory.CRITICAL} 
+ * />
+ * 
+ * // Using custom color
+ * <SimpleAreaChart 
+ *   data={data} 
+ *   dataKey="performance" 
+ *   color="#00FF00" 
+ * />
+ * ```
+ */
 
 export interface SimpleAreaChartData {
   x: number;
@@ -9,7 +38,8 @@ export interface SimpleAreaChartData {
 export interface SimpleAreaChartProps {
   data: SimpleAreaChartData[];
   dataKey: string;
-  color?: string;
+  category?: ChartCategory; // Use category instead of direct color
+  color?: string; // Fallback color when no category is provided
   gradientId?: string;
   gradientOpacity?: {
     start: number;
@@ -20,6 +50,7 @@ export interface SimpleAreaChartProps {
   showTooltip?: boolean;
   tooltipFormatter?: (value: number) => React.ReactNode;
   tooltipLabel?: string;
+  valueUnit?: '%' | 'hrs' | 'count' | ''; // For default tooltip formatting
   className?: string;
   style?: React.CSSProperties;
 }
@@ -27,7 +58,8 @@ export interface SimpleAreaChartProps {
 const SimpleAreaChart: React.FC<SimpleAreaChartProps> = ({
   data,
   dataKey,
-  color = "#FF5757",
+  category,
+  color,
   gradientId,
   gradientOpacity = { start: 0.15, end: 0 },
   strokeWidth = 2,
@@ -35,16 +67,27 @@ const SimpleAreaChart: React.FC<SimpleAreaChartProps> = ({
   showTooltip = true,
   tooltipFormatter,
   tooltipLabel,
+  valueUnit = '%',
   className = "absolute inset-0 overflow-hidden rounded-xl",
   style = { zIndex: 1 },
 }) => {
+  // Determine final color based on category or fallback
+  const finalColor = category ? CATEGORY_COLORS[category] : (color || "#FF5757");
   const finalGradientId = gradientId || `${dataKey}AreaGradient`;
   
-  const defaultTooltipFormatter = (value: number) => (
-    <span style={{ color }} className="text-extra-small font-normal">
-      {value}%
-    </span>
-  );
+  const defaultTooltipFormatter = (value: number) => {
+    let displayValue = `${value}`;
+    if (valueUnit === '%') displayValue = `${value}%`;
+    else if (valueUnit === 'hrs') displayValue = `${value} hr${value === 1 ? '' : 's'}`;
+    else if (valueUnit === 'count') displayValue = `${value}`;
+    else if (valueUnit) displayValue = `${value} ${valueUnit}`;
+
+    return (
+      <span style={{ color: finalColor }} className="text-extra-small font-normal">
+        {displayValue}
+      </span>
+    );
+  };
 
   const finalTooltipFormatter = tooltipFormatter || defaultTooltipFormatter;
   const finalTooltipLabel = tooltipLabel || dataKey.charAt(0).toUpperCase() + dataKey.slice(1);
@@ -64,8 +107,8 @@ const SimpleAreaChart: React.FC<SimpleAreaChartProps> = ({
               x2="0"
               y2="0"
             >
-              <stop offset="0%" stopColor={color} stopOpacity={gradientOpacity.end} />
-              <stop offset="100%" stopColor={color} stopOpacity={gradientOpacity.start} />
+              <stop offset="0%" stopColor={finalColor} stopOpacity={gradientOpacity.end} />
+              <stop offset="100%" stopColor={finalColor} stopOpacity={gradientOpacity.start} />
             </linearGradient>
           </defs>
           
@@ -81,7 +124,7 @@ const SimpleAreaChart: React.FC<SimpleAreaChartProps> = ({
                 color: "#ffffff",
               }}
               itemStyle={{
-                color: color,
+                color: finalColor,
                 fontSize: "12px",
                 fontWeight: "600",
               }}
@@ -101,7 +144,7 @@ const SimpleAreaChart: React.FC<SimpleAreaChartProps> = ({
           <Area
             type={areaType}
             dataKey={dataKey}
-            stroke={color}
+            stroke={finalColor}
             strokeWidth={strokeWidth}
             fill={`url(#${finalGradientId})`}
             fillOpacity={1}
