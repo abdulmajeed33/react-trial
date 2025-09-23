@@ -1,6 +1,26 @@
 import { Select, SelectContent, SelectItem, SelectTrigger } from '../ui/select';
+import { useEffect } from 'react';
 
 export function SearchConversation() {
+  // Handle keyboard shortcut
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Check for Cmd+M (Mac) or Ctrl+M (Windows/Linux)
+      if ((event.metaKey || event.ctrlKey) && event.key === 'm') {
+        event.preventDefault();
+        alert('Starting conversation...');
+      }
+    };
+
+    // Add event listener
+    document.addEventListener('keydown', handleKeyDown);
+
+    // Cleanup event listener on unmount
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
     <div className="flex items-center gap-3 p-3 rounded-[6px] w-[400px] bg-background-dark-neutral-transparent border border-border-primary-two-dark shadow-[0px_8px_8px_0px_rgba(42,61,214,0.16)]">
       {/* Left Section - Search/Conversation Area */}
