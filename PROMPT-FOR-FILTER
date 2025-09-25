@@ -1,0 +1,37 @@
+I need you to modify my existing Recharts AreaChart component to add interactive filtering capabilities. I want users to be able to toggle series visibility by clicking on legend items.
+
+CONTEXT:
+- I have an AreaChart component built with Recharts library
+- The chart displays MTTD and MTTR data over time
+- Currently has a static legend with LegendItem components
+- Uses TypeScript and React with useState hook
+
+REQUIREMENTS:
+1. Add state management to track which series are hidden/visible
+2. Make legend items clickable to toggle series visibility
+3. Update the chart to only render visible series
+4. Apply visual feedback (opacity/color changes) to hidden legend items
+5. Maintain all existing functionality and props
+6. Keep the existing component interface intact
+
+TECHNICAL DETAILS:
+- Use React useState hook for state management
+- Filter the normalizedDataKeys based on hidden series
+- Update LegendItem component to accept onClick and className props
+- Use Set<string> to track hidden series for efficient lookups
+- Apply cursor-pointer and opacity styling for better UX
+
+EXISTING CODE STRUCTURE:
+- Component has normalizedDataKeys array with DataKeyConfig objects
+- Areas are rendered using .map() over normalizedDataKeys
+- Legend uses finalLegendItems array with LegendData objects
+- Colors are managed through getColorForCategory function
+
+OUTPUT FORMAT:
+1. Show the updated AreaChart component with filtering logic
+2. Show the enhanced LegendItem component interface
+3. Include TypeScript types for any new props
+4. Add comments explaining the key changes
+5. Ensure backward compatibility with existing props
+
+Please provide the complete modified code with all the filtering functionality implemented.
